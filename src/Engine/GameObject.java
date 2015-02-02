@@ -3,6 +3,11 @@ package Engine;
 import java.util.ArrayList;
 import java.util.List;
 
+import Utils.Component;
+import Utils.ScriptBase;
+import Utils.Transform;
+import Utils.Vector2;
+
 public class GameObject {
 
 	public Transform transform = new Transform(new Vector2());
@@ -113,7 +118,7 @@ public class GameObject {
 		
 	}
 	
-	GameObject() {
+	public GameObject() {
 
 		Components.add(transform);
 		name = "GameObject";
@@ -121,7 +126,7 @@ public class GameObject {
 		
 	}
 
-	GameObject(String name) {
+	public GameObject(String name) {
 		Components.add(transform);
 		this.name = name;
 		SceneObjects.add(this);

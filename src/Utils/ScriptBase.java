@@ -1,4 +1,7 @@
-package Engine;
+package Utils;
+import Engine.GameObject;
+import Engine.Main;
+
 import com.mrjaffesclass.apcs.messenger.MessageHandler;
 import com.mrjaffesclass.apcs.messenger.Messenger;
 

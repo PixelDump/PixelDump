@@ -1,11 +1,13 @@
-package Engine;
+package Renderer;
 
 import java.awt.Canvas;
 import java.util.ArrayList;
 
+import Engine.GameObject;
+
 public class UI   {
 	public Window window;
-	UI(){
+	public UI(){
 	
 		GameObject x = new GameObject();
 		x.setName("Object1");

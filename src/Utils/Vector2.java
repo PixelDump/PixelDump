@@ -1,4 +1,4 @@
-package Engine;
+package Utils;
 public class Vector2 {
 
 	public float x;

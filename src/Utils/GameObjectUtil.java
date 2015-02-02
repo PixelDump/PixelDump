@@ -1,4 +1,6 @@
-package Engine;
+package Utils;
+
+import Engine.GameObject;
 
 public class GameObjectUtil extends ScriptBase {
 
