@@ -8,7 +8,7 @@ import java.util.Properties;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-import Engine.TextUtilities;
+import Utils.TextUtilities;
 
 import com.jtattoo.plaf.smart.SmartLookAndFeel;
 
