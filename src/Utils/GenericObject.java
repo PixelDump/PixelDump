@@ -1,11 +1,14 @@
 package Utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 public class GenericObject {
 	
 	
-	private List<Component> Components = new ArrayList<Component>();
+	protected List<Component> Components = new ArrayList<Component>();
 
 	public void AddComponent(Component c) {
 		Components.add(c);
