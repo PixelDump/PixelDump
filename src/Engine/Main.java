@@ -16,7 +16,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
-import Renderer.ViewPortWindow;
+import Renderer.UI;
 
 import com.mrjaffesclass.apcs.messenger.Messenger;
 

@@ -1,4 +1,4 @@
-package Engine;
+package Renderer;
 
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
@@ -7,6 +7,8 @@ import java.util.Properties;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
+
+import Engine.TextUtilities;
 
 import com.jtattoo.plaf.smart.SmartLookAndFeel;
 

@@ -1,4 +1,4 @@
-package Engine;
+package Renderer;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -12,13 +12,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import Engine.GameObject;
+
 
 //TODO: 
 
 public class Window extends PixDumpWindow{
 
 	
-	Canvas c =new Canvas();
+	public Canvas c =new Canvas();
 	
 	
 	

@@ -113,7 +113,7 @@ public class GameObject {
 		
 	}
 	
-	GameObject() {
+	public GameObject() {
 
 		Components.add(transform);
 		name = "GameObject";
