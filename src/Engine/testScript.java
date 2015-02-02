@@ -1,5 +1,7 @@
 package Engine;
 
+import Utils.ScriptBase;
+
 public class testScript extends ScriptBase {
 
 	testScript() {

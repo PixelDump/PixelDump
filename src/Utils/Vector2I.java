@@ -1,4 +1,4 @@
-package Engine;
+package Utils;
 public class Vector2I {
 
 	public int x;
