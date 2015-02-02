@@ -8,11 +8,11 @@ import Utils.ScriptBase;
 import Utils.Transform;
 import Utils.Vector2;
 
-public class GameObject {
+public class GameObject extends GenericObject{
 
 	public Transform transform = new Transform(new Vector2());
 	private String name = "";
-	private List<Component> Components = new ArrayList<Component>();
+
 	private List<GameObject> Children = new ArrayList<GameObject>();
 	private GameObject Parent;
 	
@@ -45,13 +45,11 @@ public class GameObject {
 
 	}
 
-	public void AddComponent(Component c) {
-		Components.add(c);
-	}
-
+	
 	public void AddScript(ScriptBase script) {
+		super();
 		script.setParent(this);
-		Components.add(script);
+	
 	}
 
 	public GameObject GetChild(String name) {
