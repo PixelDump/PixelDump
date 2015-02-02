@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Utils.Component;
+import Utils.GenericObject;
 import Utils.ScriptBase;
 import Utils.Transform;
 import Utils.Vector2;
@@ -45,11 +46,11 @@ public class GameObject extends GenericObject{
 
 	}
 
-	
+	@Override
 	public void AddScript(ScriptBase script) {
-		super();
+		
 		script.setParent(this);
-	
+		Components.add(script);
 	}
 
 	public GameObject GetChild(String name) {
