@@ -61,7 +61,7 @@ public class Main {
 
 		initDisplay();
 		initGL();
-		
+		ui.init();
 		
 		SystemScripts.Start();
 		GameObjectUtil.Start();
@@ -90,6 +90,8 @@ public class Main {
 	}
 
 	public static void Update() {
+		
+		
 		m.notify("Update");
 
 	}
