@@ -8,6 +8,7 @@ public class testScript extends ScriptBase {
 		super("testScript");
 	}
 	
+	public int test;
 	
 	public void Update(){
 		
@@ -15,7 +16,7 @@ public class testScript extends ScriptBase {
 		
 		//gameObject.name();
 		
-		//System.out.println(transform.position.y);
+	//	System.out.println("testing");
 	}
 	
 
