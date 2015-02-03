@@ -14,5 +14,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="src/messenger(3).jar"/>
 	<classpathentry kind="lib" path="src/JTattoo-1.6.11.jar"/>
+	<classpathentry kind="lib" path="src/slick-util (2).jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

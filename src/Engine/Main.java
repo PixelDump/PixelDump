@@ -17,13 +17,16 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 import Renderer.UI;
+import SystemScripts.SystemScripts;
+import Utils.GameObjectUtil;
+import Utils.GameObjectUtilJcub;
 
 import com.mrjaffesclass.apcs.messenger.Messenger;
 
 public class Main {
 
 	static Messenger m = new Messenger();
-	//static Window window = new  Window();
+
 
 	static UI ui = new UI();
 	public static void initGL() {
@@ -55,11 +58,10 @@ public class Main {
 
 		initDisplay();
 		initGL();
+		GameObjectUtil.Start();
+		GameObjectUtilJcub.Start();
+		SystemScripts.Start();
 		
-		
-		GameObject go = new GameObject("Test Object");
-		//go.AddScript(new Renderer("jacob"));
-		go.AddScript(new testScript());
 		m.notify("Start");
 
 	}
@@ -68,7 +70,7 @@ public class Main {
 	
 	public static void initDisplay() {
 		try {
-			Display.setDisplayMode(new DisplayMode(300, 300));
+			Display.setDisplayMode(new DisplayMode(ui.window.c.getWidth(), ui.window.c.getHeight()));
 			Display.create();
 
 			Display.setParent(ui.window.c);

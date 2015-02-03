@@ -12,7 +12,7 @@ import Utils.Vector2;
 public class GameObject extends GenericObject{
 
 	public Transform transform = new Transform(new Vector2());
-	private String name = "";
+	
 
 	private List<GameObject> Children = new ArrayList<GameObject>();
 	private GameObject Parent;
@@ -37,7 +37,7 @@ public class GameObject extends GenericObject{
 			if (name.equals(Components.get(i).name)) {
 				result = Components.get(i);
 				break;
-			} else if (i <= Components.size()) {
+			} else if (i >= Components.size()) {
 				return null;
 			}
 			i++;
@@ -118,7 +118,7 @@ public class GameObject extends GenericObject{
 	}
 	
 	public GameObject() {
-
+super();
 		Components.add(transform);
 		name = "GameObject";
 		SceneObjects.add(this);
