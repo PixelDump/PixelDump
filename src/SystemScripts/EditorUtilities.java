@@ -16,6 +16,8 @@ public class EditorUtilities extends ScriptBase {
 		// TODO Auto-generated constructor stub
 	}
 
+	public static GameObject SelectedObject;
+
 	public static List<GameObject> mouseHover = new ArrayList<GameObject>();
 
 	public void Start() {
@@ -23,43 +25,56 @@ public class EditorUtilities extends ScriptBase {
 	}
 
 	public void Update() {
-		Collections.sort(mouseHover,new DepthComparator());
-		for(GameObject go:mouseHover)
-			System.out.println(go.transform.position.x);
-	grab();
-		
+		Collections.sort(mouseHover, new DepthComparator());
+		// for(GameObject go:mouseHover)
+		if (SelectedObject != null)
+			System.out.println(SelectedObject.name);
+		else
+			System.out.println("null");
+		selection();
+
 	}
 
-	public boolean isGrabbing =false;
-	
-	public static GameObject SelectedObject;
+	public boolean isGrabbing = false;
+
 	public Vector2 offset;
-	public void grab(){
-	
-		if(Input.getMouse(0)&&mouseHover.size()!=0){
-			if(!isGrabbing){
-			isGrabbing=true;
-			SelectedObject=mouseHover.get(0);
-			offset= new Vector2(SelectedObject.transform.position.x-Input.getMousePosition().x,
-					SelectedObject.transform.position.y-Input.getMousePosition().y);
+
+	public void grab() {
+		if (mouseHover.size() != 0) {
+			if (Input.getMouse(0)) {
+				if (!isGrabbing) {
+					isGrabbing = true;
+					SelectedObject = mouseHover.get(0);
+					offset = new Vector2(SelectedObject.transform.position.x
+							- Input.getMousePosition().x,
+							SelectedObject.transform.position.y
+									- Input.getMousePosition().y);
+				}
+				if(SelectedObject!=null){
+				SelectedObject.transform.position.x = Input.getMousePosition().x
+						+ offset.x;
+				SelectedObject.transform.position.y = Input.getMousePosition().y
+						+ offset.y;
+				}
+
 			}
-			SelectedObject.transform.position.x=Input.getMousePosition().x+offset.x;
-			SelectedObject.transform.position.y=Input.getMousePosition().y+offset.y;
-		
-		} if(Input.getMouseUp(0)){
-			isGrabbing=false;
 		}
-		
-		
+		if (Input.getMouseUp(0)) {
+			isGrabbing = false;
+
+		}
+
+	}
+
+	void selection() {
+		if (Input.getMouseDown(0)) {
+			if (mouseHover.size() == 0) {
+				SelectedObject = null;
+			} else {
+				SelectedObject = mouseHover.get(0);
+			}
+
+		}
+		grab();
 	}
 }
-
-
-
-
-
-
-
-
-
-
