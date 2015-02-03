@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.lwjgl.input.Mouse;
+
 import Engine.GameObject;
 import Utils.*;
 
@@ -22,13 +24,33 @@ public class EditorUtilities extends ScriptBase {
 
 	public void Update() {
 		Collections.sort(mouseHover,new DepthComparator());
-		
+		for(GameObject go:mouseHover)
+			System.out.println(go.transform.position.x);
 	grab();
 		
 	}
 
+	public boolean isGrabbing =false;
+	
+	public static GameObject SelectedObject;
+	public Vector2 offset;
 	public void grab(){
 	
+		if(Input.getMouse(0)&&mouseHover.size()!=0){
+			if(!isGrabbing){
+			isGrabbing=true;
+			SelectedObject=mouseHover.get(0);
+			offset= new Vector2(SelectedObject.transform.position.x-Input.getMousePosition().x,
+					SelectedObject.transform.position.y-Input.getMousePosition().y);
+			}
+			SelectedObject.transform.position.x=Input.getMousePosition().x+offset.x;
+			SelectedObject.transform.position.y=Input.getMousePosition().y+offset.y;
+		
+		} if(Input.getMouseUp(0)){
+			isGrabbing=false;
+		}
+		
+		
 	}
 }
 

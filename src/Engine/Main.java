@@ -13,6 +13,7 @@ import static org.lwjgl.opengl.GL11.glOrtho;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
@@ -76,6 +77,7 @@ public class Main {
 			Display.setParent(ui.window.c);
 			Display.setVSyncEnabled(true);
 			Keyboard.create();
+			Mouse.create();
 		} catch (LWJGLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
