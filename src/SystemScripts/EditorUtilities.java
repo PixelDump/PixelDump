@@ -7,6 +7,7 @@ import java.util.List;
 import org.lwjgl.input.Keyboard;
 
 import Engine.GameObject;
+import Engine.Main;
 import Renderer.Renderer;
 import Utils.DepthComparator;
 import Utils.ScriptBase;
@@ -34,7 +35,7 @@ public class EditorUtilities extends ScriptBase {
 		if (SelectedObject != null){
 		
 			//if(Input.getMouseDown(1)){
-				System.out.println(SelectedObject.name());
+				//System.out.println(SelectedObject.name());
 				//((Renderer)SelectedObject.GetComponent("Renderer")).pixelScale--;
 			//}
 			}
@@ -91,5 +92,10 @@ public class EditorUtilities extends ScriptBase {
 		}
 		
 
+	}
+	
+	public void setSelected(String n){
+		SelectedObject = GameObject.Find(n);
+		Main.ui.window.setSelected(SelectedObject.name());
 	}
 }
