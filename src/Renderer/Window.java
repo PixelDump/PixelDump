@@ -24,7 +24,8 @@ public class Window extends PixDumpWindow{
 	
 	
 	
-	Window(ArrayList<GameObject> objects) {
+	Window() {
+		
 		super();
 		this.setTitle("Pixel Dump Development Build! (get to work already)");
 		this.setLayout(new GridLayout(1,2));
@@ -32,13 +33,13 @@ public class Window extends PixDumpWindow{
 		this.setResizable(false);
 		
 		
-		JPanel InspEiarchy = new JPanel();
-		InspEiarchy.setLayout(new GridLayout(1,4));
-		InspEiarchy.add(UpdateInspector(objects));
-		InspEiarchy.add(UpdateHeiarchy());
+		JPanel InspEierarchy = new JPanel();
+		InspEierarchy.setLayout(new GridLayout(1,4));
+		InspEierarchy.add(UpdateInspector());
+		InspEierarchy.add(UpdateHierarchy());
 		
 		this.add(c);
-		this.add(InspEiarchy);
+		this.add(InspEierarchy);
 		
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -49,35 +50,35 @@ public class Window extends PixDumpWindow{
 
 	
 	//This is the "View" side of createObjArray from the "Object" class. It literally just lists the objects
-	JPanel UpdateHeiarchy(){
+	JPanel UpdateHierarchy(){
 		
 	ArrayList<GameObject> objects= GameObject.getAllGameObjects();
 	
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		
-		//adds to heiarchy UI
-		panel.add(makeText("Heiarchy:"));
+		//adds to hierarchy UI
+		panel.add(MakeText("Hierarchy:"));
 		panel.add(Box.createRigidArea(new Dimension(0,2)));
 		
+		
+		Childinator();
 		
 		
 		for(int x = 0; x<objects.size(); x++){
 
-			panel.add(makeText("     "+objects.get(x).name()));
-			panel.add(Box.createRigidArea(new Dimension(0,2)));
-			System.out.println(objects.get(x).name());
+			String s = "     ";
 			
-			if(objects.get(x).GetChildren()!=null){
-				for(int y = 0; y<objects.get(x).GetChildren().size(); y++){
-					
-					objects.remove(objects.get(x).GetChildren().get(y));
-					panel.add(makeText("                 "+objects.get(x).GetChildren().get(y).name()));
-					panel.add(Box.createRigidArea(new Dimension(0,2)));
-					System.out.println("Child: " + objects.get(x).GetChildren().get(y).name());
-					
+			
+			if(ParentCount(objects.get(x))!=0){
+				for (int z = 0; z<ParentCount(objects.get(x)); z++){
+					s+="     ";
+					System.out.println("yo");
 				}
 			}
+			panel.add(MakeText("     "+s+objects.get(x).name()));
+			panel.add(Box.createRigidArea(new Dimension(0,2)));
+			
 			
 		}
 		return panel;
@@ -87,13 +88,41 @@ public class Window extends PixDumpWindow{
 	
 	//This will read any attributes and display them in order alongside any variables etc. that are there.
 	//The display will have variable alter-ers (shit may be tough) and an option to remove each attribute
-	JPanel UpdateInspector(ArrayList<GameObject> objects){
+	JPanel UpdateInspector(){
 		return new JPanel();
 	}
 	
+	//organizes GameObject array into children and subChildren
+	void Childinator(){
+		ArrayList<GameObject> base = new ArrayList<GameObject>();
+		for(int shit = 0; shit<GameObject.getAllGameObjects().size(); shit++){
+			base.add(GameObject.getAllGameObjects().get(shit));
+			//fuck this
+		}
+		
+		for(int x = 0; x<base.size()-1; x++){
+			
+			if(ParentCount(base.get(x))==0){
+			}
+			else{
+				//save to holder, remove, place holder in right place
+				GameObject holder = base.get(x);
+				base.remove(base.get(x));
+				base.add(base.indexOf(base.get(x).getParent())+1,holder);
+			}
+		}
+	}
 	
+	int ParentCount(GameObject c){
+		int parentCount =0;
+		while(c.getParent()!=null){
+			parentCount++;
+			c = c.getParent();
+		}
+		return parentCount;
+	}
 	
-	JLabel makeText(String name){
+	JLabel MakeText(String name){
 		
 		final JLabel text = new JLabel();
 		text.setText(name);

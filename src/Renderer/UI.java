@@ -8,18 +8,27 @@ import Engine.GameObject;
 public class UI   {
 	public Window window;
 	public UI(){
-	
-		GameObject x = new GameObject();
-		x.setName("Object1");
-			GameObject y = new GameObject();
-			y.setName("Object2");
+		GameObject a1 = new GameObject("Parent 1");
+		GameObject b1 = new GameObject("Child 1");
+		GameObject c1 = new GameObject("SubChild 1");
+		GameObject b2 = new GameObject("Child 2");
 		
-		x.addChild(y);
+		GameObject x1 = new GameObject("Parent A");
+		GameObject y1 = new GameObject("Child A");
+		GameObject y2 = new GameObject("Child B");
+		GameObject z1 = new GameObject("SubChild A");
 		
-		ArrayList<GameObject> sub = new ArrayList<GameObject>(){{add(x);}};
+		a1.AddChild(b1);
+		a1.AddChild(b2);
+		b1.AddChild(c1);
 		
+		x1.AddChild(y1);
+		x1.AddChild(y2);
+		y2.AddChild(z1);
+				
 		PixDumpWindow p = new PixDumpWindow();
-		window  = new Window(sub);
+		window  = new Window();
+		
 		
 	}
 	
