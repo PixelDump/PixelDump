@@ -23,10 +23,12 @@ public class GameObject extends GenericObject{
 	//BARRY I ADDED THIS IN
 	public void SetChildren(List<GameObject> children){
 		this.Children=children;
+		Main.ui.window.UpdateHierarchy();
 	}
 	public void AddChild(GameObject child){
 		this.Children.add(child);
 		child.SetParent(this);
+		Main.ui.window.UpdateHierarchy();
 	}
 	public void SetParent(GameObject Parent){
 		this.Parent=Parent;
@@ -129,14 +131,14 @@ public class GameObject extends GenericObject{
 		Components.add(transform);
 		name = "GameObject";
 		SceneObjects.add(this);
-		
+		Main.ui.window.UpdateHierarchy();
 	}
 
 	public GameObject(String name) {
 		Components.add(transform);
 		this.name = name;
 		SceneObjects.add(this);
-
+		Main.ui.window.UpdateHierarchy();
 	}
 
 	GameObject(String name, ArrayList<ScriptBase> scripts,
