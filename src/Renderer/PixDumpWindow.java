@@ -1,5 +1,6 @@
 package Renderer;
 
+import java.awt.Font;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -15,20 +16,22 @@ import com.jtattoo.plaf.smart.SmartLookAndFeel;
 
 public class PixDumpWindow extends JFrame {
 
-	
 	public static TextUtilities u = new TextUtilities();
 	
-	
-
 	PixDumpWindow(){
+		
 		try {
-			
 			Properties props = new Properties();
                         
-            props.put("selectionBackgroundColor", "0 0 0"); 
+            props.put("selectionBackgroundColor", "200 10 10"); 
             props.put("menuSelectionBackgroundColor", "10 10 10"); 
             
-            props.put("backgroundColor", "50 50 50");
+            
+            props.put("windowInactiveTitleColorLight", "100 10 10"); 
+            props.put("windowInactiveTitleColorDark", "0 0 0");
+            props.put("windowInactiveBorderColor", "0 0 0");
+            
+            props.put("backgroundColor", "20 20 20");
             
             props.put("controlColor", "10 10 10");
             props.put("controlColorLight", "10 10 10");
@@ -38,13 +41,13 @@ public class PixDumpWindow extends JFrame {
             props.put("buttonColorLight", "10 10 10");
             props.put("buttonColorDark", "10 10 10");
 
-            props.put("rolloverColor", "10 10 10"); 
-            props.put("rolloverColorLight", "10 10 10"); 
-            props.put("rolloverColorDark", "10 10 10"); 
+            props.put("rolloverColor", "200 10 10"); 
+            props.put("rolloverColorLight", "240 50 10"); 
+            props.put("rolloverColorDark", "150 0 0"); 
 
-            props.put("windowTitleForegroundColor", "10 10 10");
-            props.put("windowTitleBackgroundColor", "10 10 10"); 
-            props.put("windowTitleColorLight", "70 70 70"); 
+            props.put("windowTitleForegroundColor", "200 200 200");
+            props.put("windowTitleBackgroundColor", "200 200 200"); 
+            props.put("windowTitleColorLight", "30 30 30"); 
             props.put("windowTitleColorDark", "0 0 0"); 
             props.put("windowBorderColor", "127 127 127");
             SmartLookAndFeel.setCurrentTheme(props);
