@@ -16,11 +16,12 @@ public abstract class ScriptBase extends Component implements MessageHandler {
 	
 	
 	
-	protected ScriptBase(String name){
+	public ScriptBase(String name){
 		super(name);
 		m = Main.getMessenger();
 		m.subscribe("Update", this);
 	}
+	
 	
 	public void setParent(GameObject parent){
 		this.gameObject= parent;
