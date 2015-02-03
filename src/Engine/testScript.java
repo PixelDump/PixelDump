@@ -4,16 +4,16 @@ import Utils.ScriptBase;
 
 public class testScript extends ScriptBase {
 
-	testScript() {
+	public testScript() {
 		super("testScript");
 	}
 	
 	
 	public void Update(){
 		
-		transform.position.x +=1;
+		//transform.position.x +=1;
 		
-		gameObject.name();
+		//gameObject.name();
 		
 		//System.out.println(transform.position.y);
 	}
