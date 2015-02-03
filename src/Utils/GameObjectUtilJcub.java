@@ -6,11 +6,16 @@ import Renderer.Renderer;
 
 public class GameObjectUtilJcub  {
 
-	//make TestGameObjectsInside of here for now
+	//make TestGameObjects inside of here for now
 
 	public static  void Start(){
 
 		
+		
+		
+	}
+	
+	public static void Update(){
 	}
 	
 }
