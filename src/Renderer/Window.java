@@ -3,8 +3,8 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.Box;
@@ -13,21 +13,29 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Engine.GameObject;
+import SystemScripts.EditorUtilities;
 
 
 
 
 public class Window extends PixDumpWindow{
-
+	
+	
 	
 	public Canvas c =new Canvas();
-	
-	
+	final ArrayList<JLabel> textList = new ArrayList<JLabel>();
+	int textCount = 0;
 	JPanel Inspector;
 	JPanel Hierarchy = new JPanel();
+	
 	Window() {
-		
 		super();
+		
+		ArrayList<GameObject> base = new ArrayList<GameObject>();
+		for(int shit = 0; shit<GameObject.getAllGameObjects().size(); shit++){
+			base.add(GameObject.getAllGameObjects().get(shit));
+			//fuck this
+		}
 		this.setTitle("Pixel Dump Development Build! (get to work already)");
 		this.setLayout(new GridLayout(1,2));
 		this.setPreferredSize(new Dimension(700,400));
@@ -53,9 +61,12 @@ public class Window extends PixDumpWindow{
 	
 	//This is the "View" side of createObjArray from the "Object" class. It literally just lists the objects
 	public void UpdateHierarchy(){
-		
-	ArrayList<GameObject> objects= GameObject.getAllGameObjects();
 	
+		ArrayList<GameObject> base = new ArrayList<GameObject>();
+		for(int shit = 0; shit<GameObject.getAllGameObjects().size(); shit++){
+			base.add(GameObject.getAllGameObjects().get(shit));
+			//fuck this
+		}
 		
 		Hierarchy.removeAll();
 		Hierarchy.setLayout(new BoxLayout(Hierarchy, BoxLayout.PAGE_AXIS));
@@ -68,18 +79,18 @@ public class Window extends PixDumpWindow{
 		Childinator();
 		
 		
-		for(int x = 0; x<objects.size(); x++){
-
+		for(int x = 0; x<base.size(); x++){
+	
 			String s = "     ";
 			
 			
-			if(ParentCount(objects.get(x))!=0){
-				for (int z = 0; z<ParentCount(objects.get(x)); z++){
+			if(ParentCount(base.get(x))!=0){
+				for (int z = 0; z<ParentCount(base.get(x)); z++){
 					s+="     ";
 					//System.out.println("yo");
 				}
 			}
-			Hierarchy.add(MakeText("     "+s+objects.get(x).name()));
+			Hierarchy.add(MakeSelectableText("     "+s+base.get(x).name()));
 			Hierarchy.add(Box.createRigidArea(new Dimension(0,2)));
 			
 			
@@ -106,7 +117,6 @@ public class Window extends PixDumpWindow{
 			base.add(GameObject.getAllGameObjects().get(shit));
 			//fuck this
 		}
-		
 		for(int x = 0; x<base.size()-1; x++){
 			
 			if(ParentCount(base.get(x))==0){
@@ -129,27 +139,62 @@ public class Window extends PixDumpWindow{
 		return parentCount;
 	}
 	
-	JLabel MakeText(String name){
+	JLabel MakeSelectableText(String text){
 		
-		final JLabel text = new JLabel();
-		text.setText(name);
-		text.setMinimumSize(new Dimension(10,10));
-		text.setPreferredSize(new Dimension(10,10));
-		text.setMaximumSize(new Dimension(Short.MAX_VALUE,20));
-		text.setForeground(new Color(150, 150, 150));
-        text.addFocusListener(new FocusListener() {
-
+		JLabel p = new JLabel();
+		p.setName(Integer.toString(textCount));
+		
+		textList.add(p);
+		
+		textList.get(textCount).setText(text);
+		textList.get(textCount).setMinimumSize(new Dimension(10,10));
+		textList.get(textCount).setPreferredSize(new Dimension(10,10));
+		textList.get(textCount).setMaximumSize(new Dimension(Short.MAX_VALUE,20));
+		textList.get(textCount).setForeground(new Color(150, 150, 150));
+				
+		
+		textList.get(textCount).addMouseListener(new MouseAdapter() {
             @Override
-            public void focusGained(FocusEvent e) {
-                //Your code here
+            public void mouseClicked(MouseEvent e) {
+            	
+            	EditorUtilities.setSelected(((JLabel)e.getSource()).getText());
             }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                //Your code here
-            }
+            
         });
-        return text;
+		textCount++;
+		//keep this as -1 otherwise textCount++ ain't gonna go through
+        return textList.get(textCount-1);
+	}
+	
+	JLabel MakeText(String text){
+		
+		JLabel p = new JLabel();		
+		
+		
+		textList.get(textCount).setText(text);
+		textList.get(textCount).setMinimumSize(new Dimension(10,10));
+		textList.get(textCount).setPreferredSize(new Dimension(10,10));
+		textList.get(textCount).setMaximumSize(new Dimension(Short.MAX_VALUE,20));
+		textList.get(textCount).setForeground(new Color(150, 150, 150));
+				
+		
+		
+		//keep this as -1 otherwise textCount++ ain't gonna go through
+        return textList.get(textCount-1);
+	}
+	
+	void setSelected(String name){
+		
+		for(int x = 0; x<textList.size(); x++){
+		if(textList.get(x).getText().equals(name)){
+			textList.get(x).setForeground(new Color(200, 10, 10));
+			EditorUtilities.SelectedObject = GameObject.Find(name);
+		}
+		else{
+		 textList.get(x).setForeground(new Color(150, 150, 150));
+		}
+		}
 	}
 	
 }
+
