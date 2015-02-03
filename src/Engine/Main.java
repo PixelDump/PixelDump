@@ -16,6 +16,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import org.lwjgl.opengl.GL11;
 
 import Renderer.UI;
 import SystemScripts.SystemScripts;
@@ -35,8 +36,9 @@ public class Main {
 		glLoadIdentity();
 		glOrtho(0, ui.window.c.getWidth(), 0,  ui.window.c.getHeight(), -1, 1);
 		glMatrixMode(GL_MODELVIEW);
-		glDisable(GL_DEPTH_TEST);
-		glClearColor(.5f,.7f, .4f, 0);
+		//GL11.glEnable(GL_DEPTH_TEST);
+		//glEnable(GL_DEPTH_TEST);
+		glClearColor(.082f,.3f, .7f, 0);
 	}
 
 	public static void main(String[] args) {
@@ -59,12 +61,14 @@ public class Main {
 
 		initDisplay();
 		initGL();
+		
+		
+		SystemScripts.Start();
 		GameObjectUtil.Start();
 		GameObjectUtilJcub.Start();
-		SystemScripts.Start();
-		
 		m.notify("Start");
 
+	
 	}
 
 

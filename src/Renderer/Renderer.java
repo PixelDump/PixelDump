@@ -36,8 +36,8 @@ public class Renderer extends Utils.ScriptBase implements MessageHandler {
 	String texturePath = "art";
 	Messenger m;
 
-	Utils.Vector2I scale;
-	int pixelScale = 5;
+	Utils.Vector2 scale;
+	public float pixelScale = 3f;
 
 	public Renderer() {
 		super("Renderer");
@@ -76,11 +76,12 @@ public class Renderer extends Utils.ScriptBase implements MessageHandler {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
 		texture.bind();
-		scale = new Utils.Vector2I(texture.getTextureWidth() * pixelScale,
+		scale = new Utils.Vector2(texture.getTextureWidth() * pixelScale,
 				texture.getTextureHeight() * pixelScale);
 	}
 
 	public void GLTextureDraw() {
+		
 		glBegin(GL_QUADS);
 		{
 
@@ -106,10 +107,12 @@ public class Renderer extends Utils.ScriptBase implements MessageHandler {
 
 	public void Render() {
 
+		
 		GLTextureSetup();
 
 		GLTextureDraw();
-
+		scale = new Utils.Vector2(texture.getTextureWidth() * pixelScale,
+				texture.getTextureHeight() * pixelScale);
 		if (inBounds()&&!EditorUtilities.mouseHover.contains(gameObject)) {
 			EditorUtilities.mouseHover.add(gameObject);
 		} else if(EditorUtilities.mouseHover.contains(gameObject)){
