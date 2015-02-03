@@ -23,7 +23,8 @@ public class Window extends PixDumpWindow{
 	public Canvas c =new Canvas();
 	
 	
-	
+	JPanel Inspector;
+	JPanel Hierarchy = new JPanel();
 	Window() {
 		
 		super();
@@ -32,11 +33,12 @@ public class Window extends PixDumpWindow{
 		this.setPreferredSize(new Dimension(700,400));
 		this.setResizable(false);
 		
-		
+		UpdateHierarchy();
+		UpdateInspector();
 		JPanel InspEierarchy = new JPanel();
 		InspEierarchy.setLayout(new GridLayout(1,4));
-		InspEierarchy.add(UpdateInspector());
-		InspEierarchy.add(UpdateHierarchy());
+		InspEierarchy.add(Inspector);
+		InspEierarchy.add(Hierarchy);
 		
 		this.add(c);
 		this.add(InspEierarchy);
@@ -50,16 +52,17 @@ public class Window extends PixDumpWindow{
 
 	
 	//This is the "View" side of createObjArray from the "Object" class. It literally just lists the objects
-	JPanel UpdateHierarchy(){
+	public void UpdateHierarchy(){
 		
 	ArrayList<GameObject> objects= GameObject.getAllGameObjects();
 	
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+		
+		Hierarchy.removeAll();
+		Hierarchy.setLayout(new BoxLayout(Hierarchy, BoxLayout.PAGE_AXIS));
 		
 		//adds to hierarchy UI
-		panel.add(MakeText("Hierarchy:"));
-		panel.add(Box.createRigidArea(new Dimension(0,2)));
+		Hierarchy.add(MakeText("Hierarchy:"));
+		Hierarchy.add(Box.createRigidArea(new Dimension(0,2)));
 		
 		
 		Childinator();
@@ -73,23 +76,27 @@ public class Window extends PixDumpWindow{
 			if(ParentCount(objects.get(x))!=0){
 				for (int z = 0; z<ParentCount(objects.get(x)); z++){
 					s+="     ";
-					System.out.println("yo");
+					//System.out.println("yo");
 				}
 			}
-			panel.add(MakeText("     "+s+objects.get(x).name()));
-			panel.add(Box.createRigidArea(new Dimension(0,2)));
+			Hierarchy.add(MakeText("     "+s+objects.get(x).name()));
+			Hierarchy.add(Box.createRigidArea(new Dimension(0,2)));
 			
 			
 		}
-		return panel;
+		
+		this.revalidate();
+		this.repaint();
+		
 	}
 	
 	
 	
 	//This will read any attributes and display them in order alongside any variables etc. that are there.
 	//The display will have variable alter-ers (shit may be tough) and an option to remove each attribute
-	JPanel UpdateInspector(){
-		return new JPanel();
+	void UpdateInspector(){
+		Inspector=new JPanel();
+		
 	}
 	
 	//organizes GameObject array into children and subChildren
