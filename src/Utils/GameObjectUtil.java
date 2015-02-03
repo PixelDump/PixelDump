@@ -1,16 +1,18 @@
 package Utils;
 
 import Engine.GameObject;
+import Engine.testScript;
+import Renderer.Renderer;
 
-public class GameObjectUtil extends ScriptBase {
+public class GameObjectUtil  {
 
-	protected GameObjectUtil(String name) {
-		super("GameObjectUtil");
-		// TODO Auto-generated constructor stub
-	}
+	//make TestGameObjectsInside of here for now
 
-	public void Start(){
-		GameObject test = new GameObject("test");
+	public static void Start(){
+
+		GameObject go = new GameObject("Test Object");
+		go.AddScript(new Renderer("art"));
+		go.AddScript(new testScript());
 	}
 	
 }
