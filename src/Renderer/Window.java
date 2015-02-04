@@ -179,7 +179,7 @@ public class Window extends PixDumpWindow {
 
 			if (labelToGo(textList.get(x).getName()).name().equals(name)) {
 
-				textList.get(x).setBackground(new Color(200, 10, 10));
+				textList.get(x).setBackground(new Color(60, 60, 60));
 				textList.get(x).setOpaque(true);
 
 			} else {
