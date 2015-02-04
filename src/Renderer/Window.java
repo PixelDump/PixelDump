@@ -1,4 +1,5 @@
 package Renderer;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,186 +16,181 @@ import javax.swing.JPanel;
 import Engine.GameObject;
 import SystemScripts.EditorUtilities;
 
+public class Window extends PixDumpWindow {
 
-
-
-public class Window extends PixDumpWindow{
-	
-	
-	
-	public Canvas c =new Canvas();
+	public Canvas c = new Canvas();
 	final ArrayList<JLabel> textList = new ArrayList<JLabel>();
 	int textCount = 0;
 	JPanel Inspector;
 	JPanel Hierarchy = new JPanel();
-	
+
 	Window() {
 		super();
-		
+
 		ArrayList<GameObject> base = new ArrayList<GameObject>();
-		for(int shit = 0; shit<GameObject.getAllGameObjects().size(); shit++){
+		for (int shit = 0; shit < GameObject.getAllGameObjects().size(); shit++) {
 			base.add(GameObject.getAllGameObjects().get(shit));
-			//fuck this
+			// fuck this
 		}
 		this.setTitle("Pixel Dump Development Build! (get to work already)");
-		this.setLayout(new GridLayout(1,2));
-		this.setPreferredSize(new Dimension(700,400));
+		this.setLayout(new GridLayout(1, 2));
+		this.setPreferredSize(new Dimension(700, 400));
 		this.setResizable(false);
-		
+
 		UpdateHierarchy();
 		UpdateInspector();
 		JPanel InspEierarchy = new JPanel();
-		InspEierarchy.setLayout(new GridLayout(1,4));
+		InspEierarchy.setLayout(new GridLayout(1, 4));
 		InspEierarchy.add(Inspector);
 		InspEierarchy.add(Hierarchy);
-		
+
 		this.add(c);
 		this.add(InspEierarchy);
-		
-		
+
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.pack();
-	
+
 	}
 
-	
-	//This is the "View" side of createObjArray from the "Object" class. It literally just lists the objects
-	public void UpdateHierarchy(){
-	
+	// This is the "View" side of createObjArray from the "Object" class. It
+	// literally just lists the objects
+	public void UpdateHierarchy() {
+		textList.clear();
+		textCount = 0;
 		ArrayList<GameObject> base = new ArrayList<GameObject>();
-		for(int shit = 0; shit<GameObject.getAllGameObjects().size(); shit++){
+
+		for (int shit = 0; shit < GameObject.getAllGameObjects().size(); shit++) {
 			base.add(GameObject.getAllGameObjects().get(shit));
-			//fuck this
+			// fuck this
 		}
-		
+
 		Hierarchy.removeAll();
 		Hierarchy.setLayout(new BoxLayout(Hierarchy, BoxLayout.PAGE_AXIS));
-		
-		//adds to hierarchy UI
+
+		// adds to hierarchy UI
 		Hierarchy.add(MakeText("Hierarchy:"));
-		Hierarchy.add(Box.createRigidArea(new Dimension(0,2)));
-		
-		
+		Hierarchy.add(Box.createRigidArea(new Dimension(0, 2)));
+
 		Childinator();
-		
-		
-		for(int x = 0; x<base.size(); x++){
-	
+
+		for (int x = 0; x < base.size(); x++) {
+
 			String s = "     ";
-			
-			
-			if(ParentCount(base.get(x))!=0){
-				for (int z = 0; z<ParentCount(base.get(x)); z++){
-					s+="     ";
-					//System.out.println("yo");
+
+			if (ParentCount(base.get(x)) != 0) {
+				for (int z = 0; z < ParentCount(base.get(x)); z++) {
+					s += "     ";
+					// System.out.println("yo");
 				}
 			}
-			Hierarchy.add(MakeSelectableText("     "+s+base.get(x).name()));
-			Hierarchy.add(Box.createRigidArea(new Dimension(0,2)));
-			
-			
+			Hierarchy.add(MakeSelectableText("     " + s + base.get(x).name()));
+			Hierarchy.add(Box.createRigidArea(new Dimension(0, 2)));
+
 		}
-		
+
 		this.revalidate();
 		this.repaint();
-		
+
 	}
-	
-	
-	
-	//This will read any attributes and display them in order alongside any variables etc. that are there.
-	//The display will have variable alter-ers (shit may be tough) and an option to remove each attribute
-	void UpdateInspector(){
-		Inspector=new JPanel();
-		
+
+	// This will read any attributes and display them in order alongside any
+	// variables etc. that are there.
+	// The display will have variable alter-ers (shit may be tough) and an
+	// option to remove each attribute
+	void UpdateInspector() {
+		Inspector = new JPanel();
+
 	}
-	
-	//organizes GameObject array into children and subChildren
-	void Childinator(){
+
+	// organizes GameObject array into children and subChildren
+	void Childinator() {
 		ArrayList<GameObject> base = new ArrayList<GameObject>();
-		for(int shit = 0; shit<GameObject.getAllGameObjects().size(); shit++){
-			base.add(GameObject.getAllGameObjects().get(shit));
-			//fuck this
+		for (int i = 0; i < GameObject.getAllGameObjects().size(); i++) {
+			base.add(GameObject.getAllGameObjects().get(i));
+			// fuck this
 		}
-		for(int x = 0; x<base.size()-1; x++){
-			
-			if(ParentCount(base.get(x))==0){
-			}
-			else{
-				//save to holder, remove, place holder in right place
+		for (int x = 0; x < base.size() - 1; x++) {
+
+			if (ParentCount(base.get(x)) == 0) {
+			} else {
+				// save to holder, remove, place holder in right place
 				GameObject holder = base.get(x);
 				base.remove(base.get(x));
-				base.add(base.indexOf(base.get(x).getParent())+1,holder);
+				base.add(base.indexOf(base.get(x).getParent()) + 1, holder);
 			}
 		}
 	}
-	
-	int ParentCount(GameObject c){
-		int parentCount =0;
-		while(c.getParent()!=null){
+
+	int ParentCount(GameObject c) {
+		int parentCount = 0;
+		while (c.getParent() != null) {
 			parentCount++;
 			c = c.getParent();
 		}
 		return parentCount;
 	}
-	
-	JLabel MakeSelectableText(String text){
-		
+
+	JLabel MakeSelectableText(String text) {
+
 		JLabel p = new JLabel();
 		p.setName(Integer.toString(textCount));
-		
-		textList.add(p);
-		
-		textList.get(textCount).setText(text);
-		textList.get(textCount).setMinimumSize(new Dimension(10,10));
-		textList.get(textCount).setPreferredSize(new Dimension(10,10));
-		textList.get(textCount).setMaximumSize(new Dimension(Short.MAX_VALUE,20));
-		textList.get(textCount).setForeground(new Color(150, 150, 150));
-				
-		
-		textList.get(textCount).addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-            	
-            	EditorUtilities.setSelected(((JLabel)e.getSource()).getText());
-            }
-            
-        });
-		textCount++;
-		//keep this as -1 otherwise textCount++ ain't gonna go through
-        return textList.get(textCount-1);
-	}
-	
-	JLabel MakeText(String text){
-		
-		JLabel p = new JLabel();		
-		
-		
-		textList.get(textCount).setText(text);
-		textList.get(textCount).setMinimumSize(new Dimension(10,10));
-		textList.get(textCount).setPreferredSize(new Dimension(10,10));
-		textList.get(textCount).setMaximumSize(new Dimension(Short.MAX_VALUE,20));
-		textList.get(textCount).setForeground(new Color(150, 150, 150));
-				
-		
-		
-		//keep this as -1 otherwise textCount++ ain't gonna go through
-        return textList.get(textCount-1);
-	}
-	
-	void setSelected(String name){
-		
-		for(int x = 0; x<textList.size(); x++){
-		if(textList.get(x).getText().equals(name)){
-			textList.get(x).setForeground(new Color(200, 10, 10));
-			EditorUtilities.SelectedObject = GameObject.Find(name);
-		}
-		else{
-		 textList.get(x).setForeground(new Color(150, 150, 150));
-		}
-		}
-	}
-	
-}
 
+		textList.add(p);
+
+		textList.get(textCount).setText(text);
+		textList.get(textCount).setMinimumSize(new Dimension(10, 10));
+		textList.get(textCount).setPreferredSize(new Dimension(10, 10));
+		textList.get(textCount).setMaximumSize(
+				new Dimension(Short.MAX_VALUE, 20));
+		textList.get(textCount).setForeground(new Color(150, 150, 150));
+
+		textList.get(textCount).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				EditorUtilities.setSelected(labelToGo(((JLabel) e.getSource())
+						.getName()));
+
+			}
+
+		});
+		textCount++;
+		return textList.get(textCount - 1);
+	}
+
+	JLabel MakeText(String text) {
+
+		JLabel p = new JLabel();
+
+		p.setText(text);
+		p.setMinimumSize(new Dimension(10, 10));
+		p.setPreferredSize(new Dimension(10, 10));
+		p.setMaximumSize(new Dimension(Short.MAX_VALUE, 20));
+		p.setForeground(new Color(150, 150, 150));
+
+		// keep this as -1 otherwise textCount++ ain't gonna go through
+		return p;
+	}
+
+	public void setSelected(String name) {
+
+		for (int x = 0; x < textList.size(); x++) {
+
+			if (labelToGo(textList.get(x).getName()).name().equals(name)) {
+
+				textList.get(x).setBackground(new Color(60, 60, 60));
+				textList.get(x).setOpaque(true);
+
+			} else {
+				textList.get(x).setBackground(new Color(150, 150, 150));
+				textList.get(x).setOpaque(false);
+			}
+		}
+
+	}
+
+	public GameObject labelToGo(String n) {
+		return GameObject.getAllGameObjects().get(Integer.parseInt((n)));
+	}
+}
