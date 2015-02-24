@@ -11,39 +11,31 @@ import Renderer.Renderer;
 
 public class GameObjectUtil {
 	// make Test GameObjects Inside of here for now
-	
+
 	public static void Start() {
 		GameObject go2 = new GameObject("Flaming_skull");
 		go2.AddScript(new Renderer("Flaming_skull"));
 		// go2.AddScript(new testScript());
 		go2.transform.position.x = 50;
 		go2.transform.depth = 1;
-		GameObject go = new GameObject("Art");
-		go.AddScript(GameObjectCreator.newScriptByName("Renderer", "Renderer"));
-		go.AddScript(GameObjectCreator.newScriptByName("Engine", "testScript") );
+		GameObject go = new GameObject("jacob");
+		go.AddScript(new Renderer("jacob"));
+		go.AddScript(GameObjectCreator.newScriptByName("Engine", "testScript"));
 		go.transform.depth = -1;
-		System.out.println(GameObjectCreator.getFieldType("Engine", "testScript"));
+		System.out.println(GameObjectCreator.getFieldType("Engine",
+				"testScript",0));
 	}
-	
-	
-	
-	public static class GeneralGameObjectUtils{
-	
+
+	public static class GeneralGameObjectUtils {
 
 	}
-	
-	
-	
-	
-	
-	public static  class GameObjectCreator{
-		
-		public static void loadScene(File scene){
-		
-			
-			
+
+	public static class GameObjectCreator {
+
+		public static void loadScene(File scene) {
+
 		}
-		
+
 		public static ScriptBase newScriptByName(String name) {
 			try {
 				return (ScriptBase) (Class.forName(name).getConstructor()
@@ -85,10 +77,12 @@ public class GameObjectUtil {
 			}
 			return null;
 		}
-		public static String getFieldType (String pack, String name) {
+
+		public static String getFieldType(String pack, String name, int index) {
 			try {
-					return Class.forName(pack + "." + name).getFields()[1]
-							.getType().getName();
+				return Class.forName(pack + "." + name).getFields()[index]
+						.getType().getName();
+
 			} catch (IllegalArgumentException | SecurityException
 					| ClassNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -96,25 +90,28 @@ public class GameObjectUtil {
 			}
 			return null;
 		}
+
 		ObjectOutputStream oos = null;
 		FileOutputStream fout = null;
-		public void serializeGameObject(GameObject go){
-		
-			try{
-			        FileOutputStream fout = new FileOutputStream("G:\\address.ser", true);
-			        ObjectOutputStream oos = new ObjectOutputStream(fout);
-			        oos.writeObject(go);
+
+		public void serializeGameObject(GameObject go) {
+
+			try {
+				FileOutputStream fout = new FileOutputStream("src/res/test.GO",
+						true);
+				ObjectOutputStream oos = new ObjectOutputStream(fout);
+				oos.writeObject(go);
 			} catch (Exception e) {
-			        e.printStackTrace();
-			}finally {
-			        if(oos  != null){
-			            try {
-							oos.close();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-			         } 
+				e.printStackTrace();
+			} finally {
+				if (oos != null) {
+					try {
+						oos.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 			}
 		}
 	}
