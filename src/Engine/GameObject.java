@@ -17,12 +17,10 @@ public class GameObject extends GenericObject{
 	private List<GameObject> Children = new ArrayList<GameObject>();
 	private GameObject Parent;
 	
+	
 	private static ArrayList<GameObject> SceneObjects = new ArrayList<GameObject>();
 
 	//BARRY I ADDED THIS IN
-	public List<Component> getAllComponents(){
-		return Components;
-	}
 	public void SetChildren(List<GameObject> children){
 		this.Children=children;
 		Main.ui.window.UpdateHierarchy();
