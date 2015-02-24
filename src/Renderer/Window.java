@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -15,6 +16,8 @@ import javax.swing.JPanel;
 
 import Engine.GameObject;
 import SystemScripts.EditorUtilities;
+import Utils.Component;
+import Utils.PreSpectors;
 
 public class Window extends PixDumpWindow {
 
@@ -43,6 +46,7 @@ public class Window extends PixDumpWindow {
 		InspEierarchy.setLayout(new GridLayout(1, 4));
 		InspEierarchy.add(Inspector);
 		InspEierarchy.add(Hierarchy);
+		
 
 		this.add(c);
 		this.add(InspEierarchy);
@@ -56,6 +60,7 @@ public class Window extends PixDumpWindow {
 	// This is the "View" side of createObjArray from the "Object" class. It
 	// literally just lists the objects
 	public void UpdateHierarchy() {
+		
 		textList.clear();
 		textCount = 0;
 		ArrayList<GameObject> base = new ArrayList<GameObject>();
@@ -69,7 +74,7 @@ public class Window extends PixDumpWindow {
 		Hierarchy.setLayout(new BoxLayout(Hierarchy, BoxLayout.PAGE_AXIS));
 
 		// adds to hierarchy UI
-		Hierarchy.add(MakeText("Hierarchy:"));
+		Hierarchy.add(UI.MakeText("Hierarchy:"));
 		Hierarchy.add(Box.createRigidArea(new Dimension(0, 2)));
 
 		Childinator();
@@ -94,12 +99,15 @@ public class Window extends PixDumpWindow {
 
 	}
 
-	// This will read any attributes and display them in order alongside any
+	// This will read any components and display them in order alongside any
 	// variables etc. that are there.
 	// The display will have variable alter-ers (shit may be tough) and an
 	// option to remove each attribute
 	void UpdateInspector() {
+		
+		//List<Component> components = GameObject.getAllComponents();
 		Inspector = new JPanel();
+		Inspector.setLayout(new BoxLayout(Inspector, BoxLayout.PAGE_AXIS));
 
 	}
 
@@ -131,47 +139,27 @@ public class Window extends PixDumpWindow {
 		return parentCount;
 	}
 
-	JLabel MakeSelectableText(String text) {
+	 JLabel MakeSelectableText(String text) {
 
-		JLabel p = new JLabel();
-		p.setName(Integer.toString(textCount));
+		  JLabel p = UI.MakeText(text);
+		  p.setName(Integer.toString(textCount));
 
-		textList.add(p);
+		 p.addMouseListener(new MouseAdapter() {
+		   @Override
+		   public void mouseClicked(MouseEvent e) {
 
-		textList.get(textCount).setText(text);
-		textList.get(textCount).setMinimumSize(new Dimension(10, 10));
-		textList.get(textCount).setPreferredSize(new Dimension(10, 10));
-		textList.get(textCount).setMaximumSize(
-				new Dimension(Short.MAX_VALUE, 20));
-		textList.get(textCount).setForeground(new Color(150, 150, 150));
+		    EditorUtilities.setSelected(labelToGo(((JLabel) e.getSource())
+		      .getName()));
 
-		textList.get(textCount).addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		   }
 
-				EditorUtilities.setSelected(labelToGo(((JLabel) e.getSource())
-						.getName()));
+		  });
+		  textList.add(p);
+		  textCount++;
+		  return textList.get(textCount - 1);
+		}
 
-			}
-
-		});
-		textCount++;
-		return textList.get(textCount - 1);
-	}
-
-	JLabel MakeText(String text) {
-
-		JLabel p = new JLabel();
-
-		p.setText(text);
-		p.setMinimumSize(new Dimension(10, 10));
-		p.setPreferredSize(new Dimension(10, 10));
-		p.setMaximumSize(new Dimension(Short.MAX_VALUE, 20));
-		p.setForeground(new Color(150, 150, 150));
-
-		// keep this as -1 otherwise textCount++ ain't gonna go through
-		return p;
-	}
+	
 
 	public void setSelected(String name) {
 
