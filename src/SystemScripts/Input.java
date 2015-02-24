@@ -1,5 +1,6 @@
 package SystemScripts;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import Utils.ScriptBase;
@@ -35,7 +36,16 @@ public class Input extends ScriptBase{
 		return new Vector2(Mouse.getDX(),Mouse.getDY());
 		
 	}
-	
+	public boolean getKey(int key){
+		return Keyboard.isKeyDown(key);
+		
+	}
+	public boolean getKeyDown(int key){
+		return (Keyboard.next()&&Keyboard.getEventKey() == key&&Keyboard.getEventKeyState());	
+	}
+	public boolean getKeyUp(int key){
+		return (Keyboard.next()&&Keyboard.getEventKey() == key&&!Keyboard.getEventKeyState());	
+	}
 	public void Update(){
 	
 	}
