@@ -69,7 +69,7 @@ public class Window extends PixDumpWindow {
 		Hierarchy.setLayout(new BoxLayout(Hierarchy, BoxLayout.PAGE_AXIS));
 
 		// adds to hierarchy UI
-		Hierarchy.add(MakeText("Hierarchy:"));
+		Hierarchy.add(UI.MakeText("Hierarchy:"));
 		Hierarchy.add(Box.createRigidArea(new Dimension(0, 2)));
 
 		Childinator();
@@ -159,19 +159,7 @@ public class Window extends PixDumpWindow {
 		return textList.get(textCount - 1);
 	}
 
-	JLabel MakeText(String text) {
 
-		JLabel p = new JLabel();
-
-		p.setText(text);
-		p.setMinimumSize(new Dimension(10, 10));
-		p.setPreferredSize(new Dimension(10, 10));
-		p.setMaximumSize(new Dimension(Short.MAX_VALUE, 20));
-		p.setForeground(new Color(150, 150, 150));
-
-		// keep this as -1 otherwise textCount++ ain't gonna go through
-		return p;
-	}
 
 	public void setSelected(String name) {
 
