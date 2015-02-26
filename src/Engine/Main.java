@@ -30,7 +30,7 @@ public class Main {
 	static Messenger m = new Messenger();
 
 
-	public static UI ui = new UI();
+	public static UI ui;// = new UI();
 	public static void initGL() {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
@@ -58,14 +58,16 @@ public class Main {
 	}
 
 	public static void Start() {
-
-		initDisplay();
-		initGL();
-		ui.init();
 		
-		SystemScripts.Start();
+		
 		GameObjectUtil.Start();
 		GameObjectUtilJcub.Start();
+		ui = new UI();
+		initDisplay();
+		initGL();
+		
+		SystemScripts.Start();
+		
 		m.notify("Start");
 
 	
@@ -75,6 +77,7 @@ public class Main {
 	
 	public static void initDisplay() {
 		try {
+			
 			Display.setDisplayMode(new DisplayMode(ui.window.c.getWidth(), ui.window.c.getHeight()));
 			Display.create();
 

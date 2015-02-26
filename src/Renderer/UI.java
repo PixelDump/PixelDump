@@ -13,9 +13,9 @@ public class UI   {
 	public Window window;
 	public UI(){
 		
-				
 		PixDumpWindow p = new PixDumpWindow();
 		window  = new Window();
+		
 		
 	
 	}

@@ -32,7 +32,10 @@ public class GameObject extends GenericObject{
 	public void AddChild(GameObject child){
 		this.Children.add(child);
 		child.SetParent(this);
-		Main.ui.window.UpdateHierarchy();
+		try{
+			Main.ui.window.UpdateHierarchy();
+			}
+			catch(Exception e){}
 	}
 	public void SetParent(GameObject Parent){
 		this.Parent=Parent;
@@ -142,7 +145,11 @@ public class GameObject extends GenericObject{
 		Components.add(transform);
 		this.name = name;
 		SceneObjects.add(this);
+		
+		try{
 		Main.ui.window.UpdateHierarchy();
+		}
+		catch(Exception e){}
 	}
 
 	GameObject(String name, ArrayList<ScriptBase> scripts,

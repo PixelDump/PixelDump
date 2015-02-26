@@ -63,8 +63,8 @@ public class Window extends PixDumpWindow {
 		textCount = 0;
 		ArrayList<GameObject> base = new ArrayList<GameObject>();
 
-		for (int shit = 0; shit < GameObject.getAllGameObjects().size(); shit++) {
-			base.add(GameObject.getAllGameObjects().get(shit));
+		for (GameObject g: GameObject.getAllGameObjects()) {
+			base.add(g);
 			// fuck this
 		}
 
@@ -84,7 +84,6 @@ public class Window extends PixDumpWindow {
 			if (ParentCount(base.get(x)) != 0) {
 				for (int z = 0; z < ParentCount(base.get(x)); z++) {
 					s += "     ";
-					// System.out.println("yo");
 				}
 			}
 			Hierarchy.add(MakeSelectableText("     " + s + base.get(x).name()));

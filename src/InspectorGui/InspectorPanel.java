@@ -1,7 +1,8 @@
 package InspectorGui;
 
 import java.awt.Dimension;
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -21,16 +22,31 @@ public class InspectorPanel extends JPanel{
 	JPanel p = new JPanel();
 
 	
-
+/*Questions:
+ * How do I make resources (in the _Scripts place)?
+ * 
+ * Things to do:
+ * Make selection of object in hierarchy update inspectorPanel.
+ * 
+ * 
+ * */
+	
+	public static GridBagConstraints cons = new GridBagConstraints();
 	public InspectorPanel(GameObject go){	
 		this.removeAll();
 	
-		this.setLayout(new GridLayout(1,5));
+		this.setLayout(new GridBagLayout());
+		
+		cons.fill = GridBagConstraints.HORIZONTAL;
+		cons.weightx = 1;
+		cons.gridx = 0;
+		
+		this.add(UI.MakeText(go.name()), cons);
 		
 		ArrayList<Component> components = go.GetAllComponents();
 		for(int x = 0; x<components.size(); x++){
 			
-			this.add(new ComponentGui(components.get(x)));
+			this.add(new ComponentGui(components.get(x)), cons);
 			
 		}
 	}

@@ -11,7 +11,6 @@ public class GameObjectUtilJcub  {
 	public static GameObject a1;
 	
 	public static  void Start(){
-
 		a1 = new GameObject("Parent 1");
 		//a1.AddComponent(s);//add some component to avoid null pointer!
 		GameObject b1 = new GameObject("Child 1");
