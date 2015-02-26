@@ -14,21 +14,28 @@ public class GameObject extends GenericObject{
 	public Transform transform = new Transform(new Vector2());
 	private String name = "";
 
-	private List<GameObject> Children = new ArrayList<GameObject>();
+	private ArrayList<GameObject> Children = new ArrayList<GameObject>();
 	private GameObject Parent;
 	
 	
 	private static ArrayList<GameObject> SceneObjects = new ArrayList<GameObject>();
 
 	//BARRY I ADDED THIS IN
-	public void SetChildren(List<GameObject> children){
+	public ArrayList<Component> GetAllComponents(){
+		return Components;
+	}
+	
+	public void SetChildren(ArrayList<GameObject> children){
 		this.Children=children;
 		Main.ui.window.UpdateHierarchy();
 	}
 	public void AddChild(GameObject child){
 		this.Children.add(child);
 		child.SetParent(this);
-		Main.ui.window.UpdateHierarchy();
+		try{
+			Main.ui.window.UpdateHierarchy();
+			}
+			catch(Exception e){}
 	}
 	public void SetParent(GameObject Parent){
 		this.Parent=Parent;
@@ -138,7 +145,11 @@ public class GameObject extends GenericObject{
 		Components.add(transform);
 		this.name = name;
 		SceneObjects.add(this);
+		
+		try{
 		Main.ui.window.UpdateHierarchy();
+		}
+		catch(Exception e){}
 	}
 
 	GameObject(String name, ArrayList<ScriptBase> scripts,

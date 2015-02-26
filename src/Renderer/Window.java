@@ -14,7 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Engine.GameObject;
+import InspectorGui.InspectorPanel;
 import SystemScripts.EditorUtilities;
+import Utils.GameObjectUtilJcub;
 
 public class Window extends PixDumpWindow {
 
@@ -24,6 +26,7 @@ public class Window extends PixDumpWindow {
 	JPanel Inspector;
 	JPanel Hierarchy = new JPanel();
 
+	//Constructor
 	Window() {
 		super();
 
@@ -54,14 +57,14 @@ public class Window extends PixDumpWindow {
 	}
 
 	// This is the "View" side of createObjArray from the "Object" class. It
-	// literally just lists the objects
+	// literally just lists the objects (fancily)
 	public void UpdateHierarchy() {
 		textList.clear();
 		textCount = 0;
 		ArrayList<GameObject> base = new ArrayList<GameObject>();
 
-		for (int shit = 0; shit < GameObject.getAllGameObjects().size(); shit++) {
-			base.add(GameObject.getAllGameObjects().get(shit));
+		for (GameObject g: GameObject.getAllGameObjects()) {
+			base.add(g);
 			// fuck this
 		}
 
@@ -69,7 +72,7 @@ public class Window extends PixDumpWindow {
 		Hierarchy.setLayout(new BoxLayout(Hierarchy, BoxLayout.PAGE_AXIS));
 
 		// adds to hierarchy UI
-		Hierarchy.add(MakeText("Hierarchy:"));
+		Hierarchy.add(UI.MakeText("Hierarchy:"));
 		Hierarchy.add(Box.createRigidArea(new Dimension(0, 2)));
 
 		Childinator();
@@ -81,7 +84,6 @@ public class Window extends PixDumpWindow {
 			if (ParentCount(base.get(x)) != 0) {
 				for (int z = 0; z < ParentCount(base.get(x)); z++) {
 					s += "     ";
-					// System.out.println("yo");
 				}
 			}
 			Hierarchy.add(MakeSelectableText("     " + s + base.get(x).name()));
@@ -100,9 +102,13 @@ public class Window extends PixDumpWindow {
 	// option to remove each attribute
 	void UpdateInspector() {
 		Inspector = new JPanel();
-
+		Inspector.add(new InspectorPanel(GameObjectUtilJcub.a1));
 	}
 
+	
+	
+	
+	
 	// organizes GameObject array into children and subChildren
 	void Childinator() {
 		ArrayList<GameObject> base = new ArrayList<GameObject>();
@@ -157,20 +163,6 @@ public class Window extends PixDumpWindow {
 		});
 		textCount++;
 		return textList.get(textCount - 1);
-	}
-
-	JLabel MakeText(String text) {
-
-		JLabel p = new JLabel();
-
-		p.setText(text);
-		p.setMinimumSize(new Dimension(10, 10));
-		p.setPreferredSize(new Dimension(10, 10));
-		p.setMaximumSize(new Dimension(Short.MAX_VALUE, 20));
-		p.setForeground(new Color(150, 150, 150));
-
-		// keep this as -1 otherwise textCount++ ain't gonna go through
-		return p;
 	}
 
 	public void setSelected(String name) {
