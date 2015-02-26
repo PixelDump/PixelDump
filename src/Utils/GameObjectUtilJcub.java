@@ -8,9 +8,11 @@ public class GameObjectUtilJcub  {
 
 	//make TestGameObjects inside of here for now
 
+	public static GameObject a1;
+	
 	public static  void Start(){
-
-		GameObject a1 = new GameObject("Parent 1");
+		a1 = new GameObject("Parent 1");
+		//a1.AddComponent(s);//add some component to avoid null pointer!
 		GameObject b1 = new GameObject("Child 1");
 		GameObject c1 = new GameObject("SubChild 1");
 		GameObject b2 = new GameObject("Child 2");

@@ -1,5 +1,6 @@
-/Renderer/
-/Utils/
 /Engine/
+/InspectorGui/
+/Renderer/
 /SystemScripts/
-/res/
+/Utils/
+/_Scripts/

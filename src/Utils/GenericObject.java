@@ -21,7 +21,7 @@ public class GenericObject {
 		}
 	}
 
-	protected List<Component> Components = new ArrayList<Component>();
+	protected ArrayList<Component> Components = new ArrayList<Component>();
 
 	public void AddComponent(Component c) {
 		Components.add(c);
