@@ -14,7 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Engine.GameObject;
+import InspectorGui.InspectorPanel;
 import SystemScripts.EditorUtilities;
+import Utils.GameObjectUtilJcub;
 
 public class Window extends PixDumpWindow {
 
@@ -24,6 +26,7 @@ public class Window extends PixDumpWindow {
 	JPanel Inspector;
 	JPanel Hierarchy = new JPanel();
 
+	//Constructor
 	Window() {
 		super();
 
@@ -54,7 +57,7 @@ public class Window extends PixDumpWindow {
 	}
 
 	// This is the "View" side of createObjArray from the "Object" class. It
-	// literally just lists the objects
+	// literally just lists the objects (fancily)
 	public void UpdateHierarchy() {
 		textList.clear();
 		textCount = 0;
@@ -100,9 +103,13 @@ public class Window extends PixDumpWindow {
 	// option to remove each attribute
 	void UpdateInspector() {
 		Inspector = new JPanel();
-
+		Inspector.add(new InspectorPanel(GameObjectUtilJcub.a1));
 	}
 
+	
+	
+	
+	
 	// organizes GameObject array into children and subChildren
 	void Childinator() {
 		ArrayList<GameObject> base = new ArrayList<GameObject>();
@@ -158,8 +165,6 @@ public class Window extends PixDumpWindow {
 		textCount++;
 		return textList.get(textCount - 1);
 	}
-
-
 
 	public void setSelected(String name) {
 

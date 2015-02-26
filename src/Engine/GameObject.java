@@ -14,14 +14,18 @@ public class GameObject extends GenericObject{
 	public Transform transform = new Transform(new Vector2());
 	private String name = "";
 
-	private List<GameObject> Children = new ArrayList<GameObject>();
+	private ArrayList<GameObject> Children = new ArrayList<GameObject>();
 	private GameObject Parent;
 	
 	
 	private static ArrayList<GameObject> SceneObjects = new ArrayList<GameObject>();
 
 	//BARRY I ADDED THIS IN
-	public void SetChildren(List<GameObject> children){
+	public ArrayList<Component> GetAllComponents(){
+		return Components;
+	}
+	
+	public void SetChildren(ArrayList<GameObject> children){
 		this.Children=children;
 		Main.ui.window.UpdateHierarchy();
 	}
