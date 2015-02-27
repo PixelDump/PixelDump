@@ -1,12 +1,12 @@
 package InspectorGui;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
+import java.awt.Dimension;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 
 	
 
@@ -14,15 +14,23 @@ public class GenericVariable extends JPanel{
 	
 	public String name;
 	public JTextArea text = new JTextArea();
-	public JTextArea text2 = new JTextArea();
+	public JTextArea x = new JTextArea();
+	public JTextArea y = new JTextArea();
 	public JRadioButton radioButton = new JRadioButton();
-	public static GridBagConstraints cons = new GridBagConstraints();
+	
 	GenericVariable(){
-		cons.fill = GridBagConstraints.HORIZONTAL;
-		cons.weightx = 1;
-		cons.gridx = 0;
+		
 		this.removeAll();
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		
+		
+	
+		text.setPreferredSize(new Dimension(50,17));
+		text.setMaximumSize(new Dimension(100,17));
+		x.setPreferredSize(new Dimension(30,17));
+		x.setMaximumSize(new Dimension(50,17));
+		y.setPreferredSize(new Dimension(30,17));
+		y.setMaximumSize(new Dimension(50,17));
 	}
 	
 	public String getName(){

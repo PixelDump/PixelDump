@@ -102,6 +102,8 @@ public class Window extends PixDumpWindow {
 	// option to remove each attribute
 	void UpdateInspector() {
 		Inspector = new JPanel();
+		Inspector.setLayout(new BoxLayout(Inspector, BoxLayout.Y_AXIS));
+		
 		Inspector.add(new InspectorPanel(GameObjectUtilJcub.a1));
 	}
 
