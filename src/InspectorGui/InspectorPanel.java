@@ -29,7 +29,7 @@ public class InspectorPanel extends JPanel{
 	
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
-		this.add(UI.MakeText(go.name()));
+		this.add(UI.MakeText(go.name()), LEFT_ALIGNMENT);
 		
 		ArrayList<Component> components = go.GetAllComponents();
 		for(int x = 0; x<components.size(); x++){

@@ -1,6 +1,8 @@
 package InspectorGui;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
@@ -8,9 +10,8 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
-import Renderer.UI;
 import Utils.Component;
 
 
@@ -31,7 +32,11 @@ public class ComponentGui extends JPanel{
 		
 		//makes new instance of variable (using name) for each
 		//(Later on, use the fields and instance fields to update variable from text or update text from variable)
+		//(Later on, don't just filter out "name" variables, that's fucked up)
 		for(int x = 0; x < fields.length; x++){
+			
+			if(!fields[x].getName().equals("name")){
+				
 			switch(fields[x].getType().toString()){
 				case "int":
 					this.add(new _IntVar(fields[x].getName()));
@@ -49,11 +54,15 @@ public class ComponentGui extends JPanel{
 					this.add(new _StringVar(fields[x].getName()));
 					break;
 				case "class java.lang.Double":
-					this.add(new _IntVar(fields[x].getName()));
+					this.add(new _DoubleVar(fields[x].getName()));
+					break;
+				case "float":
+					this.add(new _DoubleVar(fields[x].getName()));
 					break;
 				default:
-					System.out.println("Invalid data type (ComponentGui): " + fields[x].getType().toString() + "\nName: " +fields[x].getName());
+					System.out.println("Invalid data type from "+c.name+" (ComponentGui): " + fields[x].getType().toString() + "\nName: " +fields[x].getName());
 					break;
+				}
 				
 			}
 			this.add(Box.createRigidArea(new Dimension(1,7)));
@@ -65,11 +74,15 @@ public class ComponentGui extends JPanel{
 	
 	
 	static Field[] getFields(String name){
-		try {
-			System.out.println(name);
-		    return Class.forName("_Scripts.ExampleCode").getFields();//+ name).getFields();
-
-		   } catch (IllegalArgumentException | SecurityException
+			try {
+				   switch(name){
+				   case "Transform":
+					   return Class.forName("Utils."+name).getFields();
+				   default:
+					   return Class.forName("_Scripts."+name).getFields();
+				   }
+			}
+				   catch (IllegalArgumentException | SecurityException
 		     | ClassNotFoundException e) {
 		    // TODO Auto-generated catch block
 		    e.printStackTrace();
@@ -80,15 +93,22 @@ public class ComponentGui extends JPanel{
 	
 	
 	static String getFieldType(String name, int index) {
+		
 		   try {
-		    return Class.forName("_Scripts.ExampleCode").getFields()[index]//+name).getFields()[index]
-		      .getType().getName();
-
+		   switch(name){
+		   case "Transform":
+			   return Class.forName("Utils."+name).getFields()[index].getType().getName();
+		   default:
+			   return Class.forName("_Scripts."+name).getFields()[index].getType().getName();
+		   }
+		    
+			   
 		   } catch (IllegalArgumentException | SecurityException
 		     | ClassNotFoundException e) {
 		    // TODO Auto-generated catch block
 		    e.printStackTrace();
 		   }
 		   return null;
+
 		  }
 }
