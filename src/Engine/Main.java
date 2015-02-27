@@ -22,6 +22,7 @@ import Renderer.UI;
 import SystemScripts.SystemScripts;
 import Utils.GameObjectUtil;
 import Utils.GameObjectUtilJcub;
+import Utils.ScriptCompiler;
 
 import com.mrjaffesclass.apcs.messenger.Messenger;
 
@@ -48,17 +49,18 @@ public class Main {
 	}
 
 	public static void gameLoop() {
+		
 		while (!Display.isCloseRequested()) {
 			// getInput();
 			Update();
 			Render();
-
+			
 		}
 		
 	}
 
 	public static void Start() {
-		
+		ScriptCompiler.pickProject();
 		
 		GameObjectUtil.Start();
 		GameObjectUtilJcub.Start();

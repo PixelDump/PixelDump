@@ -2,8 +2,8 @@ package Utils;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.FilenameFilter;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -13,23 +13,24 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-import Engine.GameObject;
-import _Scripts.*;
-
+import javax.swing.JFileChooser;
 import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;
+
+import Engine.GameObject;
 
 public class ScriptCompiler {
 
 	public static ArrayList<Class<?>> PlayerScripts = new ArrayList<Class<?>>();
-
+	public static String projectPath;
+	
 	public static void loadScript(String name)  {
 		System.setProperty("java.home",
 				"C:\\Program Files\\Java\\jdk1.8.0_25\\jre");
 
 		String source = null;
 		try {
-			source = readFile("C:\\Users\\barry\\Desktop\\"+name+".txt",
+			source = readFile(projectPath+"\\"+name+".pscript",
 					StandardCharsets.UTF_8);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -79,6 +80,7 @@ public class ScriptCompiler {
 						g.removeScript(name);
 						((ScriptBase)c).UnLink();
 						g.AddScript(getPlayerScript(name));
+						
 					}
 				}
 			}
@@ -115,6 +117,41 @@ public class ScriptCompiler {
 		return null;
 		
 	}
+	
+	
+	
+	
+	
+	public static void pickProject(){
+		 JFileChooser fileChooser = new JFileChooser(){{this.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);}};
+	        int returnValue = fileChooser.showOpenDialog(null);
+	        if (returnValue == JFileChooser.APPROVE_OPTION) {
+	          File selectedFile = fileChooser.getSelectedFile();
+	          projectPath = selectedFile.getAbsolutePath();
+	        //System.out.println(projectPath);
+	          
+	          File[] scripts=getScriptsInProject(selectedFile);
+	          for(File f: scripts){
+	        	  System.out.println(f.getName().substring(0, f.getName().indexOf('.')));
+	        	  loadScript(f.getName().substring(0, f.getName().indexOf('.')));
+	          }
+	          
+	        }
+	        
+		
+	}
+	
+	 public static File[] getScriptsInProject( File dir){
+	    	
+
+	    	return dir.listFiles(new FilenameFilter() { 
+	    	         public boolean accept(File dir, String filename)
+	    	              { return filename.endsWith(".pscript"); }
+	    	} );
+
+	    }
+
+	
 	
 	public static String readFile(String path, Charset encoding)
 			throws IOException {

@@ -79,6 +79,7 @@ public class Renderer extends Utils.ScriptBase implements MessageHandler {
 		texture.bind();
 		scale = new Utils.Vector2(texture.getTextureWidth() * pixelScale,
 				texture.getTextureHeight() * pixelScale);
+	
 	}
 
 	public void GLTextureDraw() {
@@ -117,6 +118,7 @@ public class Renderer extends Utils.ScriptBase implements MessageHandler {
 		GLTextureSetup();
 
 		GLTextureDraw();
+		texture.release();
 		scale = new Utils.Vector2(texture.getTextureWidth() * pixelScale,
 				texture.getTextureHeight() * pixelScale);
 		if (inBounds()&&!EditorUtilities.mouseHover.contains(gameObject)) {
@@ -124,6 +126,7 @@ public class Renderer extends Utils.ScriptBase implements MessageHandler {
 		} else if(EditorUtilities.mouseHover.contains(gameObject)){
 			EditorUtilities.mouseHover.remove(gameObject);
 		}
+
 	}
 
 	public void Start() {
