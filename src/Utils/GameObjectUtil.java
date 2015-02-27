@@ -14,7 +14,7 @@ public class GameObjectUtil {
 	// make Test GameObjects Inside of here for now
 
 	public static void Start() {
-		ScriptCompiler.loadScript("test");
+		//ScriptCompiler.loadScript("test");
 		
 		GameObject go2 = new GameObject("Flaming_skull");
 		go2.AddScript(new Renderer("Flaming_skull"));
