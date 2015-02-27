@@ -44,7 +44,6 @@ public class Window extends PixDumpWindow {
 		this.setResizable(false);
 
 		UpdateHierarchy();
-		UpdateInspector();
 		JPanel InspEierarchy = new JPanel();
 		InspEierarchy.setLayout(new GridLayout(1, 4));
 		InspEierarchy.add(InspectorScroll);
@@ -105,11 +104,12 @@ public class Window extends PixDumpWindow {
 	// variables etc. that are there.
 	// The display will have variable alter-ers (shit may be tough) and an
 	// option to remove each attribute
-	void UpdateInspector() {
+	
+	public void UpdateInspector(GameObject g) {
 		Inspector = new JPanel();
 		Inspector.setLayout(new BoxLayout(Inspector, BoxLayout.Y_AXIS));
 		
-		Inspector.add(new InspectorPanel(GameObjectUtilJcub.a1));
+		Inspector.add(new InspectorPanel(g));
 		InspectorScroll = new JScrollPane(Inspector);
 	}
 
