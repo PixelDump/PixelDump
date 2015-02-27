@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import Utils.Component;
+import Utils.ScriptCompiler;
 
 
 public class ComponentGui extends JPanel{
@@ -83,7 +84,7 @@ public class ComponentGui extends JPanel{
 				   case "Renderer":
 					   return null;
 				   default:
-					   return Class.forName("_Scripts."+name).getFields();
+					   return ScriptCompiler.getPlayerClass(name).getFields();//Class.forName("_Scripts."+name).getFields();
 				   }
 			}
 				   catch (IllegalArgumentException | SecurityException

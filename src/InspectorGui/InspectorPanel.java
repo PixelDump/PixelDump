@@ -38,7 +38,7 @@ public class InspectorPanel extends JPanel{
 		//for(int x = 0; )
 		
 		//b = new JComboBox(ScriptCompiler.PlayerScripts);
-		this.add(b);
+	//	this.add(b);
 	}
 
 }
