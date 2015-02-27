@@ -26,6 +26,8 @@ public class GameObjectUtil {
 		go.transform.depth = -1;
 		System.out.println(GameObjectCreator.getFieldType("Engine",
 				"testScript",0));
+		for(Component c : go2.Components)
+			System.out.println(c.name);
 		
 		
 	}

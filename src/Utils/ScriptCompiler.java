@@ -118,6 +118,26 @@ public class ScriptCompiler {
 		
 	}
 	
+
+	public static Class<?> getPlayerClass( String name){
+		
+		for(Class<?> S : PlayerScripts){
+		if(S.getTypeName().equals("_Scripts."+name))
+			try {
+				return S;
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		//System.out.println(S.getTypeName());
+		}
+		
+		return null;
+		
+	}
 	
 	
 	
