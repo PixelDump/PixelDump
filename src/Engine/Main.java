@@ -93,13 +93,10 @@ public class Main {
 	}
 
 	public static void Update() {
-		
+	 
 		try{
 		m.notify("Update");
-		}
-catch(Exception e){
-
-}
+		}catch(Exception e){}
 	}
 
 	public static void Render() {
