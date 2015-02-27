@@ -22,6 +22,7 @@ import Utils.GameObjectUtilJcub;
 public class Window extends PixDumpWindow {
 
 	public Canvas c = new Canvas();
+	public JPanel InspEierarchy = new JPanel();
 	final ArrayList<JLabel> textList = new ArrayList<JLabel>();
 	int textCount = 0;
 	JPanel Inspector;
@@ -44,7 +45,10 @@ public class Window extends PixDumpWindow {
 		this.setResizable(false);
 
 		UpdateHierarchy();
-		JPanel InspEierarchy = new JPanel();
+		Inspector = new JPanel();
+		InspectorScroll = new JScrollPane(Inspector);
+		
+		InspEierarchy = new JPanel();
 		InspEierarchy.setLayout(new GridLayout(1, 4));
 		InspEierarchy.add(InspectorScroll);
 		InspEierarchy.add(HierarchyScroll);
@@ -106,10 +110,12 @@ public class Window extends PixDumpWindow {
 	// option to remove each attribute
 	
 	public void UpdateInspector(GameObject g) {
+		System.out.println("Here");
 		Inspector = new JPanel();
 		Inspector.setLayout(new BoxLayout(Inspector, BoxLayout.Y_AXIS));
-		
 		Inspector.add(new InspectorPanel(g));
+		
+		//updates gui
 		InspectorScroll = new JScrollPane(Inspector);
 	}
 
