@@ -1,5 +1,6 @@
 package Utils;
 
+import _Scripts.ExampleCode;
 import Engine.GameObject;
 import Engine.testScript;
 import Renderer.Renderer;
@@ -11,8 +12,10 @@ public class GameObjectUtilJcub  {
 	public static GameObject a1;
 	
 	public static  void Start(){
+		
 		a1 = new GameObject("Parent 1");
-		//a1.AddComponent(s);//add some component to avoid null pointer!
+		a1.AddScript(new ExampleCode());
+		
 		GameObject b1 = new GameObject("Child 1");
 		GameObject c1 = new GameObject("SubChild 1");
 		GameObject b2 = new GameObject("Child 2");
@@ -21,6 +24,8 @@ public class GameObjectUtilJcub  {
 		GameObject y1 = new GameObject("Child A");
 		GameObject y2 = new GameObject("Child B");
 		GameObject z1 = new GameObject("SubChild A");
+		
+		
 		
 		a1.AddChild(b1);
 		a1.AddChild(b2);
