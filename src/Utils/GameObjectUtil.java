@@ -7,25 +7,33 @@ import java.io.ObjectOutputStream;
 import java.lang.reflect.InvocationTargetException;
 
 import Engine.GameObject;
+import Engine.testScript;
 import Renderer.Renderer;
 
 public class GameObjectUtil {
 	// make Test GameObjects Inside of here for now
 
 	public static void Start() {
+		ScriptCompiler.loadScript("test");
+		
 		GameObject go2 = new GameObject("Flaming_skull");
 		go2.AddScript(new Renderer("Flaming_skull"));
-		// go2.AddScript(new testScript());
+		//go2.AddScript(ScriptCompiler.getPlayerScript("test"));
 		go2.transform.position.x = 50;
 		go2.transform.depth = 1;
 		GameObject go = new GameObject("jacob");
 		go.AddScript(new Renderer("jacob"));
-		go.AddScript(GameObjectCreator.newScriptByName("Engine", "testScript"));
+		go.AddScript(new testScript());
 		go.transform.depth = -1;
 		System.out.println(GameObjectCreator.getFieldType("Engine",
 				"testScript",0));
+		
 	}
+	public static void recompile(GameObject go2){
 
+	ScriptCompiler.loadScript("test");
+
+	}
 	public static class GeneralGameObjectUtils {
 
 	}

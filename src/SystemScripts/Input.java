@@ -36,17 +36,18 @@ public class Input extends ScriptBase{
 		return new Vector2(Mouse.getDX(),Mouse.getDY());
 		
 	}
-	public boolean getKey(int key){
+	public static boolean getKey(int key){
 		return Keyboard.isKeyDown(key);
 		
 	}
-	public boolean getKeyDown(int key){
+	public static boolean getKeyDown(int key){
 		return (Keyboard.next()&&Keyboard.getEventKey() == key&&Keyboard.getEventKeyState());	
 	}
-	public boolean getKeyUp(int key){
+	public static boolean getKeyUp(int key){
+		
 		return (Keyboard.next()&&Keyboard.getEventKey() == key&&!Keyboard.getEventKeyState());	
 	}
-	public void Update(){
+	public  void Update(){
 	
 	}
 	
