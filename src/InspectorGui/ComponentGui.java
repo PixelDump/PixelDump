@@ -22,7 +22,7 @@ public class ComponentGui extends JPanel{
 	ComponentGui(Component c){
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setBorder(BorderFactory.createTitledBorder(c.name + ": "));
+		
 		
 		//gets fields
 		Field[] fields = getFields(c.name);
@@ -33,6 +33,7 @@ public class ComponentGui extends JPanel{
 		//makes new instance of variable (using name) for each
 		//(Later on, use the fields and instance fields to update variable from text or update text from variable)
 		//(Later on, don't just filter out "name" variables, that's fucked up)
+		if(fields!=null){
 		for(int x = 0; x < fields.length; x++){
 			
 			if(!fields[x].getName().equals("name")){
@@ -67,7 +68,8 @@ public class ComponentGui extends JPanel{
 			}
 			this.add(Box.createRigidArea(new Dimension(1,7)));
 		}	
-			
+		this.setBorder(BorderFactory.createTitledBorder(c.name + ": "));
+		}
 		
 		
 	}
@@ -78,6 +80,8 @@ public class ComponentGui extends JPanel{
 				   switch(name){
 				   case "Transform":
 					   return Class.forName("Utils."+name).getFields();
+				   case "Renderer":
+					   return null;
 				   default:
 					   return Class.forName("_Scripts."+name).getFields();
 				   }

@@ -22,6 +22,7 @@ import Utils.GameObjectUtilJcub;
 public class Window extends PixDumpWindow {
 
 	public Canvas c = new Canvas();
+	public JPanel InspeIarchy = new JPanel();
 	final ArrayList<JLabel> textList = new ArrayList<JLabel>();
 	int textCount = 0;
 	JPanel Inspector;
@@ -44,14 +45,17 @@ public class Window extends PixDumpWindow {
 		this.setResizable(false);
 
 		UpdateHierarchy();
-		UpdateInspector();
-		JPanel InspEierarchy = new JPanel();
-		InspEierarchy.setLayout(new GridLayout(1, 4));
-		InspEierarchy.add(InspectorScroll);
-		InspEierarchy.add(HierarchyScroll);
+		Inspector = new JPanel();
+		Inspector.setLayout(new BoxLayout(Inspector, BoxLayout.Y_AXIS));
+		InspectorScroll = new JScrollPane(Inspector);
+		
+		InspeIarchy = new JPanel();
+		InspeIarchy.setLayout(new GridLayout(1, 4));
+		InspeIarchy.add(InspectorScroll);
+		InspeIarchy.add(HierarchyScroll);
 
 		this.add(c);
-		this.add(InspEierarchy);
+		this.add(InspeIarchy);
 
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -105,12 +109,14 @@ public class Window extends PixDumpWindow {
 	// variables etc. that are there.
 	// The display will have variable alter-ers (shit may be tough) and an
 	// option to remove each attribute
-	void UpdateInspector() {
-		Inspector = new JPanel();
-		Inspector.setLayout(new BoxLayout(Inspector, BoxLayout.Y_AXIS));
+	
+	public void UpdateInspector(GameObject g) {
+		Inspector.removeAll();
+		Inspector.add(new InspectorPanel(g));
 		
-		Inspector.add(new InspectorPanel(GameObjectUtilJcub.a1));
-		InspectorScroll = new JScrollPane(Inspector);
+		//updates gui
+		Inspector.revalidate();
+		Inspector.repaint();
 	}
 
 	
