@@ -14,12 +14,14 @@ public abstract class ScriptBase extends Component implements MessageHandler {
 	
 	protected Transform transform;
 	
-	
+	public boolean canUpdate =true;
 	
 	public ScriptBase(String name){
 		super(name);
 		m = Main.getMessenger();
 		m.subscribe("Update", this);
+		m.subscribe("Start", this);
+		
 	}
 	
 	
@@ -31,8 +33,9 @@ public abstract class ScriptBase extends Component implements MessageHandler {
 	@Override
 	public void messageHandler(String messageName, Object messagePayload) {
 		switch(messageName ){
-		case "Update": Update();
-		case "Start" : Start ();
+		case "Update":if(canUpdate) Update();break;
+		case "Start" : Start ();break;
+		
 		}
 	}
 	
@@ -40,6 +43,8 @@ public abstract class ScriptBase extends Component implements MessageHandler {
 	
 	public void Update(){}
 	
-	
+	public void UnLink(){
+		canUpdate=false;
+	}
 	
 }

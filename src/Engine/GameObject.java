@@ -61,7 +61,21 @@ public class GameObject extends GenericObject{
 		return result;
 
 	}
-
+public  void removeScript(String name){
+	int i = 0;
+	for (Component c : Components) {
+		
+		if (name.equals(c.name)) {
+			 Components.remove(c);
+			// ((ScriptBase)c).UnLink();
+			 System.out.println("removed");
+			break;
+		} 
+	//	System.out.println(	c.name);
+		 
+		i++;
+	}
+}
 	@Override
 	public void AddScript(ScriptBase script) {
 		
@@ -109,7 +123,7 @@ public class GameObject extends GenericObject{
 		GameObject result;
 		while (true) {
 			int i = 0;
-			if (search.equals(SceneObjects.get(i))) {
+			if (search.equals(SceneObjects.get(i).name)) {
 				result = SceneObjects.get(i);
 				break;
 			} else if (i <= SceneObjects.size()) {

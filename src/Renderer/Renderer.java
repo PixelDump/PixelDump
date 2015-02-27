@@ -11,10 +11,11 @@ import static org.lwjgl.opengl.GL11.GL_TEXTURE_WRAP_T;
 import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glEnd;
+import static org.lwjgl.opengl.GL11.glRotated;
 import static org.lwjgl.opengl.GL11.glTexCoord2f;
 import static org.lwjgl.opengl.GL11.glTexParameterf;
 import static org.lwjgl.opengl.GL11.glTexParameteri;
-import static org.lwjgl.opengl.GL11.glVertex3f;
+import static org.lwjgl.opengl.GL11.*;
 
 import java.io.IOException;
 
@@ -81,6 +82,8 @@ public class Renderer extends Utils.ScriptBase implements MessageHandler {
 	}
 
 	public void GLTextureDraw() {
+		 glPushMatrix();
+		//glRotatef(270,0,0,1);
 		
 		glBegin(GL_QUADS);
 		{
@@ -100,9 +103,12 @@ public class Renderer extends Utils.ScriptBase implements MessageHandler {
 			glTexCoord2f(1, 1);
 			glVertex3f(gameObject.transform.position.x,
 					gameObject.transform.position.y,gameObject.transform.depth);
+			
 
 		}
 		glEnd();
+		 glPopMatrix();
+		
 	}
 
 	public void Render() {
