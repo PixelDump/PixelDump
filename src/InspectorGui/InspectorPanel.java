@@ -1,14 +1,9 @@
 package InspectorGui;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -16,12 +11,14 @@ import javax.swing.JTextField;
 import Engine.GameObject;
 import Renderer.UI;
 import Utils.Component;
+import Utils.ScriptCompiler;
 
 public class InspectorPanel extends JPanel{
 
 	JTextField t = new JTextField();
 	JRadioButton r = new JRadioButton();
 	JPanel p = new JPanel();
+	JComboBox b;
 
 	
 	public InspectorPanel(GameObject go){	
@@ -37,6 +34,11 @@ public class InspectorPanel extends JPanel{
 			this.add(new ComponentGui(components.get(x)));
 			
 		}
+		
+		
+		
+		b = new JComboBox(ScriptCompiler.PlayerScripts);
+		this.add(b);
 	}
 
 }
