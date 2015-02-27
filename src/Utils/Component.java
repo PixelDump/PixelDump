@@ -12,6 +12,8 @@ public abstract class Component {
 		this.name =name;
 	}
 	
+
+	
 	public Field[] getVariables() {
 		try{
 			Class<?> act = Class.forName(name);
