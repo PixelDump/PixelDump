@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public abstract class Component {
 
 	public String name;
-	public static Field[] variables;
+	private Field[] variables;
 	
 	Component(String name){
 		this.name =name;

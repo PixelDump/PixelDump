@@ -12,6 +12,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import Engine.GameObject;
 import InspectorGui.InspectorPanel;
@@ -25,6 +26,8 @@ public class Window extends PixDumpWindow {
 	int textCount = 0;
 	JPanel Inspector;
 	JPanel Hierarchy = new JPanel();
+	JScrollPane InspectorScroll;
+	JScrollPane HierarchyScroll;
 
 	//Constructor
 	Window() {
@@ -44,8 +47,8 @@ public class Window extends PixDumpWindow {
 		UpdateInspector();
 		JPanel InspEierarchy = new JPanel();
 		InspEierarchy.setLayout(new GridLayout(1, 4));
-		InspEierarchy.add(Inspector);
-		InspEierarchy.add(Hierarchy);
+		InspEierarchy.add(InspectorScroll);
+		InspEierarchy.add(HierarchyScroll);
 
 		this.add(c);
 		this.add(InspEierarchy);
@@ -90,9 +93,11 @@ public class Window extends PixDumpWindow {
 			Hierarchy.add(Box.createRigidArea(new Dimension(0, 2)));
 
 		}
-
+		HierarchyScroll = new JScrollPane(Hierarchy);
 		this.revalidate();
 		this.repaint();
+		
+		
 
 	}
 
@@ -105,6 +110,7 @@ public class Window extends PixDumpWindow {
 		Inspector.setLayout(new BoxLayout(Inspector, BoxLayout.Y_AXIS));
 		
 		Inspector.add(new InspectorPanel(GameObjectUtilJcub.a1));
+		InspectorScroll = new JScrollPane(Inspector);
 	}
 
 	
