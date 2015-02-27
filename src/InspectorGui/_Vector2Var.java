@@ -1,5 +1,7 @@
 package InspectorGui;
 
+import javax.swing.JLabel;
+
 import Renderer.UI;
 
 public class _Vector2Var extends GenericVariable{
@@ -8,7 +10,8 @@ public class _Vector2Var extends GenericVariable{
 		name = n;
 
 		this.add(UI.MakeText(name+": "));
-		this.add(text);
-		this.add(text2);
+		this.add(x);
+		this.add(new JLabel("   ")); //to fill space
+		this.add(y);
 	}
 }
