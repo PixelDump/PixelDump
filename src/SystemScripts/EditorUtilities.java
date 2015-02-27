@@ -99,7 +99,7 @@ public class EditorUtilities extends ScriptBase {
 		if(SelectedObject!=null){
 		Main.ui.window.setSelected(go.name());
 		}
-		Main.ui.window.UpdateHierarchy(go);
+		Main.ui.window.UpdateInspector(go);
 
 	}
 }
