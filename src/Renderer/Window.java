@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -42,6 +43,7 @@ public class Window extends PixDumpWindow {
 		this.setTitle("Pixel Dump Development Build! (get to work already)");
 		this.setLayout(new GridLayout(1, 2));
 		this.setPreferredSize(new Dimension(700, 400));
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		this.setResizable(true);
 
 		UpdateHierarchy();

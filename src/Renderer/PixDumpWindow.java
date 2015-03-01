@@ -23,11 +23,11 @@ public class PixDumpWindow extends JFrame {
 		try {
 			Properties props = new Properties();
                         
-            props.put("selectionBackgroundColor", "200 10 10"); 
+            props.put("selectionBackgroundColor", "50 50 50"); 
             props.put("menuSelectionBackgroundColor", "10 10 10"); 
             
             
-            props.put("windowInactiveTitleColorLight", "100 10 10"); 
+            props.put("windowInactiveTitleColorLight", "20 20 20"); 
             props.put("windowInactiveTitleColorDark", "0 0 0");
             props.put("windowInactiveBorderColor", "0 0 0");
             
@@ -41,15 +41,18 @@ public class PixDumpWindow extends JFrame {
             props.put("buttonColorLight", "10 10 10");
             props.put("buttonColorDark", "10 10 10");
 
-            props.put("rolloverColor", "200 10 10"); 
-            props.put("rolloverColorLight", "240 50 10"); 
-            props.put("rolloverColorDark", "150 0 0"); 
-
+            props.put("rolloverColor", "50 50 50"); 
+            props.put("rolloverColorLight", "50 50 50"); 
+            props.put("rolloverColorDark", "10 10 10"); 
+            
+            props.put("frameColor", "100 100 100");
+            
+            props.put("windowInactiveTitleForegroundColor", "100 100 100");
             props.put("windowTitleForegroundColor", "200 200 200");
             props.put("windowTitleBackgroundColor", "200 200 200"); 
             props.put("windowTitleColorLight", "30 30 30"); 
             props.put("windowTitleColorDark", "0 0 0"); 
-            props.put("windowBorderColor", "127 127 127");
+            props.put("windowBorderColor", "30 30 30");
             SmartLookAndFeel.setCurrentTheme(props);
 			
             // select Look and Feel
