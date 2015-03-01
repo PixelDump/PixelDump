@@ -63,11 +63,12 @@ public class GameObject extends GenericObject{
 	}
 public  void removeScript(String name){
 	int i = 0;
+	
 	for (Component c : Components) {
 		
 		if (name.equals(c.name)) {
 			 Components.remove(c);
-			// ((ScriptBase)c).UnLink();
+			 ((ScriptBase)c).UnLink();
 			 System.out.println("removed");
 			break;
 		} 
@@ -75,6 +76,18 @@ public  void removeScript(String name){
 		 
 		i++;
 	}
+}
+
+public  void removeScript(Object x){
+	int i = 0;
+	
+	if(Components.contains(x)){
+		 Components.remove(x);
+		 ((ScriptBase)x).UnLink();
+		 System.out.println("removed");
+	} 
+	
+	
 }
 	@Override
 	public void AddScript(ScriptBase script) {
