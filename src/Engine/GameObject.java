@@ -67,7 +67,7 @@ public  void removeScript(String name){
 		
 		if (name.equals(c.name)) {
 			 Components.remove(c);
-			 ((ScriptBase)c).UnLink();
+			// ((ScriptBase)c).UnLink();
 			 System.out.println("removed");
 			break;
 		} 
