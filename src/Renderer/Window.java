@@ -42,12 +42,13 @@ public class Window extends PixDumpWindow {
 		this.setTitle("Pixel Dump Development Build! (get to work already)");
 		this.setLayout(new GridLayout(1, 2));
 		this.setPreferredSize(new Dimension(700, 400));
-		this.setResizable(false);
+		this.setResizable(true);
 
 		UpdateHierarchy();
 		Inspector = new JPanel();
 		Inspector.setLayout(new BoxLayout(Inspector, BoxLayout.Y_AXIS));
-		InspectorScroll = new JScrollPane(Inspector);
+		InspectorScroll = new JScrollPane(Inspector,InspectorScroll.VERTICAL_SCROLLBAR_AS_NEEDED,InspectorScroll.HORIZONTAL_SCROLLBAR_NEVER);
+		
 		
 		InspeIarchy = new JPanel();
 		InspeIarchy.setLayout(new GridLayout(1, 4));

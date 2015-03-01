@@ -27,7 +27,6 @@ public class ComponentGui extends JPanel{
 		
 		//gets fields
 		Field[] fields = getFields(c.name);
-		ArrayList<String> respectiveType = new ArrayList<String>();
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
