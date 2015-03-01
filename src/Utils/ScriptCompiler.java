@@ -28,7 +28,7 @@ public class ScriptCompiler {
 
 	public static void loadScript(String name) {
 		System.setProperty("java.home",
-				"C:\\Program Files\\Java\\jdk1.8.0_25\\jre");
+				"C:\\Program Files\\Java\\jdk1.8.0_20\\jre");
 
 		String source = null;
 		try {
@@ -56,6 +56,7 @@ public class ScriptCompiler {
 		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 		System.out.println(sourceFile.getPath());
 		compiler.run(null, null, null, sourceFile.getPath());
+		
 
 		// Load and save compiled class.
 		URLClassLoader classLoader = null;
@@ -151,7 +152,7 @@ public class ScriptCompiler {
 		if (returnValue == JFileChooser.APPROVE_OPTION) {
 			File selectedFile = fileChooser.getSelectedFile();
 			projectPath = selectedFile.getAbsolutePath();
-			// System.out.println(projectPath);
+			System.out.println(projectPath);
 
 			File[] scripts = getScriptsInProject(selectedFile);
 			for (File f : scripts) {

@@ -14,8 +14,7 @@ public class ComponentCombo extends JComboBox{
 	public ComponentCombo(){
 		
 		for(int x = 0; x<ScriptCompiler.PlayerScripts.size(); x++){
-			this.addItem(makeObj(ScriptCompiler.PlayerScripts.get(x).getName()));
-			System.out.println("here");
+			this.addItem(makeObj(ScriptCompiler.PlayerScripts.get(x).getName().substring(ScriptCompiler.PlayerScripts.get(x).getName().indexOf('.')+1)));
 		}
 		
 		
