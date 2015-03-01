@@ -11,14 +11,13 @@ import java.util.ArrayList;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import Engine.GameObject;
 import InspectorGui.InspectorPanel;
 import SystemScripts.EditorUtilities;
+import Utils.windowMenu;
 
 public class Window extends PixDumpWindow {
 
@@ -30,8 +29,7 @@ public class Window extends PixDumpWindow {
 	JPanel Hierarchy = new JPanel();
 	JScrollPane InspectorScroll;
 	JScrollPane HierarchyScroll;
-	JMenuBar menuBar = new JMenuBar();
-	JMenu menu = new JMenu();
+	windowMenu w = new windowMenu();
 	
 
 	//Constructor
@@ -62,6 +60,7 @@ public class Window extends PixDumpWindow {
 
 		this.add(c);
 		this.add(InspeIarchy);
+		this.setJMenuBar(w);
 
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
