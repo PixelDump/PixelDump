@@ -30,7 +30,8 @@ public class Main {
 
 	static Messenger m = new Messenger();
 
-
+	public static boolean PlayMode = false;
+	
 	public static UI ui;// = new UI();
 	public static void initGL() {
 		glMatrixMode(GL_PROJECTION);
