@@ -11,11 +11,12 @@ import static org.lwjgl.opengl.GL11.GL_TEXTURE_WRAP_T;
 import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glEnd;
-import static org.lwjgl.opengl.GL11.glRotated;
+import static org.lwjgl.opengl.GL11.glPopMatrix;
+import static org.lwjgl.opengl.GL11.glPushMatrix;
 import static org.lwjgl.opengl.GL11.glTexCoord2f;
 import static org.lwjgl.opengl.GL11.glTexParameterf;
 import static org.lwjgl.opengl.GL11.glTexParameteri;
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.glVertex3f;
 
 import java.io.IOException;
 
@@ -26,12 +27,13 @@ import org.newdawn.slick.util.ResourceLoader;
 
 import Engine.Main;
 import SystemScripts.EditorUtilities;
+import Utils.ScriptBase;
 import Utils.Vector2I;
 
 import com.mrjaffesclass.apcs.messenger.MessageHandler;
 import com.mrjaffesclass.apcs.messenger.Messenger;
 
-public class Renderer extends Utils.ScriptBase implements MessageHandler {
+public class Renderer extends 	ScriptBase implements MessageHandler {
 
 	private Texture texture;
 	String texturePath = "art";
@@ -156,10 +158,6 @@ public class Renderer extends Utils.ScriptBase implements MessageHandler {
 				
 		if (scale != null) {
 
-			/*System.out.println(mousePosition.x + " , " + (mousePosition.y)
-					+ " , "
-					+ (transform.position.x + texture.getTextureWidth() * 5)
-					+ " , " + (transform.position.y + scale.y));*/
 			return mousePosition.x > transform.position.x
 					&& mousePosition.x < transform.position.x + scale.x
 					&& mousePosition.y > transform.position.y

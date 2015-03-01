@@ -43,6 +43,7 @@ public class ScriptCompiler {
 		File root = new File("/java"); // On Windows running on C:\, this is
 										// C:\java.
 		File sourceFile = new File(root, "_Scripts/" + name + ".java");
+		
 		sourceFile.getParentFile().mkdirs();
 		try {
 			new FileWriter(sourceFile).append(source).close();
@@ -53,6 +54,7 @@ public class ScriptCompiler {
 
 		// Compile source file.
 		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+		System.out.println(sourceFile.getPath());
 		compiler.run(null, null, null, sourceFile.getPath());
 		
 
