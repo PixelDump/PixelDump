@@ -42,7 +42,7 @@ public class Renderer extends Utils.ScriptBase implements MessageHandler {
 
 	public Renderer() {
 		super("Renderer");
-
+PlayInEditMode= true;
 		m = Main.getMessenger();
 		m.subscribe("Render", this);
 
@@ -50,7 +50,7 @@ public class Renderer extends Utils.ScriptBase implements MessageHandler {
 
 	public Renderer(String Path) {
 		super("Renderer");
-
+		PlayInEditMode= true;
 		 setTexturePath(Path);
 
 		m = Main.getMessenger();
