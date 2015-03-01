@@ -10,15 +10,15 @@ import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import Engine.GameObject;
 import InspectorGui.InspectorPanel;
 import SystemScripts.EditorUtilities;
-import Utils.GameObjectUtilJcub;
 
 public class Window extends PixDumpWindow {
 
@@ -30,6 +30,9 @@ public class Window extends PixDumpWindow {
 	JPanel Hierarchy = new JPanel();
 	JScrollPane InspectorScroll;
 	JScrollPane HierarchyScroll;
+	JMenuBar menuBar = new JMenuBar();
+	JMenu menu = new JMenu();
+	
 
 	//Constructor
 	Window() {
@@ -43,7 +46,7 @@ public class Window extends PixDumpWindow {
 		this.setTitle("Pixel Dump Development Build! (get to work already)");
 		this.setLayout(new GridLayout(1, 2));
 		this.setPreferredSize(new Dimension(700, 400));
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		//this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		this.setResizable(true);
 
 		UpdateHierarchy();
