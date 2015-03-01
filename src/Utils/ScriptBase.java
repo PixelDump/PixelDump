@@ -14,7 +14,9 @@ public abstract class ScriptBase extends Component implements MessageHandler {
 	
 	protected Transform transform;
 	
-	public boolean canUpdate =true;
+	private boolean canUpdate =true;
+	
+	protected boolean PlayInEditMode =false;
 	
 	public ScriptBase(String name){
 		super(name);
@@ -33,7 +35,7 @@ public abstract class ScriptBase extends Component implements MessageHandler {
 	@Override
 	public void messageHandler(String messageName, Object messagePayload) {
 		switch(messageName ){
-		case "Update":if(canUpdate) Update();break;
+		case "Update":if(canUpdate&&(PlayInEditMode||Main.PlayMode)) {Update();}break;
 		case "Start" : Start ();break;
 		
 		}
