@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
+import javax.swing.UIManager;
 import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;
 
@@ -143,6 +144,9 @@ public class ScriptCompiler {
 	}
 
 	public static void pickProject() {
+		try {
+	        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	    } catch (Exception e) {e.printStackTrace();     }
 		JFileChooser fileChooser = new JFileChooser() {
 			{
 				this.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
