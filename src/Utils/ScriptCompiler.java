@@ -29,7 +29,7 @@ public class ScriptCompiler {
 
 	public static void loadScript(String name) {
 		System.setProperty("java.home",
-				"C:\\Program Files\\Java\\jdk1.8.0_20\\jre");
+				"C:\\Program Files\\Java\\jdk1.8.0_25\\jre");
 
 		String source = null;
 		try {
