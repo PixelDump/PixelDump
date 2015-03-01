@@ -1,24 +1,22 @@
 package InspectorGui;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
 
 import Utils.Component;
 import Utils.ScriptCompiler;
+import Utils.removeButton;
 
 
 public class ComponentGui extends JPanel{
-	
-	
 	
 	ComponentGui(Component c){
 		
@@ -30,9 +28,10 @@ public class ComponentGui extends JPanel{
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
-		//makes new instance of variable (using name) for each
-		//(Later on, use the fields and instance fields to update variable from text or update text from variable)
-		//(Later on, don't just filter out "name" variables, that's fucked up)
+		
+		
+		
+		//adding all variables
 		if(fields!=null){
 		for(int x = 0; x < fields.length; x++){
 			
@@ -68,6 +67,8 @@ public class ComponentGui extends JPanel{
 			}
 			this.add(Box.createRigidArea(new Dimension(1,7)));
 		}	
+		this.add(new removeButton(c.name));
+		
 		this.setBorder(BorderFactory.createTitledBorder(c.name + ": "));
 		}
 		
