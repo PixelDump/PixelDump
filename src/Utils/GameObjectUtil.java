@@ -14,11 +14,11 @@ public class GameObjectUtil {
 	// make Test GameObjects Inside of here for now
 
 	public static void Start() {
-		//ScriptCompiler.loadScript("test");
+		
 		
 		GameObject go2 = new GameObject("Flaming_skull");
 		go2.AddScript(new Renderer("Flaming_skull"));
-		//go2.AddScript(ScriptCompiler.getPlayerScript("test"));
+		go2.AddScript(ScriptCompiler.getPlayerScript("test"));
 		go2.transform.position.x = 50;
 		go2.transform.depth = 1;
 		GameObject go = new GameObject("jacob");
@@ -32,7 +32,7 @@ public class GameObjectUtil {
 	}
 	public static void recompile(GameObject go2){
 
-	ScriptCompiler.loadScript("test");
+	ScriptCompiler.recompile();
 
 	}
 	public static class GeneralGameObjectUtils {
