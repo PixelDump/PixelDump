@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
+import javax.swing.UIManager;
 import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;
 
@@ -28,7 +29,7 @@ public class ScriptCompiler {
 
 	public static void loadScript(String name) {
 		System.setProperty("java.home",
-				"C:\\Program Files\\Java\\jdk1.8.0_20\\jre");
+				"C:\\Program Files\\Java\\jdk1.8.0_25\\jre");
 
 		String source = null;
 		try {
@@ -49,12 +50,13 @@ public class ScriptCompiler {
 			new FileWriter(sourceFile).append(source).close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 
 		// Compile source file.
 		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-		System.out.println(sourceFile.getPath());
+	//	System.out.println(sourceFile.getPath());
 		compiler.run(null, null, null, sourceFile.getPath());
 		
 
@@ -65,6 +67,7 @@ public class ScriptCompiler {
 					.toURL() });
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		try {
@@ -143,11 +146,17 @@ public class ScriptCompiler {
 	}
 
 	public static void pickProject() {
+		try {
+	        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	    } catch (Exception e) {e.printStackTrace();     }
+		
+		
 		JFileChooser fileChooser = new JFileChooser() {
 			{
 				this.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 			}
 		};
+		
 		int returnValue = fileChooser.showOpenDialog(null);
 		if (returnValue == JFileChooser.APPROVE_OPTION) {
 			File selectedFile = fileChooser.getSelectedFile();
