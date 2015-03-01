@@ -60,7 +60,7 @@ public class Main {
 	}
 
 	public static void Start() {
-		//ScriptCompiler.pickProject();
+		ScriptCompiler.pickProject();
 		
 		GameObjectUtil.Start();
 		GameObjectUtilJcub.Start();
