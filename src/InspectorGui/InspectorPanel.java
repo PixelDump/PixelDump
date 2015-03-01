@@ -1,8 +1,11 @@
 package InspectorGui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -11,6 +14,7 @@ import javax.swing.JTextField;
 import Engine.GameObject;
 import Renderer.UI;
 import Utils.Component;
+import Utils.ComponentCombo;
 import Utils.ScriptCompiler;
 
 public class InspectorPanel extends JPanel{
@@ -18,8 +22,8 @@ public class InspectorPanel extends JPanel{
 	JTextField t = new JTextField();
 	JRadioButton r = new JRadioButton();
 	JPanel p = new JPanel();
-	JComboBox b;
-
+	JButton b = new JButton();
+	ComponentCombo c = new ComponentCombo();
 	
 	public InspectorPanel(GameObject go){	
 		this.removeAll();
@@ -35,10 +39,17 @@ public class InspectorPanel extends JPanel{
 			
 		}
 		
-		//for(int x = 0; )
+		b.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				//go.AddScript();
+				//MAKE THIS MAKE A NEW INSTANCE OF THE SELECTED SCRIPT GET ADDED
+			}});
 		
-		//b = new JComboBox(ScriptCompiler.PlayerScripts);
-	//	this.add(b);
+		this.add(c);
+		this.add(b);
+		
 	}
 
 }
