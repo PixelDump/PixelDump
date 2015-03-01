@@ -4,6 +4,8 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -11,14 +13,15 @@ import java.util.ArrayList;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JToggleButton;
 
 import Engine.GameObject;
+import Engine.Main;
 import InspectorGui.InspectorPanel;
 import SystemScripts.EditorUtilities;
+import Utils.windowMenu;
 
 public class Window extends PixDumpWindow {
 
@@ -30,8 +33,9 @@ public class Window extends PixDumpWindow {
 	JPanel Hierarchy = new JPanel();
 	JScrollPane InspectorScroll;
 	JScrollPane HierarchyScroll;
-	JMenuBar menuBar = new JMenuBar();
-	JMenu menu = new JMenu();
+	JPanel CanvasPanel = new JPanel();
+	windowMenu w = new windowMenu();
+	JToggleButton play = new JToggleButton();
 	
 
 	//Constructor
@@ -54,14 +58,34 @@ public class Window extends PixDumpWindow {
 		Inspector.setLayout(new BoxLayout(Inspector, BoxLayout.Y_AXIS));
 		InspectorScroll = new JScrollPane(Inspector,InspectorScroll.VERTICAL_SCROLLBAR_AS_NEEDED,InspectorScroll.HORIZONTAL_SCROLLBAR_NEVER);
 		
+		play.setText("Play");
+		play.setForeground(new Color(100,100,100));
+		play.setAlignmentX(CENTER_ALIGNMENT);
+		play.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if(play.isSelected()){
+					Main.PlayMode=true;
+				}
+				else{
+					Main.PlayMode=false;
+				}
+				
+			}});
 		
 		InspeIarchy = new JPanel();
 		InspeIarchy.setLayout(new GridLayout(1, 4));
+		
+		CanvasPanel.add(play);
+		CanvasPanel.add(c);
+		CanvasPanel.setLayout(new BoxLayout(CanvasPanel, BoxLayout.Y_AXIS));
+		
 		InspeIarchy.add(InspectorScroll);
 		InspeIarchy.add(HierarchyScroll);
 
-		this.add(c);
+		this.add(CanvasPanel);
 		this.add(InspeIarchy);
+		this.setJMenuBar(w);
 
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);

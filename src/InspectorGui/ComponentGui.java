@@ -67,7 +67,7 @@ public class ComponentGui extends JPanel{
 			}
 			this.add(Box.createRigidArea(new Dimension(1,7)));
 		}	
-		this.add(new removeButton(c.name));
+		this.add(new removeButton(c));
 		
 		this.setBorder(BorderFactory.createTitledBorder(c.name + ": "));
 		}
