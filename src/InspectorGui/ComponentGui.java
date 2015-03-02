@@ -22,13 +22,10 @@ public class ComponentGui extends JPanel{
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
-		
 		//gets fields
 		Field[] fields = getFields(c.name);
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		
-		
 		
 		
 		//adding all variables
@@ -39,7 +36,7 @@ public class ComponentGui extends JPanel{
 				
 			switch(fields[x].getType().toString()){
 				case "int":
-					this.add(new _IntVar(fields[x].getName()));
+					this.add(new _IntVar(fields[x].getName(), c));
 					break;
 				case "class java.lang.Boolean":
 					this.add(new _BooleanVar(fields[x].getName()));
@@ -48,10 +45,10 @@ public class ComponentGui extends JPanel{
 					this.add(new _BooleanVar(fields[x].getName()));
 					break;
 				case "class Utils.Vector2":
-					this.add(new _Vector2Var(fields[x].getName()));
+					this.add(new _Vector2Var(fields[x].getName(), c));
 					break;
 				case "class java.lang.String":
-					this.add(new _StringVar(fields[x].getName()));
+					this.add(new _StringVar(fields[x].getName(), c));
 					break;
 				case "class java.lang.Double":
 					this.add(new _DoubleVar(fields[x].getName()));
