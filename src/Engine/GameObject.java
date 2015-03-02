@@ -79,18 +79,7 @@ public  void removeScript(String name){
 	}
 }
 
-public  void removeScript(PScript x){
-	int i = 0;
-	
-	if(Components.contains(x)){
-		 Components.remove(x);
-		 ((PScript)x).UnLink();
-		 System.out.println("removed");
-	} 
-	
-	
-}
-public  void removeScript(ScriptBase x){
+public  void removeScript(Object x){
 	int i = 0;
 	
 	if(Components.contains(x)){
