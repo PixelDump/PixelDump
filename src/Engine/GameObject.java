@@ -5,6 +5,7 @@ import java.util.List;
 
 import Utils.Component;
 import Utils.GenericObject;
+import Utils.PScript;
 import Utils.ScriptBase;
 import Utils.Transform;
 import Utils.Vector2;
@@ -96,6 +97,11 @@ public  void removeScript(Object x){
 		Components.add(script);
 	}
 
+	public void AddScript(PScript script) {
+		
+		script.setParent(this);
+		Components.add(script);
+	}
 	public GameObject GetChild(String name) {
 		GameObject result;
 		int i = 0;

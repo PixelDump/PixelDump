@@ -1,6 +1,7 @@
 package Utils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.JFileChooser;
 import javax.swing.UIManager;
@@ -29,7 +31,7 @@ public class ScriptCompiler {
 
 	public static void loadScript(String name) {
 		System.setProperty("java.home",
-				"C:\\Program Files\\Java\\jdk1.8.0_20\\jre");
+				getJDKPath());
 
 		String source = null;
 		try {
@@ -97,12 +99,12 @@ public class ScriptCompiler {
 
 	}
 
-	public static ScriptBase getPlayerScript(String name) {
+	public static PScript getPlayerScript(String name) {
 
 		for (Class<?> S : PlayerScripts) {
 			if (S.getTypeName().equals("_Scripts." + name))
 				try {
-					return ((ScriptBase) S.newInstance());
+					return ((PScript) S.newInstance());
 				} catch (InstantiationException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -195,4 +197,18 @@ public class ScriptCompiler {
 		return new String(encoded, encoding);
 	}
 
+	
+	public static String getJDKPath(){
+		File java = new File("..\\JAVAPATH.txt");
+		try {
+			Scanner s = new Scanner(java);
+			String path = s.nextLine();
+			System.out.println(path);
+			return path;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
