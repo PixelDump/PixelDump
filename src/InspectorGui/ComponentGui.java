@@ -39,10 +39,10 @@ public class ComponentGui extends JPanel{
 					this.add(new _IntVar(fields[x].getName(), c));
 					break;
 				case "class java.lang.Boolean":
-					this.add(new _BooleanVar(fields[x].getName()));
+					this.add(new _BooleanVar(fields[x].getName(), c));
 					break;
 				case "boolean":
-					this.add(new _BooleanVar(fields[x].getName()));
+					this.add(new _BooleanVar(fields[x].getName(), c));
 					break;
 				case "class Utils.Vector2":
 					this.add(new _Vector2Var(fields[x].getName(), c));
@@ -51,10 +51,13 @@ public class ComponentGui extends JPanel{
 					this.add(new _StringVar(fields[x].getName(), c));
 					break;
 				case "class java.lang.Double":
-					this.add(new _DoubleVar(fields[x].getName()));
+					this.add(new _DoubleVar(fields[x].getName(), c));
 					break;
 				case "float":
-					this.add(new _DoubleVar(fields[x].getName()));
+					this.add(new _FloatVar(fields[x].getName(), c));
+					break;
+				case "class java.lang.Float":
+					this.add(new _FloatVar(fields[x].getName(), c));
 					break;
 				default:
 					System.out.println("Invalid data type from "+c.name+" (ComponentGui): " + fields[x].getType().toString() + "\nName: " +fields[x].getName());
