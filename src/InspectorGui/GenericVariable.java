@@ -27,13 +27,9 @@ public class GenericVariable extends JPanel implements MessageHandler{
 		
 	}
 	
-	public void pullVariable(){
+	public void updateVariable(){
 	}
-	
-	public void pushVariable(){
 		
-	}
-	
 	public String getName(){
 		return name;
 	}
@@ -42,7 +38,7 @@ public class GenericVariable extends JPanel implements MessageHandler{
 	public void messageHandler(String messageName, Object messagePayload) {
 		switch(messageName){
 		case "Update":
-			pullVariable();
+			updateVariable();
 			break;
 		}
 		

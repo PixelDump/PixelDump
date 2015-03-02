@@ -4,6 +4,7 @@ import java.awt.Dimension;
 
 import javax.swing.JLabel;
 
+import Engine.Main;
 import Utils.Component;
 import Utils.TextDefaults;
 import Utils.Transform;
@@ -32,21 +33,39 @@ public class _Vector2Var extends GenericVariable{
 		this.add(y);
 	}
 	
-	public void pullVariable(){
-		if(getVec2()!=null){
-		if(!x.isFocused()&&!x.getText().equals(""+getVec2().x)){
-			x.setText(""+getVec2().x);
+	public void updateVariable(){
+		try{
+		//game->text
+		if(getVec2()!=null && !(x.enter||y.enter)){
+			if(!x.isFocused()&&!x.getText().equals(""+getVec2().x)){
+				x.setText(""+getVec2().x);
+			}
+			if(!y.isFocused()&&!y.getText().equals(""+getVec2().y)){
+				y.setText(""+getVec2().y);
+			}
+		}	
+		
+		//text->game
+		if(x.enter||y.enter){
+			try{
+				x.enter = false;
+				y.enter = false;
+				(compDupe.getClass().getField(name)).set(compDupe, 
+						new Vector2(Double.parseDouble(x.getText()),Double.parseDouble(y.getText())));
+			}
+			catch(Exception e){
+			}
 		}
-		if(!y.isFocused()&&!y.getText().equals(""+getVec2().y)){
-			y.setText(""+getVec2().y);
 		}
-		}
+		catch(Exception e){}
+		
+		
 		
 	}
 	Vector2 getVec2 (){
 		
 		try {
-			return (Vector2)((compDupe).getClass().getField(name).get(compDupe));
+			return (Vector2)(compDupe.getClass().getField(name).get(compDupe));
 		} catch (IllegalArgumentException | IllegalAccessException
 				| NoSuchFieldException | SecurityException e) {
 		}
