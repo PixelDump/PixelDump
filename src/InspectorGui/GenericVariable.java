@@ -6,16 +6,19 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
-import javax.swing.JTextPane;
+
+import Utils.TextDefaults;
 
 	
 
 public class GenericVariable extends JPanel{
 	
 	public String name;
-	public JTextArea text = new JTextArea();
-	public JTextArea x = new JTextArea();
-	public JTextArea y = new JTextArea();
+	public TextDefaults stringText = new TextDefaults("String");
+	public TextDefaults integerText = new TextDefaults("Integer");
+	public TextDefaults doubleText = new TextDefaults("Double");
+	public TextDefaults x = new TextDefaults("Double");
+	public TextDefaults y = new TextDefaults("Double");
 	public JRadioButton radioButton = new JRadioButton();
 	
 	GenericVariable(){
@@ -25,8 +28,12 @@ public class GenericVariable extends JPanel{
 		
 		
 	
-		text.setPreferredSize(new Dimension(50,17));
-		text.setMaximumSize(new Dimension(100,17));
+		stringText.setPreferredSize(new Dimension(50,17));
+		stringText.setMaximumSize(new Dimension(100,17));
+		integerText.setPreferredSize(new Dimension(50,17));
+		integerText.setMaximumSize(new Dimension(100,17));
+		doubleText.setPreferredSize(new Dimension(50,17));
+		doubleText.setMaximumSize(new Dimension(100,17));
 		x.setPreferredSize(new Dimension(30,17));
 		x.setMaximumSize(new Dimension(50,17));
 		y.setPreferredSize(new Dimension(30,17));
