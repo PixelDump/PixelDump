@@ -1,6 +1,6 @@
 package InspectorGui;
 
-import Renderer.UI;
+import Utils.TextDefaults;
 
 
 public class _IntVar extends GenericVariable{
@@ -8,7 +8,7 @@ public class _IntVar extends GenericVariable{
 	public _IntVar(String n){
 		name = n;
 
-		this.add(UI.MakeText(name+": "));
+		this.add(TextDefaults.MakeText(name+": "));
 		this.add(text);
 	}
 }

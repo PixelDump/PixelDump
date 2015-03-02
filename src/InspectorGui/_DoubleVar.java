@@ -1,13 +1,13 @@
 package InspectorGui;
 
-import Renderer.UI;
+import Utils.TextDefaults;
 
 public class _DoubleVar extends GenericVariable{
 
 	public _DoubleVar (String n){
 		name = n;
 
-		this.add(UI.MakeText(name+": "));
+		this.add(TextDefaults.MakeText(name+": "));
 		this.add(text);
 	}
 }

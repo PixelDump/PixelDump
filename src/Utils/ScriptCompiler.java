@@ -174,7 +174,7 @@ public class ScriptCompiler {
 	public static void recompile(){
 		for(Class<?> c : PlayerScripts){
 			loadScript(c.getName().substring( c.getName().indexOf('.')+1));
-			Main.ui.window.UpdateInspector(EditorUtilities.SelectedObject);
+			Main.window.UpdateInspector(EditorUtilities.SelectedObject);
 		}
 		System.out.println("scripts updated");
 		
