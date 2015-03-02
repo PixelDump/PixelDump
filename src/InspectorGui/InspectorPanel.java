@@ -52,7 +52,7 @@ public class InspectorPanel extends JPanel{
 				Main.ui.window.UpdateInspector(EditorUtilities.SelectedObject);
 			}});
 		
-		b.setForeground(new Color(100,100,100));
+		b.setForeground(new Color(150,150,150));
 		b.setText("Add Component");
 		b.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
 		
