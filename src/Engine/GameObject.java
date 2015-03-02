@@ -28,13 +28,13 @@ public class GameObject extends GenericObject{
 	
 	public void SetChildren(ArrayList<GameObject> children){
 		this.Children=children;
-		Main.ui.window.UpdateHierarchy();
+		Main.window.UpdateHierarchy();
 	}
 	public void AddChild(GameObject child){
 		this.Children.add(child);
 		child.SetParent(this);
 		try{
-			Main.ui.window.UpdateHierarchy();
+			Main.window.UpdateHierarchy();
 			}
 			catch(Exception e){}
 	}
@@ -182,7 +182,7 @@ public  void removeScript(ScriptBase x){
 		Components.add(transform);
 		name = "GameObject";
 		SceneObjects.add(this);
-		Main.ui.window.UpdateHierarchy();
+		Main.window.UpdateHierarchy();
 	}
 
 	public GameObject(String name) {
@@ -191,7 +191,7 @@ public  void removeScript(ScriptBase x){
 		SceneObjects.add(this);
 		
 		try{
-		Main.ui.window.UpdateHierarchy();
+		Main.window.UpdateHierarchy();
 		}
 		catch(Exception e){}
 	}
