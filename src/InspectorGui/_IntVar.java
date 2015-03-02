@@ -25,12 +25,22 @@ public class _IntVar extends GenericVariable{
 		this.add(integerText);
 	}
 	
-	public void pullVariable(){
+	public void updateVariable(){
 		try{
+		//game->text
 		if(!integerText.isFocused()&&!integerText.getText().equals(""+getInt())){
 			integerText.setText(""+getInt());
 		}
+		
+		//text->game
+		if(integerText.enter){
+			integerText.enter = false;
+			(compDupe.getClass().getField(name)).set(compDupe, 
+					integerText.getText());
 		}
+	
+		}
+	
 		catch(Exception e){
 		}
 	}

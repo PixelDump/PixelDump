@@ -24,11 +24,23 @@ public class _StringVar  extends GenericVariable{
 		this.add(TextDefaults.MakeText(name+": "));
 		this.add(stringText);
 	}
-	public void pullVariable(){
+	public void updateVariable(){
 		try{
-		if(!stringText.isFocused()&&!stringText.getText().equals(""+getString())){
+		
+		//text->game
+		if(stringText.enter){
+				stringText.enter = false;
+				(compDupe.getClass().getField(name)).set(compDupe, 
+						stringText.getText());
+			}
+			
+		//game->text
+		if(!stringText.isFocused() && !stringText.getText().equals(""+getString()) && getString()!=null){
+			
 			stringText.setText(""+getString());
 		}
+		
+		
 		}
 		catch(Exception e){
 		}
@@ -38,7 +50,9 @@ public class _StringVar  extends GenericVariable{
 	
 	try {
 		return (String)((compDupe).getClass().getField(name).get(compDupe));
-	} catch (IllegalArgumentException | IllegalAccessException
+		
+	} 
+	catch (IllegalArgumentException | IllegalAccessException
 			| NoSuchFieldException | SecurityException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
