@@ -97,9 +97,9 @@ public class EditorUtilities extends ScriptBase {
 	public static void setSelected(GameObject go){
 		SelectedObject = go;
 		if(SelectedObject!=null){
-		Main.ui.window.setSelected(go.name());
+		Main.window.setSelected(go.name());
 		}
-		Main.ui.window.UpdateInspector(go);
+		Main.window.UpdateInspector(go);
 
 	}
 }

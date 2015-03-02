@@ -21,6 +21,7 @@ import Engine.GameObject;
 import Engine.Main;
 import InspectorGui.InspectorPanel;
 import SystemScripts.EditorUtilities;
+import Utils.TextDefaults;
 import Utils.windowMenu;
 
 public class Window extends PixDumpWindow {
@@ -39,7 +40,7 @@ public class Window extends PixDumpWindow {
 	
 
 	//Constructor
-	Window() {
+	public Window() {
 		super();
 
 		ArrayList<GameObject> base = new ArrayList<GameObject>();
@@ -109,7 +110,7 @@ public class Window extends PixDumpWindow {
 		Hierarchy.setLayout(new BoxLayout(Hierarchy, BoxLayout.PAGE_AXIS));
 
 		// adds to hierarchy UI
-		Hierarchy.add(UI.MakeText("Hierarchy:"));
+		Hierarchy.add(TextDefaults.MakeText("Hierarchy:"));
 		Hierarchy.add(Box.createRigidArea(new Dimension(0, 2)));
 
 		Childinator();

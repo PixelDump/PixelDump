@@ -1,28 +1,18 @@
-package Renderer;
+package Utils;
 
-import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
-import Engine.GameObject;
+public class TextDefaults {
 
-public class UI   {
-	public Window window;
-	public UI(){
-		
-		PixDumpWindow p = new PixDumpWindow();
-		window  = new Window();
-		
-		
-	
+	public static JLabel IntText(String text){
+		return null;
 	}
 	
-	public void init(){
-		
-		
+	public static JLabel DoubleText(String text){
+		return null;
 	}
 	
 	public static JLabel MakeText(String text) {
@@ -36,4 +26,5 @@ public class UI   {
 		p.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
 		return p;
 	}
+	
 }

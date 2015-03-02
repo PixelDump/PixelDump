@@ -1,12 +1,10 @@
 package Engine;
 
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
 import static org.lwjgl.opengl.GL11.GL_MODELVIEW;
 import static org.lwjgl.opengl.GL11.GL_PROJECTION;
 import static org.lwjgl.opengl.GL11.glClear;
 import static org.lwjgl.opengl.GL11.glClearColor;
-import static org.lwjgl.opengl.GL11.glDisable;
 import static org.lwjgl.opengl.GL11.glLoadIdentity;
 import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glOrtho;
@@ -16,9 +14,9 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
-import org.lwjgl.opengl.GL11;
 
-import Renderer.UI;
+import Renderer.PixDumpWindow;
+import Renderer.Window;
 import SystemScripts.SystemScripts;
 import Utils.GameObjectUtil;
 import Utils.GameObjectUtilJcub;
@@ -32,11 +30,13 @@ public class Main {
 
 	public static boolean PlayMode = false;
 	
-	public static UI ui;// = new UI();
+	public static PixDumpWindow p;
+	public static Window window;
+	
 	public static void initGL() {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glOrtho(0, ui.window.c.getWidth(), 0,  ui.window.c.getHeight(), -1, 1);
+		glOrtho(0, window.c.getWidth(), 0,  window.c.getHeight(), -1, 1);
 		glMatrixMode(GL_MODELVIEW);
 		//GL11.glEnable(GL_DEPTH_TEST);
 		//glEnable(GL_DEPTH_TEST);
@@ -65,7 +65,9 @@ public class Main {
 		
 		GameObjectUtil.Start();
 		GameObjectUtilJcub.Start();
-		ui = new UI();
+		p = new PixDumpWindow();
+		window = new Window();
+		
 		initDisplay();
 		initGL();
 		
@@ -81,10 +83,10 @@ public class Main {
 	public static void initDisplay() {
 		try {
 			
-			Display.setDisplayMode(new DisplayMode(ui.window.c.getWidth(), ui.window.c.getHeight()));
+			Display.setDisplayMode(new DisplayMode(window.c.getWidth(), window.c.getHeight()));
 			Display.create();
 
-			Display.setParent(ui.window.c);
+			Display.setParent(window.c);
 			Display.setVSyncEnabled(true);
 			Keyboard.create();
 			Mouse.create();

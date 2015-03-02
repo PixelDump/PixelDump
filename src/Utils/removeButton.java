@@ -25,7 +25,7 @@ public class removeButton extends JButton{
 			public void actionPerformed(ActionEvent arg0) {
 				
 					EditorUtilities.SelectedObject.removeScript((PScript)c);
-					Main.ui.window.UpdateInspector(EditorUtilities.SelectedObject);
+					Main.window.UpdateInspector(EditorUtilities.SelectedObject);
 				
 			}});
 		

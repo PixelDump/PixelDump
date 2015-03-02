@@ -18,7 +18,7 @@ public class PixDumpWindow extends JFrame {
 
 	public static TextUtilities u = new TextUtilities();
 	
-	PixDumpWindow(){
+	public PixDumpWindow(){
 		
 		try {
 			Properties props = new Properties();
