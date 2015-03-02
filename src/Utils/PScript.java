@@ -1,14 +1,14 @@
 package Utils;
+
 import Engine.GameObject;
 import Engine.Main;
 
 import com.mrjaffesclass.apcs.messenger.MessageHandler;
 import com.mrjaffesclass.apcs.messenger.Messenger;
 
+public class PScript extends Component  implements MessageHandler{
 
-public abstract class ScriptBase extends Component implements MessageHandler {
-
-	Messenger m ;
+Messenger m ;
 	
 	protected GameObject gameObject;
 	
@@ -18,7 +18,7 @@ public abstract class ScriptBase extends Component implements MessageHandler {
 	
 	protected boolean PlayInEditMode =false;
 	
-	public ScriptBase(String name){
+	public PScript(String name){
 		super(name);
 		m = Main.getMessenger();
 		m.subscribe("Update", this);
@@ -35,7 +35,7 @@ public abstract class ScriptBase extends Component implements MessageHandler {
 	@Override
 	public void messageHandler(String messageName, Object messagePayload) {
 		switch(messageName ){
-		case "Update":if(canUpdate) {Update();}break;
+		case "Update":if(canUpdate&&(PlayInEditMode||Main.PlayMode)) {Update();}break;
 		case "Start" : Start ();break;
 		
 		}
@@ -48,5 +48,5 @@ public abstract class ScriptBase extends Component implements MessageHandler {
 	public void UnLink(){
 		canUpdate=false;
 	}
-	
+
 }
