@@ -8,6 +8,6 @@ public class _StringVar  extends GenericVariable{
 		name = n;
 
 		this.add(TextDefaults.MakeText(name+": "));
-		this.add(text);
+		this.add(stringText);
 	}
 }
