@@ -1,47 +1,51 @@
 package InspectorGui;
 
-import java.awt.Dimension;
-
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
 
-import Utils.TextDefaults;
+import Engine.Main;
+import Utils.Component;
+
+import com.mrjaffesclass.apcs.messenger.MessageHandler;
+import com.mrjaffesclass.apcs.messenger.Messenger;
 
 	
 
-public class GenericVariable extends JPanel{
+public class GenericVariable extends JPanel implements MessageHandler{
 	
 	public String name;
-	public TextDefaults stringText = new TextDefaults("String");
-	public TextDefaults integerText = new TextDefaults("Integer");
-	public TextDefaults doubleText = new TextDefaults("Double");
-	public TextDefaults x = new TextDefaults("Double");
-	public TextDefaults y = new TextDefaults("Double");
-	public JRadioButton radioButton = new JRadioButton();
+	Messenger m;
+	protected Component compDupe;
 	
 	GenericVariable(){
 		
+		m = Main.getMessenger();
+		m.subscribe("Update", this);
 		this.removeAll();
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
 		
+	}
 	
-		stringText.setPreferredSize(new Dimension(50,17));
-		stringText.setMaximumSize(new Dimension(100,17));
-		integerText.setPreferredSize(new Dimension(50,17));
-		integerText.setMaximumSize(new Dimension(100,17));
-		doubleText.setPreferredSize(new Dimension(50,17));
-		doubleText.setMaximumSize(new Dimension(100,17));
-		x.setPreferredSize(new Dimension(30,17));
-		x.setMaximumSize(new Dimension(50,17));
-		y.setPreferredSize(new Dimension(30,17));
-		y.setMaximumSize(new Dimension(50,17));
+	public void pullVariable(){
+	}
+	
+	public void pushVariable(){
+		
 	}
 	
 	public String getName(){
 		return name;
+	}
+
+	@Override
+	public void messageHandler(String messageName, Object messagePayload) {
+		switch(messageName){
+		case "Update":
+			pullVariable();
+			break;
+		}
+		
 	}
 	
 }

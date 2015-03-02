@@ -148,6 +148,9 @@ public class Window extends PixDumpWindow {
 		//updates gui
 		Inspector.revalidate();
 		Inspector.repaint();
+		
+		
+		
 	}
 
 	

@@ -14,7 +14,7 @@ public class DoubleFilter extends DocumentFilter {
         StringBuffer buffer = new StringBuffer(string);
         for (int i = buffer.length() - 1; i >= 0; i--) {
             char ch = buffer.charAt(i);
-            if (!(Character.isDigit(ch)||ch=='.')) {
+            if (!(Character.isDigit(ch)||ch=='.'||ch=='-')) {
                 buffer.deleteCharAt(i);
             }
         }

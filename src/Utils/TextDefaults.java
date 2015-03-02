@@ -2,23 +2,22 @@ package Utils;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.text.NumberFormat;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DocumentFilter;
-import javax.swing.text.NumberFormatter;
 import javax.swing.text.PlainDocument;
 
 public class TextDefaults extends JFormattedTextField{
 
 	
+	public Boolean isFocused= false;
 	
 	public TextDefaults(String type){
 		
 		PlainDocument doc = new PlainDocument();
+		
 	    
 	    switch(type){
 	    	case "Integer":
@@ -38,13 +37,28 @@ public class TextDefaults extends JFormattedTextField{
 	    		System.out.println("Invalid TextDefault type");
 	    }
 	    
-	    
+	    this.addFocusListener(new FocusListener(){
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				isFocused = true;
+				
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				isFocused = false;
+				
+			}});
 	    
 	    
 	   
 	}
 	
 	
+	public Boolean isFocused(){
+		return isFocused;
+	}
 	
 	public static JLabel MakeText(String text) {
 		
