@@ -9,6 +9,6 @@ public class _IntVar extends GenericVariable{
 		name = n;
 
 		this.add(TextDefaults.MakeText(name+": "));
-		this.add(text);
+		this.add(integerText);
 	}
 }
