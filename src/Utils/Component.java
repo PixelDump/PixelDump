@@ -10,6 +10,7 @@ public abstract class Component {
 	
 	Component(String name){
 		this.name =name;
+		 
 	}
 	
 
@@ -21,8 +22,11 @@ public abstract class Component {
 			return variables;
 		}
 		catch(Exception e){
+			e.printStackTrace();
 			return null;
 		}
 	}
+	
+	
 	
 }

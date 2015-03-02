@@ -101,7 +101,7 @@ public class Main {
 	 
 		try{
 		m.notify("Update");
-		}catch(Exception e){}
+		}catch(Exception e){e.printStackTrace();}
 	}
 
 	public static void Render() {
