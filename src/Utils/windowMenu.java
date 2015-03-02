@@ -2,6 +2,8 @@ package Utils;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.Box;
@@ -13,6 +15,7 @@ public class windowMenu extends JMenuBar{
 
 	JMenu File = new JMenu();
 	JMenu GameObjectMenu = new JMenu();
+	
 	
 	JMenuItem Save = new JMenuItem("Save Scene",
             KeyEvent.VK_T);
@@ -41,24 +44,47 @@ public class windowMenu extends JMenuBar{
 		
 		
 		File.setText("File");
+			Save.addActionListener(listener);
 			File.add(Save);
 			File.addSeparator();
 			
+			NewScene.addActionListener(listener);
 			File.add(NewScene);
 			File.addSeparator();
 			
+			NewProject.addActionListener(listener);
 			File.add(NewProject);
 			File.addSeparator();
 			
+			Build.addActionListener(listener);
 			File.add(Build);
 			File.addSeparator();
 		
 		GameObjectMenu.setText("Game Object");
+			NewGameObject.addActionListener(listener);
 			GameObjectMenu.add(NewGameObject);
 			GameObjectMenu.addSeparator();
 
 		this.add(File);
 		this.add(GameObjectMenu);
 	}
+	
+	ActionListener listener = new ActionListener(){
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			switch(((JMenuItem)e.getSource()).getText()){
+			case "Save Scene":
+				break;
+			case "New Scene":
+				break;
+			case "New Project":
+				break;
+			case "Build":
+				break;
+			case "New Game Object":
+				break;
+			}
+		}};
 	
 }
