@@ -1,6 +1,7 @@
 package InspectorGui;
 
 import java.awt.Dimension;
+import java.lang.reflect.Field;
 
 import javax.swing.JLabel;
 
@@ -17,9 +18,9 @@ public class _Vector2Var extends GenericVariable{
 	public TextDefaults y = new TextDefaults("Double");
 	
 	
-	public _Vector2Var(String n, Component c){
-		name = n;
-
+	public _Vector2Var(Field field, Component c){
+		f = field;
+		name = f.getName();
 		compDupe = c;
 
 		x.setPreferredSize(new Dimension(30,17));
@@ -50,8 +51,7 @@ public class _Vector2Var extends GenericVariable{
 			try{
 				x.enter = false;
 				y.enter = false;
-				(compDupe.getClass().getField(name)).set(compDupe, 
-						new Vector2(Double.parseDouble(x.getText()),Double.parseDouble(y.getText())));
+				f.set(compDupe, new Vector2(Double.parseDouble(x.getText()),Double.parseDouble(y.getText())));
 			}
 			catch(Exception e){
 			}
@@ -65,9 +65,9 @@ public class _Vector2Var extends GenericVariable{
 	Vector2 getVec2 (){
 		
 		try {
-			return (Vector2)(compDupe.getClass().getField(name).get(compDupe));
+			return (Vector2)(f.get(compDupe));
 		} catch (IllegalArgumentException | IllegalAccessException
-				| NoSuchFieldException | SecurityException e) {
+				| SecurityException e) {
 		}
 		return null;
 	}
