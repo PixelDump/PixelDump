@@ -2,6 +2,7 @@ package InspectorGui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Field;
 
 import javax.swing.JRadioButton;
 
@@ -12,9 +13,9 @@ public class _BooleanVar extends GenericVariable{
 
 	public JRadioButton radioButton = new JRadioButton();
 	
-	public _BooleanVar(String n, Component c){
-		name = n;
-		
+	public _BooleanVar(Field field, Component c){
+		f= field;
+		name = f.getName();
 		compDupe = c;
 
 		this.add(TextDefaults.MakeText(name+": "));
@@ -23,10 +24,9 @@ public class _BooleanVar extends GenericVariable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					(compDupe.getClass().getField(name)).set(compDupe, 
-							radioButton.isSelected());
+					f.set(compDupe, radioButton.isSelected());
 				} catch (IllegalArgumentException | IllegalAccessException
-						| NoSuchFieldException | SecurityException e1) {
+						| SecurityException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}

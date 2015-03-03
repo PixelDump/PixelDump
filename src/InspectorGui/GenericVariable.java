@@ -1,5 +1,7 @@
 package InspectorGui;
 
+import java.lang.reflect.Field;
+
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
@@ -16,6 +18,7 @@ public class GenericVariable extends JPanel implements MessageHandler{
 	public String name;
 	Messenger m;
 	protected Component compDupe;
+	Field f;
 	
 	GenericVariable(){
 		
