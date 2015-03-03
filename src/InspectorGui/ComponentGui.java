@@ -1,14 +1,12 @@
 package InspectorGui;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Utils.Component;
@@ -18,12 +16,22 @@ import Utils.removeButton;
 
 public class ComponentGui extends JPanel{
 	
+	public ArrayList<String> checkable = new ArrayList<String>(){{
+		add("int");
+		add("class java.lang.String");
+		add("class java.lang.Double");
+		add("double");
+		add("float");
+		add("class java.lang.Float");
+		}};
+	
 	ComponentGui(Component c){
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		//gets fields
 		Field[] fields = getFields(c.name);
+		
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
@@ -32,38 +40,30 @@ public class ComponentGui extends JPanel{
 		if(fields!=null){
 		for(int x = 0; x < fields.length; x++){
 			
-			if(!fields[x].getName().equals("name")){
+			try {
+				//Field f = c.getClass().getField(fields[x].getName());
+				Field f = fields[x];
+			
+			
+			if(!f.getName().equals("name")){
 				
-			switch(fields[x].getType().toString()){
-				case "int":
-					this.add(new _IntVar(fields[x].getName(), c));
-					break;
-				case "class java.lang.Boolean":
-					this.add(new _BooleanVar(fields[x].getName(), c));
-					break;
-				case "boolean":
-					this.add(new _BooleanVar(fields[x].getName(), c));
-					break;
-				case "class Utils.Vector2":
-					this.add(new _Vector2Var(fields[x].getName(), c));
-					break;
-				case "class java.lang.String":
-					this.add(new _StringVar(fields[x].getName(), c));
-					break;
-				case "class java.lang.Double":
-					this.add(new _DoubleVar(fields[x].getName(), c));
-					break;
-				case "float":
-					this.add(new _FloatVar(fields[x].getName(), c));
-					break;
-				case "class java.lang.Float":
-					this.add(new _FloatVar(fields[x].getName(), c));
-					break;
-				default:
-					System.out.println("Invalid data type from "+c.name+" (ComponentGui): " + fields[x].getType().toString() + "\nName: " +fields[x].getName());
-					break;
+				if(checkable.contains(f.getType().toString())){
+					this.add(new _CheckVar(f, c));
 				}
-				
+				else if(f.getType().toString().equals("class Utils.Vector2")){
+					this.add(new _Vector2Var(f, c));
+				}
+				else if(f.getType().toString().equals("boolean") || f.getType().toString().equals("class java.lang.Boolean")){
+					this.add(new _BooleanVar(f, c));
+				}
+				else{
+					System.out.println("Invalid data type from "+c.name+" (ComponentGui): " + f.getType().toString() + "\nName: " + f.getName());
+				}
+			
+			}
+			
+			} catch (SecurityException e) {
+				e.printStackTrace();
 			}
 			this.add(Box.createRigidArea(new Dimension(1,7)));
 		}	
@@ -76,7 +76,7 @@ public class ComponentGui extends JPanel{
 	}
 	
 	
-	static Field[] getFields(String name){
+	public static Field[] getFields(String name){
 			try {
 				   switch(name){
 				   case "Transform":

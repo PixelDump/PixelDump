@@ -24,12 +24,17 @@ public class TextDefaults extends JFormattedTextField{
 		PlainDocument doc = new PlainDocument();
 	    
 	    switch(type){
-	    	case "Integer":
+	    	case "int":
 	    		doc.setDocumentFilter(new IntFilter());
 	    		 this.setDocument(doc);
 	    		break;
 	    		
-	    	case "String":
+	    	case "class java.lang.String":
+	    		break;
+	    		
+	    	case "double":
+	    		doc.setDocumentFilter(new DoubleFilter());
+	    	    this.setDocument(doc);
 	    		break;
 	    		
 	    	case "Double":
@@ -37,13 +42,13 @@ public class TextDefaults extends JFormattedTextField{
 	    	    this.setDocument(doc);
 	    		break;
 	    		
-	    	case "Float":
+	    	case "float":
 	    		doc.setDocumentFilter(new DoubleFilter());
 	    		this.setDocument(doc);
 	    		break;
 	    		
 	    	default:
-	    		System.out.println("Invalid TextDefault type");
+	    		System.out.println("Invalid TextDefault type: "+ type);
 	    }
 	    
 	    this.addFocusListener(new FocusListener(){
