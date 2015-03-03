@@ -42,7 +42,7 @@ public class Renderer extends Utils.ScriptBase implements MessageHandler {
 
 	public Renderer() {
 		super("Renderer");
-PlayInEditMode= true;
+		PlayInEditMode = true;
 		m = Main.getMessenger();
 		m.subscribe("Render", this);
 
@@ -50,8 +50,8 @@ PlayInEditMode= true;
 
 	public Renderer(String Path) {
 		super("Renderer");
-		PlayInEditMode= true;
-		 setTexturePath(Path);
+		PlayInEditMode = true;
+		setTexturePath(Path);
 
 		m = Main.getMessenger();
 		m.subscribe("Render", this);
@@ -79,51 +79,51 @@ PlayInEditMode= true;
 		texture.bind();
 		scale = new Utils.Vector2(texture.getTextureWidth() * pixelScale,
 				texture.getTextureHeight() * pixelScale);
-	
+
 	}
 
 	public void GLTextureDraw() {
-		 glPushMatrix();
-		//glRotatef(270,0,0,1);
-		
+		glPushMatrix();
+		// glRotatef(270,0,0,1);
+
 		glBegin(GL_QUADS);
 		{
 
 			glTexCoord2f(1, 0);
 			glVertex3f(gameObject.transform.position.x,
-					gameObject.transform.position.y + scale.y,gameObject.transform.depth);
+					gameObject.transform.position.y + scale.y,
+					gameObject.transform.depth);
 
 			glTexCoord2f(0, 0);
 			glVertex3f(gameObject.transform.position.x + scale.x,
-					gameObject.transform.position.y + scale.y,gameObject.transform.depth);
+					gameObject.transform.position.y + scale.y,
+					gameObject.transform.depth);
 
 			glTexCoord2f(0, 1);
 			glVertex3f(gameObject.transform.position.x + scale.x,
-					gameObject.transform.position.y,gameObject.transform.depth);
+					gameObject.transform.position.y, gameObject.transform.depth);
 
 			glTexCoord2f(1, 1);
 			glVertex3f(gameObject.transform.position.x,
-					gameObject.transform.position.y,gameObject.transform.depth);
-			
+					gameObject.transform.position.y, gameObject.transform.depth);
 
 		}
 		glEnd();
-		 glPopMatrix();
-		
+		glPopMatrix();
+
 	}
 
 	public void Render() {
 
-		
 		GLTextureSetup();
 
 		GLTextureDraw();
 		texture.release();
 		scale = new Utils.Vector2(texture.getTextureWidth() * pixelScale,
 				texture.getTextureHeight() * pixelScale);
-		if (inBounds()&&!EditorUtilities.mouseHover.contains(gameObject)) {
+		if (inBounds() && !EditorUtilities.mouseHover.contains(gameObject)) {
 			EditorUtilities.mouseHover.add(gameObject);
-		} else if(EditorUtilities.mouseHover.contains(gameObject)){
+		} else if (EditorUtilities.mouseHover.contains(gameObject)) {
 			EditorUtilities.mouseHover.remove(gameObject);
 		}
 
@@ -134,6 +134,7 @@ PlayInEditMode= true;
 	}
 
 	public void Update() {
+		
 
 	}
 
@@ -150,16 +151,16 @@ PlayInEditMode= true;
 	}
 
 	public boolean inBounds() {
-	
-		Vector2I mousePosition = new Vector2I(Mouse.getX(),Mouse.getY());
-				
-				
+
+		Vector2I mousePosition = new Vector2I(Mouse.getX(), Mouse.getY());
+
 		if (scale != null) {
 
-		/*	System.out.println(mousePosition.x + " , " + (mousePosition.y)
-					+ " , "
-					+ (transform.position.x + texture.getTextureWidth() * 5)
-					+ " , " + (transform.position.y + scale.y));*/
+			/*
+			 * System.out.println(mousePosition.x + " , " + (mousePosition.y) +
+			 * " , " + (transform.position.x + texture.getTextureWidth() * 5) +
+			 * " , " + (transform.position.y + scale.y));
+			 */
 			return mousePosition.x > transform.position.x
 					&& mousePosition.x < transform.position.x + scale.x
 					&& mousePosition.y > transform.position.y

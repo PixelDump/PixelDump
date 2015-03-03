@@ -170,14 +170,16 @@ public class ScriptCompiler {
 		}
 
 	}
-
+public static boolean compiling;
 	public static void recompile(){
+		compiling=true;
+		
 		for(Class<?> c : PlayerScripts){
 			loadScript(c.getName().substring( c.getName().indexOf('.')+1));
 			Main.window.UpdateInspector(EditorUtilities.SelectedObject);
 		}
 		System.out.println("scripts updated");
-		
+		compiling=false;
 	
 	}
 	

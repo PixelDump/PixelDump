@@ -17,9 +17,10 @@ import org.lwjgl.opengl.DisplayMode;
 
 import Renderer.PixDumpWindow;
 import Renderer.Window;
-import SystemScripts.SystemScripts;
+import SystemScripts.*;
 import Utils.GameObjectUtil;
 import Utils.GameObjectUtilJcub;
+import Utils.NewGameObjectDialog;
 import Utils.ScriptCompiler;
 
 import com.mrjaffesclass.apcs.messenger.Messenger;
@@ -32,6 +33,8 @@ public class Main {
 	
 	public static PixDumpWindow p;
 	public static Window window;
+	
+	public static NewGameObjectDialog  newGameObjectDialog;
 	
 	public static void initGL() {
 		glMatrixMode(GL_PROJECTION);
@@ -75,6 +78,7 @@ public class Main {
 		
 		m.notify("Start");
 
+		newGameObjectDialog= new NewGameObjectDialog();
 	
 	}
 
@@ -98,10 +102,14 @@ public class Main {
 	}
 
 	public static void Update() {
-	 
+	 if(Input.getKey(Keyboard.KEY_C)){
+		 
+		 ScriptCompiler.recompile();
+	 }
 		try{
 		m.notify("Update");
 		}catch(Exception e){e.printStackTrace();}
+		
 	}
 
 	public static void Render() {

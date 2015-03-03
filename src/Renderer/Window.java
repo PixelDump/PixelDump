@@ -124,6 +124,8 @@ public class Window extends PixDumpWindow {
 					s += "     ";
 				}
 			}
+			
+			System.out.println("     " + s + base.get(x).name());
 			Hierarchy.add(MakeSelectableText("     " + s + base.get(x).name()));
 			Hierarchy.add(Box.createRigidArea(new Dimension(0, 2)));
 

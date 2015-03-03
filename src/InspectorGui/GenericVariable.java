@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import Engine.Main;
 import Utils.Component;
+import Utils.ScriptCompiler;
 
 import com.mrjaffesclass.apcs.messenger.MessageHandler;
 import com.mrjaffesclass.apcs.messenger.Messenger;
@@ -41,7 +42,7 @@ public class GenericVariable extends JPanel implements MessageHandler{
 	public void messageHandler(String messageName, Object messagePayload) {
 		switch(messageName){
 		case "Update":
-			updateVariable();
+			if(!ScriptCompiler.compiling)updateVariable();
 			break;
 		}
 		
