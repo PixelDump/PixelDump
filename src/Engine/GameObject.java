@@ -10,6 +10,12 @@ import Utils.ScriptBase;
 import Utils.Transform;
 import Utils.Vector2;
 
+/**
+ * 
+ * @author Jacob and Barry
+ * 
+ *
+ */
 public class GameObject extends GenericObject{
 
 	public Transform transform = new Transform(new Vector2());
@@ -17,19 +23,27 @@ public class GameObject extends GenericObject{
 
 	private ArrayList<GameObject> Children = new ArrayList<GameObject>();
 	private GameObject Parent;
-	
-	
 	private static ArrayList<GameObject> SceneObjects = new ArrayList<GameObject>();
 
-	//BARRY I ADDED THIS IN
+
+	/**Returns the GameObject's Components
+	 */
 	public ArrayList<Component> GetAllComponents(){
 		return Components;
 	}
 	
+	/**Sets a GameObject's children to an array of GameObjects.
+	 * @param children - The ArrayList of child GameObjects
+	 */
 	public void SetChildren(ArrayList<GameObject> children){
 		this.Children=children;
 		Main.window.UpdateHierarchy();
 	}
+	
+	/**Adds a GameObject to the GameObject's "Children" ArrayList, then updates the Hierarchy
+	 * 
+	 * @param child - The GameObject to add
+	 */
 	public void AddChild(GameObject child){
 		this.Children.add(child);
 		child.SetParent(this);
@@ -38,6 +52,11 @@ public class GameObject extends GenericObject{
 			}
 			catch(Exception e){}
 	}
+	
+	/**Sets the GameObject's Parent GameObject
+	 * 
+	 * @param Parent - The Parent GameObject
+	 */
 	public void SetParent(GameObject Parent){
 		this.Parent=Parent;
 	}

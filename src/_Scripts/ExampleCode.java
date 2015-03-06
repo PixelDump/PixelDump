@@ -3,7 +3,9 @@ package _Scripts;
 import Utils.ScriptBase;
 import Utils.Vector2;
 
+
 public class ExampleCode extends ScriptBase{
+
 
 	public ExampleCode() {
 		super("ExampleCode");
