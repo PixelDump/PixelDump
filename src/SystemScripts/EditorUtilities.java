@@ -98,8 +98,9 @@ public class EditorUtilities extends ScriptBase {
 		SelectedObject = go;
 		if(SelectedObject!=null){
 		Main.window.setSelected(go.name());
-		}
 		Main.window.UpdateInspector(go);
+		}
+
 
 	}
 }

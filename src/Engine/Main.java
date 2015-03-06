@@ -17,7 +17,9 @@ import org.lwjgl.opengl.DisplayMode;
 
 import Renderer.PixDumpWindow;
 import Renderer.Window;
-import SystemScripts.*;
+import SystemScripts.EditorUtilities;
+import SystemScripts.Input;
+import SystemScripts.SystemScripts;
 import Utils.GameObjectUtil;
 import Utils.GameObjectUtilJcub;
 import Utils.NewGameObjectDialog;
@@ -30,20 +32,20 @@ public class Main {
 	static Messenger m = new Messenger();
 
 	public static boolean PlayMode = false;
-	
+
 	public static PixDumpWindow p;
 	public static Window window;
-	
-	public static NewGameObjectDialog  newGameObjectDialog;
-	
+
+	public static NewGameObjectDialog newGameObjectDialog;
+
 	public static void initGL() {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glOrtho(0, window.c.getWidth(), 0,  window.c.getHeight(), -1, 1);
+		glOrtho(0, window.c.getWidth(), 0, window.c.getHeight(), -1, 1);
 		glMatrixMode(GL_MODELVIEW);
-		//GL11.glEnable(GL_DEPTH_TEST);
-		//glEnable(GL_DEPTH_TEST);
-		glClearColor(.082f,.3f, .7f, 0);
+		// GL11.glEnable(GL_DEPTH_TEST);
+		// glEnable(GL_DEPTH_TEST);
+		glClearColor(.082f, .3f, .7f, 0);
 	}
 
 	public static void main(String[] args) {
@@ -53,41 +55,40 @@ public class Main {
 	}
 
 	public static void gameLoop() {
-		
+
 		while (!Display.isCloseRequested()) {
 			// getInput();
 			Update();
 			Render();
-			
+
 		}
-		
+
 	}
 
 	public static void Start() {
 		ScriptCompiler.pickProject();
-		
+
 		GameObjectUtil.Start();
 		GameObjectUtilJcub.Start();
 		p = new PixDumpWindow();
 		window = new Window();
-		
+
 		initDisplay();
 		initGL();
-		
+
 		SystemScripts.Start();
-		
+
 		m.notify("Start");
 
-		newGameObjectDialog= new NewGameObjectDialog();
-	
+		newGameObjectDialog = new NewGameObjectDialog();
+
 	}
 
-
-	
 	public static void initDisplay() {
 		try {
-			
-			Display.setDisplayMode(new DisplayMode(window.c.getWidth(), window.c.getHeight()));
+
+			Display.setDisplayMode(new DisplayMode(window.c.getWidth(),
+					window.c.getHeight()));
 			Display.create();
 
 			Display.setParent(window.c);
@@ -102,16 +103,16 @@ public class Main {
 	}
 
 	public static void Update() {
-	 if(Input.getKey(Keyboard.KEY_C)){
+		try{	
+	/* if(Input.getKeyDown(Keyboard.KEY_C)&&EditorUtilities.SelectedObject!=null){
 		 
 		 ScriptCompiler.recompile();
-	 }
-		try{
-		m.notify("Update");
-		}catch(Exception e){e.printStackTrace();}
+	 }*/
 		
+		m.notify("Update");
+	
+	}catch(Exception e){e.printStackTrace();}
 	}
-
 	public static void Render() {
 
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -119,7 +120,7 @@ public class Main {
 
 		// Draw
 		m.notify("Render");
-		
+
 		Display.update();
 		Display.sync(60);
 

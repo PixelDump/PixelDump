@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.UIManager;
@@ -26,7 +27,7 @@ import SystemScripts.EditorUtilities;
 
 public class ScriptCompiler {
 
-	public static ArrayList<Class<?>> PlayerScripts = new ArrayList<Class<?>>();
+	public static CopyOnWriteArrayList<Class<?>> PlayerScripts =new CopyOnWriteArrayList<Class<?>>();
 	public static String projectPath;
 
 	public static void loadScript(String name) {
@@ -85,7 +86,7 @@ public class ScriptCompiler {
 					if (c.name.equals(name)) {
 
 						g.removeScript(name);
-						((ScriptBase) c).UnLink();
+
 						g.AddScript(getPlayerScript(name));
 						
 					}
@@ -172,6 +173,7 @@ public class ScriptCompiler {
 	}
 public static boolean compiling;
 	public static void recompile(){
+	
 		compiling=true;
 		
 		for(Class<?> c : PlayerScripts){

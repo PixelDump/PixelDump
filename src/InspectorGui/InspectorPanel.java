@@ -26,7 +26,7 @@ public class InspectorPanel extends JPanel{
 	JRadioButton r = new JRadioButton();
 	JPanel p = new JPanel();
 	JButton b = new JButton();
-	ComponentCombo c = new ComponentCombo();
+	public ComponentCombo c = new ComponentCombo();
 	
 	public InspectorPanel(GameObject go){	
 		this.removeAll();

@@ -69,7 +69,10 @@ public  void removeScript(String name){
 		
 		if (name.equals(c.name)) {
 			 Components.remove(c);
-			 ((ScriptBase)c).UnLink();
+		if(c.getClass().getTypeName().startsWith("_Scripts"))
+			 ((PScript)c).UnLink();
+		else
+			((ScriptBase)c).UnLink();
 			 System.out.println("removed");
 			break;
 		} 

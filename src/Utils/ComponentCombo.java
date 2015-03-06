@@ -6,23 +6,36 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
-public class ComponentCombo extends JComboBox{
+/**
+ * 
+ * @author Barry and Jacob
+ *
+ */
+public class ComponentCombo extends JComboBox {
 
-	
-	
-	//This may need to be changed to find scripts from file locations?
-	public ComponentCombo(){
-		
-		for(int x = 0; x<ScriptCompiler.PlayerScripts.size(); x++){
-			this.addItem(makeObj(ScriptCompiler.PlayerScripts.get(x).getName().substring(ScriptCompiler.PlayerScripts.get(x).getName().indexOf('.')+1)));
+	// This may need to be changed to find scripts from file locations?
+	/**
+	 * Contsructs Combo Box for Inspector.
+	 */
+	public ComponentCombo() {
+
+		for (int x = 0; x < ScriptCompiler.PlayerScripts.size(); x++) {
+			this.addItem(makeObj(ScriptCompiler.PlayerScripts
+					.get(x)
+					.getName()
+					.substring(
+							ScriptCompiler.PlayerScripts.get(x).getName()
+									.indexOf('.') + 1)));
 		}
-		
-		
-		
+
 	}
-	
-	private Object makeObj(final String item)  {
-	     return new Object() { public String toString() { return item; } };
-	   }
-	
+
+	private Object makeObj(final String item) {
+		return new Object() {
+			public String toString() {
+				return item;
+			}
+		};
+	}
+
 }

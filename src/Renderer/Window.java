@@ -37,7 +37,7 @@ public class Window extends PixDumpWindow {
 	JPanel CanvasPanel = new JPanel();
 	windowMenu w = new windowMenu();
 	JToggleButton play = new JToggleButton();
-	
+	public InspectorPanel inspectorPanel;
 
 	//Constructor
 	public Window() {
@@ -144,8 +144,10 @@ public class Window extends PixDumpWindow {
 	// option to remove each attribute
 	
 	public void UpdateInspector(GameObject g) {
+		inspectorPanel= new InspectorPanel(g);
+		
 		Inspector.removeAll();
-		Inspector.add(new InspectorPanel(g));
+		Inspector.add( inspectorPanel);
 		
 		//updates gui
 		Inspector.revalidate();

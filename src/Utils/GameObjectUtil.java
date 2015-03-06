@@ -30,11 +30,7 @@ public class GameObjectUtil {
 		
 		
 	}
-	public static void recompile(GameObject go2){
 
-	ScriptCompiler.recompile();
-
-	}
 	public static class GeneralGameObjectUtils {
 
 	}
