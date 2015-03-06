@@ -31,7 +31,28 @@ public class _CheckVar extends GenericVariable{
 		//text->game
 		if(text.enter){
 				text.enter = false;
-				f.set(compDupe, text.getText());
+				switch(f.getType().toString()){
+				case "int":
+					f.set(compDupe, Integer.parseInt(text.getText()));
+					break;
+				case "class java.lang.String":
+					f.set(compDupe, text.getText());
+					break;
+				case "class java.lang.Double":
+					f.set(compDupe, Double.parseDouble(text.getText()));
+					break;
+				case "double":
+					f.set(compDupe, Double.parseDouble(text.getText()));
+					break;
+				case "float":
+					f.set(compDupe, Float.parseFloat(text.getText()));
+					break;
+				case "class java.lang.Float":
+					f.set(compDupe, Float.parseFloat(text.getText()));
+					break;
+				default:
+					System.out.println("Invalid variable type (_CheckVar) \"" + name + "\"" );
+				}
 			}
 			
 		//game->text
