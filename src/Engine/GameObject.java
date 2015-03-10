@@ -16,7 +16,7 @@ import Utils.Vector2;
  * 
  *
  */
-public class GameObject extends GenericObject{
+public class GameObject extends GenericObject {
 
 	public Transform transform = new Transform(new Vector2());
 	private String name = "";
@@ -25,45 +25,67 @@ public class GameObject extends GenericObject{
 	private GameObject Parent;
 	private static ArrayList<GameObject> SceneObjects = new ArrayList<GameObject>();
 
-
-	/**Returns the GameObject's Components
+	/**
+	 * Returns the GameObject's Components
 	 */
-	public ArrayList<Component> GetAllComponents(){
+	public ArrayList<Component> GetAllComponents() {
 		return Components;
 	}
-	
-	/**Sets a GameObject's children to an array of GameObjects.
-	 * @param children - The ArrayList of child GameObjects
+
+	/**
+	 * Sets a GameObject's children to an array of GameObjects.
+	 * 
+	 * @param children
+	 *            - The ArrayList of child GameObjects
 	 */
-	public void SetChildren(ArrayList<GameObject> children){
-		this.Children=children;
+	public void SetChildren(ArrayList<GameObject> children) {
+		this.Children = children;
 		Main.window.UpdateHierarchy();
 	}
-	
-	/**Adds a GameObject to the GameObject's "Children" ArrayList, then updates the Hierarchy
+
+	/**
+	 * Adds a GameObject to the GameObject's "Children" ArrayList, then updates
+	 * the Hierarchy
 	 * 
-	 * @param child - The GameObject to add
+	 * @param child
+	 *            - The GameObject to add
 	 */
-	public void AddChild(GameObject child){
+	public void AddChild(GameObject child) {
 		this.Children.add(child);
 		child.SetParent(this);
-		try{
+		try {
 			Main.window.UpdateHierarchy();
-			}
-			catch(Exception e){}
+		} catch (Exception e) {
+		}
 	}
-	
-	/**Sets the GameObject's Parent GameObject
+
+	/**
+	 * Sets the GameObject's Parent GameObject
 	 * 
-	 * @param Parent - The Parent GameObject
+	 * @param Parent
+	 *            - The Parent GameObject
 	 */
-	public void SetParent(GameObject Parent){
-		this.Parent=Parent;
+	public void SetParent(GameObject Parent) {
+		this.Parent = Parent;
 	}
-	public GameObject getParent(){
+
+	/**
+	 * Returns a GameObject's parent GameObject
+	 * 
+	 * @return The Parent GameObject
+	 */
+	public GameObject getParent() {
 		return this.Parent;
 	}
-	
+
+	/**
+	 * Returns an instance of a component in the GameObject's Component
+	 * ArrayList whose name matches a passed in value.
+	 * 
+	 * @param name
+	 *            - Name to check for
+	 * @return The Component whose name matches variable name
+	 */
 	public Component GetComponent(String name) {
 
 		Component result = null;
@@ -81,57 +103,90 @@ public class GameObject extends GenericObject{
 		return result;
 
 	}
-public  void removeScript(String name){
-	int i = 0;
-	
-	for (Component c : Components) {
-		
-		if (name.equals(c.name)) {
-			 Components.remove(c);
-			 ((ScriptBase)c).UnLink();
-			 System.out.println("removed");
-			break;
-		} 
-	//	System.out.println(	c.name);
-		 
-		i++;
-	}
-}
 
-public  void removeScript(PScript x){
-	int i = 0;
-	
-	if(Components.contains(x)){
-		 Components.remove(x);
-		 ((PScript)x).UnLink();
-		 System.out.println("removed");
-	} 
-	
-	
-}
-public  void removeScript(ScriptBase x){
-	int i = 0;
-	
-	if(Components.contains(x)){
-		 Components.remove(x);
-		 ((ScriptBase)x).UnLink();
-		 System.out.println("removed");
-	} 
-	
-	
-}
+	/**
+	 * Both removes a component from the GameObject and unLinks it.
+	 * 
+	 * @param name
+	 *            - Name of the component to remove
+	 */
+	public void removeScript(String name) {
+		int i = 0;
+
+		for (Component c : Components) {
+
+			if (name.equals(c.name)) {
+				Components.remove(c);
+				((ScriptBase) c).UnLink();
+				// System.out.println("removed");
+				break;
+			}
+
+			i++;
+		}
+	}
+
+	/**
+	 * Both removes a component from the GameObject and unLinks it.
+	 * 
+	 * @param x
+	 *            - PScript to remove
+	 */
+	public void removeScript(PScript x) {
+		int i = 0;
+
+		if (Components.contains(x)) {
+			Components.remove(x);
+			((PScript) x).UnLink();
+			// System.out.println("removed");
+		}
+
+	}
+
+	/**
+	 * Both removes a component from the GameObject and unLinks it.
+	 * 
+	 * @param x
+	 *            - ScriptBase to remove
+	 */
+	public void removeScript(ScriptBase x) {
+		int i = 0;
+
+		if (Components.contains(x)) {
+			Components.remove(x);
+			((ScriptBase) x).UnLink();
+			// System.out.println("removed");
+		}
+
+	}
+
+	/**
+	 * Adds a script to the GameObject's Components ArrayList and sets the script's parent to the GameObject (see PScript).
+	 * 
+	 */
 	@Override
 	public void AddScript(ScriptBase script) {
-		
+
 		script.setParent(this);
 		Components.add(script);
 	}
 
+	/**
+	 * Adds a script to the GameObject's Components ArrayList and sets the script's parent to the GameObject (see PScript).
+	 * 
+	 * 
+	 */
 	public void AddScript(PScript script) {
-		
+
 		script.setParent(this);
 		Components.add(script);
 	}
+
+	/**Returns the GameObject (from this GameObject's Children ArrayList) whose name matches.
+	 * 
+	 * @param name - Name to search for
+	 * 
+	 */
 	public GameObject GetChild(String name) {
 		GameObject result;
 		int i = 0;
@@ -148,26 +203,46 @@ public  void removeScript(ScriptBase x){
 
 		return result;
 	}
-	
+
+	/**
+	 * 
+	 * @return The GameObject's Children ArrayList
+	 */
 	public List<GameObject> GetChildren() {
-		
+
 		return Children;
 	}
 
+	/**Sets the GameObject's name to a passed in string.
+	 * 
+	 * @param name - The name to set to
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * 
+	 * @return The GameObject's name
+	 */
 	public String name() {
 		return name;
 	}
 
+	/**Removes the passed in GameObject.
+	 * 
+	 * @param go - GameObject to destroy
+	 */
 	public static void Destroy(GameObject go) {
 
 		SceneObjects.remove(go);
 
 	}
 
+	/**Returns the GameObject matching the passed in name.
+	 * 
+	 * @param search - Name of the GameObject to find.
+	 */
 	public static GameObject Find(String search) {
 		GameObject result;
 		while (true) {
@@ -184,18 +259,31 @@ public  void removeScript(ScriptBase x){
 		return result;
 	}
 
+	/**Adds a GameObject to the SceneObjects ArrayList (thus "creating" it in the scene)
+	 * 
+	 * @param go - GameObject to add
+	 * @return The GameObject passed in (for convenience)
+	 */
 	public static GameObject AddGameObject(GameObject go) {
 
 		SceneObjects.add(go);
-		
+
 		return go;
 	}
 
-	public static ArrayList<GameObject> getAllGameObjects(){
+	/**Returns the ArrayList containing all GameObjects
+	 * 
+	 * @return
+	 */
+	public static ArrayList<GameObject> getAllGameObjects() {
 		return SceneObjects;
-		
+
 	}
-	
+
+	/**Constructs a new GameObject 
+	 * (adds a transform by default, adds the GameObject to the SceneObjects ArrayList, updates Hierarchy)
+	 * 
+	 */
 	public GameObject() {
 
 		Components.add(transform);
@@ -203,20 +291,32 @@ public  void removeScript(ScriptBase x){
 		SceneObjects.add(this);
 		Main.window.UpdateHierarchy();
 	}
-
+	
+	/**Constructs a new GameObject with the passed in name
+	 * (adds a transform by default, adds the GameObject to the SceneObjects ArrayList, updates Hierarchy)
+	 * 
+	 * @param name - Name of new GameObject
+	 */
 	public GameObject(String name) {
 		Components.add(transform);
 		this.name = name;
 		SceneObjects.add(this);
-		
 		try{
 		Main.window.UpdateHierarchy();
 		}
 		catch(Exception e){}
 	}
 
+	/**Constructs a new GameObject with the respective name, scripts and components
+	 * (adds a transform by default, adds the GameObject to the SceneObjects ArrayList, updates Hierarchy)
+	 * 
+	 * @param name - Name of new GameObject
+	 * @param scripts - GameObject's scripts
+	 * @param components - GameObject's components
+	 */
 	GameObject(String name, ArrayList<ScriptBase> scripts,
 			ArrayList<Component> components) {
+		
 		Components.add(transform);
 		for (int i = 0; i < scripts.size(); i++) {
 			AddScript(scripts.get(i));
@@ -228,13 +328,18 @@ public  void removeScript(ScriptBase x){
 
 		this.name = name;
 		SceneObjects.add(this);
+		Main.window.UpdateHierarchy();
 
 	}
 
-	GameObject(String name,
-			ArrayList<Component> components) {
+	/**Constructs a new GameObject with passed in name and components
+	 * (adds a transform by default, adds the GameObject to the SceneObjects ArrayList, updates Hierarchy)
+	 * 
+	 * @param name
+	 * @param components
+	 */
+	GameObject(String name, ArrayList<Component> components) {
 		Components.add(transform);
-		
 
 		for (int i = 0; i < components.size(); i++) {
 			AddComponent(components.get(i));
@@ -243,7 +348,7 @@ public  void removeScript(ScriptBase x){
 		this.name = name;
 		SceneObjects.add(this);
 
+		Main.window.UpdateHierarchy();
 	}
-	
-	
+
 }

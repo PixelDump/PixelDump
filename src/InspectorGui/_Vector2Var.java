@@ -11,13 +11,22 @@ import Utils.TextDefaults;
 import Utils.Transform;
 import Utils.Vector2;
 
+/**Inspector Variable gui for type Vector2
+ * 
+ * @author Jacob
+ *
+ */
 public class _Vector2Var extends GenericVariable{
 
 
 	public TextDefaults x = new TextDefaults("Double");
 	public TextDefaults y = new TextDefaults("Double");
 	
-	
+	/**Creates a new GenericVariable displaying two text boxes (with limited input) tied to the passed in Vector2
+	 * 
+	 * @param field - Field to monitor
+	 * @param c - Component that the field belongs to
+	 */
 	public _Vector2Var(Field field, Component c){
 		f = field;
 		name = f.getName();
@@ -34,6 +43,9 @@ public class _Vector2Var extends GenericVariable{
 		this.add(y);
 	}
 	
+	/**Sets text area to variable value and vice versa
+	 * 
+	 */
 	public void updateVariable(){
 		try{
 		//game->text
@@ -62,6 +74,11 @@ public class _Vector2Var extends GenericVariable{
 		
 		
 	}
+	
+	/**
+	 * 
+	 * @return The Vector2's value at at instance
+	 */
 	Vector2 getVec2 (){
 		
 		try {

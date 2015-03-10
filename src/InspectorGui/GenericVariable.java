@@ -12,7 +12,11 @@ import com.mrjaffesclass.apcs.messenger.MessageHandler;
 import com.mrjaffesclass.apcs.messenger.Messenger;
 
 	
-
+/**Base class for each Component variable gui type; constructs universal variable gui attributes and the head overload for updateVariable 
+ * 
+ * @author Jacob
+ *
+ */
 public class GenericVariable extends JPanel implements MessageHandler{
 	
 	public String name;
@@ -30,13 +34,22 @@ public class GenericVariable extends JPanel implements MessageHandler{
 		
 	}
 	
+	/**Calls all overloads of updateVariable in each type of GenericVariable.
+	 * 
+	 */
 	public void updateVariable(){
 	}
 		
+	/**Returns the field's name.
+	 * 
+	 */
 	public String getName(){
 		return name;
 	}
 
+	/**Runs updateVariable whenever "Update" message is put out.
+	 * 
+	 */
 	@Override
 	public void messageHandler(String messageName, Object messagePayload) {
 		switch(messageName){

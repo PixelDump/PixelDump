@@ -6,10 +6,20 @@ import java.lang.reflect.Field;
 import Utils.Component;
 import Utils.TextDefaults;
 
+/**Inspector Variable gui for types int, String, Double and Float
+ * 
+ * @author Jacob
+ *
+ */
 public class _CheckVar extends GenericVariable{
 
 	public TextDefaults text;
 	
+	/**Creates a new GenericVariable displaying a text box (with limited input) tied to the passed in Value 
+	 * 
+	 * @param field - Field to monitor
+	 * @param c - Component that the field belongs to
+	 */
 	public _CheckVar(Field field, Component c){
 		 f=field;
 		 name = f.getName();
@@ -25,6 +35,9 @@ public class _CheckVar extends GenericVariable{
 		
 	}
 	
+	/**Sets text area to variable value and vice versa
+	 * 
+	 */
 	public void updateVariable(){
 		try{
 		
@@ -67,6 +80,10 @@ public class _CheckVar extends GenericVariable{
 		}
 	}
 	
+	/**
+	 * 
+	 * @return The field's value at at instance
+	 */
 	Object getExisting (){
 		
 		try {

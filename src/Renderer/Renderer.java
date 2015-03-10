@@ -31,6 +31,11 @@ import Utils.Vector2I;
 import com.mrjaffesclass.apcs.messenger.MessageHandler;
 import com.mrjaffesclass.apcs.messenger.Messenger;
 
+/**
+ * 
+ * @author Barry
+ *
+ */
 public class Renderer extends Utils.ScriptBase implements MessageHandler {
 
 	private Texture texture;
@@ -40,14 +45,21 @@ public class Renderer extends Utils.ScriptBase implements MessageHandler {
 	Utils.Vector2 scale;
 	public float pixelScale = 3f;
 
+	/**Initializes a Renderer
+	 * 
+	 */
 	public Renderer() {
 		super("Renderer");
-PlayInEditMode= true;
+		PlayInEditMode= true;
 		m = Main.getMessenger();
 		m.subscribe("Render", this);
 
 	}
 
+	/**Initializes a Renderer with a corresponding filepath
+	 * 
+	 * @param Path - String of filepath to follow
+	 */
 	public Renderer(String Path) {
 		super("Renderer");
 		PlayInEditMode= true;
@@ -58,6 +70,9 @@ PlayInEditMode= true;
 
 	}
 
+	/**Loads and binds a .png file as a texture.
+	 * 
+	 */
 	public void GLTextureSetup() {
 		try {
 			texture = TextureLoader.getTexture(
@@ -82,6 +97,9 @@ PlayInEditMode= true;
 	
 	}
 
+	/**Assigns a texture to an object.
+	 * 
+	 */
 	public void GLTextureDraw() {
 		 glPushMatrix();
 		//glRotatef(270,0,0,1);
@@ -112,6 +130,9 @@ PlayInEditMode= true;
 		
 	}
 
+	/**Calls several functions to draw sprites to a canvas.
+	 * 
+	 */
 	public void Render() {
 
 		
@@ -137,6 +158,9 @@ PlayInEditMode= true;
 
 	}
 
+	/**Runs Render whenever message "Render" is sent.
+	 * 
+	 */
 	@Override
 	public void messageHandler(String messageName, Object messagePayload) {
 		switch (messageName) {
@@ -144,11 +168,19 @@ PlayInEditMode= true;
 			Render();
 		}
 	}
-
+	
+	/**Sets texturePath to passed filepath (String).
+	 * 
+	 * @param Path
+	 */
 	public void setTexturePath(String Path) {
 		texturePath = Path;
 	}
 
+	/**Returns whether or not the player's mouse is within an object's bounds.
+	 * 
+	 * 
+	 */
 	public boolean inBounds() {
 	
 		Vector2I mousePosition = new Vector2I(Mouse.getX(),Mouse.getY());

@@ -7,6 +7,11 @@ import Utils.GameObjectUtil;
 import Utils.GenericObject;
 import Utils.ScriptBase;
 
+/**Foundation of player script implementation.
+ * 
+ * @author Barry
+ *
+ */
 public class SystemScripts {
 	private String name = "";
 

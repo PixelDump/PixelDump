@@ -24,6 +24,11 @@ import SystemScripts.EditorUtilities;
 import Utils.TextDefaults;
 import Utils.windowMenu;
 
+/**Creates the JFrame containing the entire project.
+ * 
+ * @author Jacob
+ *
+ */
 public class Window extends PixDumpWindow {
 
 	public Canvas c = new Canvas();
@@ -39,15 +44,21 @@ public class Window extends PixDumpWindow {
 	JToggleButton play = new JToggleButton();
 	
 
-	//Constructor
+	/**Constructs a new Window (containing the entire project)
+	 * 
+	 */
 	public Window() {
 		super();
 
+		/**Retrieves all GameObjects
+		 * 
+		 */
 		ArrayList<GameObject> base = new ArrayList<GameObject>();
 		for (int shit = 0; shit < GameObject.getAllGameObjects().size(); shit++) {
 			base.add(GameObject.getAllGameObjects().get(shit));
-			// fuck this
 		}
+		
+		//Set Anesthetics 
 		this.setTitle("Pixel Dump Development Build! (get to work already)");
 		this.setLayout(new GridLayout(1, 2));
 		this.setPreferredSize(new Dimension(700, 400));
@@ -94,8 +105,10 @@ public class Window extends PixDumpWindow {
 
 	}
 
-	// This is the "View" side of createObjArray from the "Object" class. It
-	// literally just lists the objects (fancily)
+
+	/**Displays all GameObjects (ordered algorithmically by parenthood) with selection functionality.
+	 * 
+	 */
 	public void UpdateHierarchy() {
 		textList.clear();
 		textCount = 0;
@@ -136,11 +149,11 @@ public class Window extends PixDumpWindow {
 
 	}
 
-	// This will read any attributes and display them in order alongside any
-	// variables etc. that are there.
-	// The display will have variable alter-ers (shit may be tough) and an
-	// option to remove each attribute
-	
+
+	/**Reads all Components of a passed in GameObject and displays them.
+	 * 
+	 * @param g - GameObject to inspect
+	 */
 	public void UpdateInspector(GameObject g) {
 		Inspector.removeAll();
 		Inspector.add(new InspectorPanel(g));
@@ -149,15 +162,15 @@ public class Window extends PixDumpWindow {
 		Inspector.revalidate();
 		Inspector.repaint();
 		
-		
-		
 	}
 
 	
 	
 	
 	
-	// organizes GameObject array into children and subChildren
+	/**Organizes all GameObjects by parenthood
+	 * 
+	 */
 	void Childinator() {
 		ArrayList<GameObject> base = new ArrayList<GameObject>();
 		for (int i = 0; i < GameObject.getAllGameObjects().size(); i++) {
@@ -176,6 +189,10 @@ public class Window extends PixDumpWindow {
 		}
 	}
 
+	/**Returns the degree of childhood of a GameObject.
+	 * 
+	 * @param c - GameObject to analyze
+	 */
 	int ParentCount(GameObject c) {
 		int parentCount = 0;
 		while (c.getParent() != null) {
@@ -185,6 +202,10 @@ public class Window extends PixDumpWindow {
 		return parentCount;
 	}
 
+	/**Edits a JLabel to contain a GameObject's name and ability to be selected.
+	 * 
+	 * @param text - Name of the GameObject
+	 */
 	JLabel MakeSelectableText(String text) {
 
 		JLabel p = new JLabel();
@@ -213,6 +234,10 @@ public class Window extends PixDumpWindow {
 		return textList.get(textCount - 1);
 	}
 
+	/**Edit the selected Text to highlight it.
+	 * 
+	 * @param name - Name of the GameObject
+	 */
 	public void setSelected(String name) {
 
 		for (int x = 0; x < textList.size(); x++) {
@@ -230,6 +255,10 @@ public class Window extends PixDumpWindow {
 
 	}
 
+	/** Retrieves a GameObject (From getAllGameObjects) based on a String, converted to an integer as the index.
+	 * 
+	 * @param n - String to convert to int to use as index
+	 */
 	public GameObject labelToGo(String n) {
 		return GameObject.getAllGameObjects().get(Integer.parseInt((n)));
 	}

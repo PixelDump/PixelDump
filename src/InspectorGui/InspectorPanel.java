@@ -20,6 +20,11 @@ import Utils.ComponentCombo;
 import Utils.ScriptCompiler;
 import Utils.TextDefaults;
 
+/**Edits a JPanel to display all of an object's Components.
+ * 
+ * @author Jacob
+ *
+ */
 public class InspectorPanel extends JPanel{
 
 	
@@ -28,6 +33,10 @@ public class InspectorPanel extends JPanel{
 	JButton b = new JButton();
 	ComponentCombo c = new ComponentCombo();
 	
+	/**Creates a new InspectorPanel.
+	 * 
+	 * @param go - GameObject to display attributes of.
+	 */
 	public InspectorPanel(GameObject go){	
 		this.removeAll();
 	

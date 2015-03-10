@@ -24,6 +24,11 @@ import Utils.ScriptCompiler;
 
 import com.mrjaffesclass.apcs.messenger.Messenger;
 
+/**Main
+ * 
+ * @author Barry
+ *
+ */
 public class Main {
 
 	static Messenger m = new Messenger();
@@ -33,6 +38,9 @@ public class Main {
 	public static PixDumpWindow p;
 	public static Window window;
 	
+	/**Initializes the GL aspects of the project (in canvas)
+	 * 
+	 */
 	public static void initGL() {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
@@ -49,6 +57,9 @@ public class Main {
 		cleanUp();
 	}
 
+	/**Creates update loop, renders GL
+	 * 
+	 */
 	public static void gameLoop() {
 		
 		while (!Display.isCloseRequested()) {
@@ -60,6 +71,9 @@ public class Main {
 		
 	}
 
+	/**Initializes the entire program
+	 * 
+	 */
 	public static void Start() {
 		ScriptCompiler.pickProject();
 		
@@ -79,7 +93,9 @@ public class Main {
 	}
 
 
-	
+	/**Initializes display settings
+	 * 
+	 */
 	public static void initDisplay() {
 		try {
 			
@@ -97,6 +113,9 @@ public class Main {
 
 	}
 
+	/**Notifies "Update" using Messenger
+	 * 
+	 */
 	public static void Update() {
 	 
 		try{
@@ -104,6 +123,9 @@ public class Main {
 		}catch(Exception e){e.printStackTrace();}
 	}
 
+	/**Updates Display, notifies "Render" and clears GL
+	 * 
+	 */
 	public static void Render() {
 
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -117,11 +139,18 @@ public class Main {
 
 	}
 
+	/**Removes Display and Keyboard links
+	 * 
+	 */
 	private static void cleanUp() {
 		Display.destroy();
 		Keyboard.destroy();
 	}
 
+	/**
+	 * 
+	 * @return Main's Messenger
+	 */
 	public static Messenger getMessenger() {
 		return m;
 	}

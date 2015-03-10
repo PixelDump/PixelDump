@@ -13,11 +13,18 @@ import Utils.TextUtilities;
 
 import com.jtattoo.plaf.smart.SmartLookAndFeel;
 
-
+/**Uses JTattoo to set a customized GUI.
+ * 
+ * @author Jacob
+ *
+ */
 public class PixDumpWindow extends JFrame {
 
 	public static TextUtilities u = new TextUtilities();
 	
+	/**Uses JTattoo to set a customized GUI.
+	 * 
+	 */
 	public PixDumpWindow(){
 		
 		try {
