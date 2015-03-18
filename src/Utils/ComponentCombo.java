@@ -30,11 +30,6 @@ public class ComponentCombo extends JComboBox {
 
 	}
 
-	/**Create object from string to add to combo box.
-	 * 
-	 * @param item - name of item
-	 * @return Object to add to combo box.
-	 */
 	private Object makeObj(final String item) {
 		return new Object() {
 			public String toString() {
