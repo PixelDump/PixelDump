@@ -9,10 +9,20 @@ import javax.swing.JRadioButton;
 import Utils.Component;
 import Utils.TextDefaults;
 
+/**Inspector Variable gui for type Boolean
+ * 
+ * @author Jacob
+ *
+ */
 public class _BooleanVar extends GenericVariable{
 
 	public JRadioButton radioButton = new JRadioButton();
 	
+	/**Creates a new GenericVariable displaying a JRadioButton tied to the passed in Boolean 
+	 * 
+	 * @param field - Boolean to monitor
+	 * @param c - Component that the field belongs to
+	 */
 	public _BooleanVar(Field field, Component c){
 		f= field;
 		name = f.getName();

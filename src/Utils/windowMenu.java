@@ -10,6 +10,7 @@ import javax.swing.Box;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 
 public class windowMenu extends JMenuBar{
 
@@ -32,6 +33,8 @@ public class windowMenu extends JMenuBar{
 	public windowMenu(){
 		
 		this.add(Box.createRigidArea(new Dimension(0,10)));
+		
+		JPopupMenu.setDefaultLightWeightPopupEnabled(false);
 		
 		File.setForeground(new Color(150,150,150));
 		GameObjectMenu.setForeground(new Color(150,150,150));

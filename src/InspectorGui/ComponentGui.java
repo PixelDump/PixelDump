@@ -13,7 +13,11 @@ import Utils.Component;
 import Utils.ScriptCompiler;
 import Utils.removeButton;
 
-
+/**Edits a JPanel to contain all of a component's information.
+ * 
+ * @author Jacob
+ *
+ */
 public class ComponentGui extends JPanel{
 	
 	public ArrayList<String> checkable = new ArrayList<String>(){{
@@ -41,7 +45,6 @@ public class ComponentGui extends JPanel{
 		for(int x = 0; x < fields.length; x++){
 			
 			try {
-				//Field f = c.getClass().getField(fields[x].getName());
 				Field f = fields[x];
 			
 			
@@ -75,7 +78,11 @@ public class ComponentGui extends JPanel{
 		
 	}
 	
-	
+	/**Returns the Fields of a Component (whose name is passed in).
+	 * 
+	 * @param name - name of the Component
+	 * @return Array of fields
+	 */
 	public static Field[] getFields(String name){
 			try {
 				   switch(name){
@@ -96,7 +103,12 @@ public class ComponentGui extends JPanel{
 		  }
 	
 	
-	
+	/**Returns the type of field (based on the passed in name and class).
+	 * 
+	 * @param name - Name of Class
+	 * @param index - Index of field to analyze
+	 * @return
+	 */
 	static String getFieldType(String name, int index) {
 		
 		   try {

@@ -6,6 +6,11 @@ import org.lwjgl.input.Mouse;
 import Utils.ScriptBase;
 import Utils.Vector2;
 
+/**Shortcuts for input codes (to be used in player scripts)
+ * 
+ * @author Barry
+ *
+ */
 public class Input extends ScriptBase{
 
 	public Input() {

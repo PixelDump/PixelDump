@@ -13,6 +13,11 @@ import Utils.DepthComparator;
 import Utils.ScriptBase;
 import Utils.Vector2;
 
+/**Contains several utilities to be used in the canvas (editor).
+ * 
+ * @author Barry
+ *
+ */
 public class EditorUtilities extends ScriptBase {
 
 	protected EditorUtilities() {
@@ -28,6 +33,9 @@ public class EditorUtilities extends ScriptBase {
 
 	}
 
+	/**
+	 * 
+	 */
 	public void Update() {
 	
 		Collections.sort(mouseHover, new DepthComparator());
@@ -52,13 +60,15 @@ public class EditorUtilities extends ScriptBase {
 	public Vector2 offset;
 
 	
-
+	/**Sets the current selected object to the object in the foreground and initiates grab().
+	 * 
+	 */
 	void selection() {
 		if (Input.getMouseDown(0)) {
 			if (mouseHover.size() == 0) {
-				setSelected( null);
+				Main.window.Hierarchy.setSelected( null);
 			} else {
-				setSelected( mouseHover.get(0));
+				Main.window.Hierarchy.setSelected( mouseHover.get(0));
 				
 			}
 
@@ -66,6 +76,9 @@ public class EditorUtilities extends ScriptBase {
 		grab();
 	}
 	
+	/**Moves a GameObject in the editor (canvas) according to the mouse position until the mouse is no longer held.
+	 * 
+	 */
 	public void grab() {
 		if (Input.getMouseUp(0)) {
 			isGrabbing = false;
@@ -75,7 +88,7 @@ public class EditorUtilities extends ScriptBase {
 			if (Input.getMouse(0)) {
 				if (!isGrabbing) {
 					isGrabbing = true;
-					setSelected( mouseHover.get(0));
+					Main.window.Hierarchy.setSelected( mouseHover.get(0));
 					offset = new Vector2(Math.abs(SelectedObject.transform.position.x
 							- Input.getMousePosition().x),
 							Math.abs(SelectedObject.transform.position.y
@@ -94,12 +107,5 @@ public class EditorUtilities extends ScriptBase {
 
 	}
 	
-	public static void setSelected(GameObject go){
-		SelectedObject = go;
-		if(SelectedObject!=null){
-		Main.window.setSelected(go.name());
-		}
-		Main.window.UpdateInspector(go);
-
-	}
+	
 }
