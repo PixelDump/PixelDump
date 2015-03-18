@@ -4,7 +4,11 @@ import _Scripts.ExampleCode;
 import Engine.GameObject;
 import Engine.testScript;
 import Renderer.Renderer;
-
+/**
+ * Create debuging gameObjects
+ * @author Jacob
+ *
+ */
 public class GameObjectUtilJcub  {
 
 	//make TestGameObjects inside of here for now

@@ -41,14 +41,22 @@ public class Input extends ScriptBase{
 		
 	}
 	public static boolean getKeyDown(int key){
-		return (Keyboard.next()&&Keyboard.getEventKey() == key&&Keyboard.getEventKeyState());	
+		
+		while (Keyboard.next()) {
+		    if (Keyboard.getEventKeyState()) {
+		        if (Keyboard.getEventKey()==key) {
+		           return true;
+		        }
+		    }
+		}
+		
+		return false;	
 	}
 	public static boolean getKeyUp(int key){
 		
 		return (Keyboard.next()&&Keyboard.getEventKey() == key&&!Keyboard.getEventKeyState());	
 	}
 	public  void Update(){
-	
 	}
 	
 }

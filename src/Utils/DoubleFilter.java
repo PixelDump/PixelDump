@@ -4,7 +4,11 @@ package Utils;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
-
+/**
+ * Forbids invalid characters from being typed into a double text box.
+ * @author Jacob.
+ *
+ */
 public class DoubleFilter extends DocumentFilter {
 
     public void insertString(DocumentFilter.FilterBypass fb, int offset,

@@ -15,9 +15,15 @@ public abstract class ScriptBase extends Component implements MessageHandler {
 	protected Transform transform;
 	
 	private boolean canUpdate =true;
-	
+	/**
+	 * Is this script going to run when the game is not playing?
+	 */
 	protected boolean PlayInEditMode =false;
 	
+	/**
+	 * Constucts a new Script to be used only by the engine.
+	 * @param name - name of script being constructed.
+	 */
 	public ScriptBase(String name){
 		super(name);
 		m = Main.getMessenger();
@@ -26,7 +32,10 @@ public abstract class ScriptBase extends Component implements MessageHandler {
 		
 	}
 	
-	
+	/**
+	 * sets the parent of this gameObject.
+	 * @param parent - GameObject to be set as parent.
+	 */
 	public void setParent(GameObject parent){
 		this.gameObject= parent;
 		transform=gameObject.transform;
@@ -40,11 +49,17 @@ public abstract class ScriptBase extends Component implements MessageHandler {
 		
 		}
 	}
-	
+	/**
+	 * Function called once on start up to handle initialization of scripts. 
+	 */
 	public void Start(){}
-	
+	/**
+	 * Function called every frame of the main gameloop.
+	 */
 	public void Update(){}
-	
+	/**
+	 * Cuts off update function of script.
+	 */
 	public void UnLink(){
 		canUpdate=false;
 	}

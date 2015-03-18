@@ -12,7 +12,9 @@ import Renderer.Renderer;
 
 public class GameObjectUtil {
 	// make Test GameObjects Inside of here for now
-
+/**
+ * Will be used to create serialized gameobjects
+ */
 	public static void Start() {
 		
 		
@@ -24,100 +26,8 @@ public class GameObjectUtil {
 		GameObject go = new GameObject("jacob");
 		go.AddScript(new Renderer("jacob"));
 		go.transform.depth = -1;
-		System.out.println(GameObjectCreator.getFieldType("Engine",
-				"testScript",0));
-		
-		
-		
+	
 	}
 
-	public static class GeneralGameObjectUtils {
 
-	}
-
-	public static class GameObjectCreator {
-
-		public static void loadScene(File scene) {
-
-		}
-
-		public static ScriptBase newScriptByName(String name) {
-			try {
-				return (ScriptBase) (Class.forName(name).getConstructor()
-						.newInstance());
-			} catch (InstantiationException | IllegalAccessException
-					| IllegalArgumentException | InvocationTargetException
-					| NoSuchMethodException | SecurityException
-					| ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}
-
-		public static ScriptBase newScriptByName(String pack, String name) {
-			try {
-				return (ScriptBase) (Class.forName(pack + "." + name)
-						.getConstructor().newInstance());
-			} catch (InstantiationException | IllegalAccessException
-					| IllegalArgumentException | InvocationTargetException
-					| NoSuchMethodException | SecurityException
-					| ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}
-
-		public static Object getObjectByName(String pack, String name) {
-			try {
-				return (Class.forName(pack + "." + name).getConstructor()
-						.newInstance());
-			} catch (InstantiationException | IllegalAccessException
-					| IllegalArgumentException | InvocationTargetException
-					| NoSuchMethodException | SecurityException
-					| ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}
-
-		public static String getFieldType(String pack, String name, int index) {
-			try {
-				return Class.forName(pack + "." + name).getFields()[index]
-						.getType().getName();
-
-			} catch (IllegalArgumentException | SecurityException
-					| ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}
-
-		ObjectOutputStream oos = null;
-		FileOutputStream fout = null;
-
-		public void serializeGameObject(GameObject go) {
-
-			try {
-				FileOutputStream fout = new FileOutputStream("src/res/test.GO",
-						true);
-				ObjectOutputStream oos = new ObjectOutputStream(fout);
-				oos.writeObject(go);
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				if (oos != null) {
-					try {
-						oos.close();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-	}
 }
