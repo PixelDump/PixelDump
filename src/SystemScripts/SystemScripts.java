@@ -23,7 +23,7 @@ public class SystemScripts {
 
 		// Now you can create classes that extend script base and put them in this array.
 		// They will run just like a regular script but we will use them for building the engine.
-		scripts = Arrays.asList(new ScriptBase[] { new EditorUtilities(), new Input() });
+		scripts = Arrays.asList(new ScriptBase[] { new EditorUtilities(), new Input(), new CheckDelete() });
 	}
 
 }

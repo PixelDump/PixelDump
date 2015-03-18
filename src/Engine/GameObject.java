@@ -3,6 +3,7 @@ package Engine;
 import java.util.ArrayList;
 import java.util.List;
 
+import SystemScripts.EditorUtilities;
 import Utils.Component;
 import Utils.GenericObject;
 import Utils.PScript;
@@ -31,6 +32,7 @@ public class GameObject extends GenericObject {
 	public ArrayList<Component> GetAllComponents() {
 		return Components;
 	}
+
 
 	/**
 	 * Sets a GameObject's children to an array of GameObjects.
@@ -159,6 +161,13 @@ public class GameObject extends GenericObject {
 		}
 
 	}
+	
+	/**Sets Components to null.
+	 * 
+	 */
+	public void removeAllScripts(){
+		Components = null;
+	}
 
 	/**
 	 * Adds a script to the GameObject's Components ArrayList and sets the script's parent to the GameObject (see PScript).
@@ -234,9 +243,40 @@ public class GameObject extends GenericObject {
 	 * @param go - GameObject to destroy
 	 */
 	public static void Destroy(GameObject go) {
-
+		//DOUBLE CHECK IF ALL REFERENCES ARE REMOVED
+		//REMOVE FROM VIEW
+		
+		//System.out.println(go.name());
+		
+		if(go.Parent!=null)
+			go.getParent().Children.remove(go);
+		
+		go.setName(null);
+		go.SetParent(null);
+		go.removeAllScripts();
+		
 		SceneObjects.remove(go);
+		Main.window.base.remove(go);
+		
+		if(go.Children!=null){
+			ArrayList<GameObject> toRemove = new ArrayList<GameObject>();
+			
+			for(GameObject x : go.Children){
+				//System.out.println("  "+x.name+" of "+go.Children.size());
+				toRemove.add(x);
+			}
+			
+			//go.SetChildren(null);
+			destroyThese(toRemove);
+		}
+		
 
+	}
+	
+	public static void destroyThese(ArrayList<GameObject> g){
+		for(GameObject x: g){
+			Destroy(x);
+		}
 	}
 
 	/**Returns the GameObject matching the passed in name.
@@ -244,19 +284,15 @@ public class GameObject extends GenericObject {
 	 * @param search - Name of the GameObject to find.
 	 */
 	public static GameObject Find(String search) {
-		GameObject result;
-		while (true) {
-			int i = 0;
-			if (search.equals(SceneObjects.get(i).name)) {
-				result = SceneObjects.get(i);
-				break;
-			} else if (i <= SceneObjects.size()) {
-				return null;
-			}
-			i++;
+		
+		for(GameObject x : SceneObjects)
+		if(x.name().equals(search))
+		{
+			return x;
 		}
+		
 
-		return result;
+		return null;
 	}
 
 	/**Adds a GameObject to the SceneObjects ArrayList (thus "creating" it in the scene)
@@ -286,6 +322,7 @@ public class GameObject extends GenericObject {
 	 */
 	public GameObject() {
 
+		
 		Components.add(transform);
 		name = "GameObject";
 		SceneObjects.add(this);

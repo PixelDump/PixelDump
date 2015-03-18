@@ -66,9 +66,9 @@ public class EditorUtilities extends ScriptBase {
 	void selection() {
 		if (Input.getMouseDown(0)) {
 			if (mouseHover.size() == 0) {
-				setSelected( null);
+				Main.window.Hierarchy.setSelected( null);
 			} else {
-				setSelected( mouseHover.get(0));
+				Main.window.Hierarchy.setSelected( mouseHover.get(0));
 				
 			}
 
@@ -88,7 +88,7 @@ public class EditorUtilities extends ScriptBase {
 			if (Input.getMouse(0)) {
 				if (!isGrabbing) {
 					isGrabbing = true;
-					setSelected( mouseHover.get(0));
+					Main.window.Hierarchy.setSelected( mouseHover.get(0));
 					offset = new Vector2(Math.abs(SelectedObject.transform.position.x
 							- Input.getMousePosition().x),
 							Math.abs(SelectedObject.transform.position.y
@@ -107,16 +107,5 @@ public class EditorUtilities extends ScriptBase {
 
 	}
 	
-	/**Sets the current selected object to variable SelectedObject.
-	 * 
-	 * @param go - GameObject to be selected
-	 */
-	public static void setSelected(GameObject go){
-		SelectedObject = go;
-		if(SelectedObject!=null){
-		Main.window.setSelected(go.name());
-		}
-		Main.window.UpdateInspector(go);
-
-	}
+	
 }
