@@ -3,7 +3,11 @@ package Utils;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
-
+/**
+ * Only allows integers to be entered into the int field.
+ * @author barry
+ *
+ */
 public class IntFilter extends DocumentFilter {
 
     public void insertString(DocumentFilter.FilterBypass fb, int offset,
@@ -19,7 +23,9 @@ public class IntFilter extends DocumentFilter {
         }
         super.insertString(fb, offset, buffer.toString(), attr);
     }
-
+/**
+ * Removes Invalid Characters.
+ */
     public void replace(DocumentFilter.FilterBypass fb,
                         int offset, int length, String string, AttributeSet attr) throws BadLocationException {
         if (length > 0) fb.remove(offset, length);

@@ -12,7 +12,12 @@ import javax.swing.JTextField;
 
 import Engine.GameObject;
 import Engine.Main;
-
+ 
+/**
+ * Creates a dialog that is used to construct a new GameObject.
+ * @author barry
+ *
+ */
 public class NewGameObjectDialog extends JFrame{
 
 	JTextField goName = new JTextField(){{this.setMaximumSize(new Dimension(300, 20));this.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);}};

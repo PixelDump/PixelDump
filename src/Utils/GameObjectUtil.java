@@ -9,7 +9,11 @@ import java.lang.reflect.InvocationTargetException;
 import Engine.GameObject;
 import Engine.testScript;
 import Renderer.Renderer;
-
+/**
+ * General GameObject Utilities.
+ * @author barry
+ *
+ */
 public class GameObjectUtil {
 	// make Test GameObjects Inside of here for now
 
@@ -34,7 +38,11 @@ public class GameObjectUtil {
 	public static class GeneralGameObjectUtils {
 
 	}
-
+/**
+ *  Serializes and De-Serialize then constructs GameObjects.
+ * @author barry
+ *
+ */
 	public static class GameObjectCreator {
 
 		public static void loadScene(File scene) {
