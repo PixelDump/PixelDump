@@ -9,8 +9,15 @@ import javax.swing.JButton;
 import Engine.Main;
 import SystemScripts.EditorUtilities;
 
+/**Creates a specially tailored button for removing Components
+ * 
+ * @author Jacob
+ *
+ */
 public class removeButton extends JButton{
 
+	/**Creates a specially tailored button for removing Components
+	 */
 	public removeButton(Component c){
 		
 		if(c.name.equals("Transform")){

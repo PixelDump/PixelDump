@@ -5,7 +5,11 @@ import Engine.Main;
 import com.mrjaffesclass.apcs.messenger.MessageHandler;
 import com.mrjaffesclass.apcs.messenger.Messenger;
 
-
+/**Framework for Player Scripts
+ * 
+ * @author Barry
+ *
+ */
 public abstract class ScriptBase extends Component implements MessageHandler {
 
 	Messenger m ;
@@ -18,6 +22,8 @@ public abstract class ScriptBase extends Component implements MessageHandler {
 	
 	protected boolean PlayInEditMode =false;
 	
+	/**Creates a new ScriptBase with specified name
+	 */
 	public ScriptBase(String name){
 		super(name);
 		m = Main.getMessenger();
@@ -26,7 +32,8 @@ public abstract class ScriptBase extends Component implements MessageHandler {
 		
 	}
 	
-	
+	/**Sets the script's parent GameObject (the object the the script functions on)
+	 */
 	public void setParent(GameObject parent){
 		this.gameObject= parent;
 		transform=gameObject.transform;

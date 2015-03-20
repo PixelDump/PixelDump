@@ -6,13 +6,9 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToggleButton;
@@ -20,9 +16,8 @@ import javax.swing.JToggleButton;
 import Engine.GameObject;
 import Engine.Main;
 import InspectorGui.InspectorPanel;
-import SystemScripts.EditorUtilities;
 import Utils.HierarchyPanel;
-import Utils.TextDefaults;
+import Utils.RandomTitles;
 import Utils.windowMenu;
 
 /**Creates the JFrame containing the entire project.
@@ -60,7 +55,8 @@ public class Window extends PixDumpWindow {
 		
 		Hierarchy = new HierarchyPanel();
 		
-		this.setTitle("Pixel Dump Development Build! (get to work already)");
+		
+		this.setTitle(RandomTitles.Titles[(int)(Math.random()*RandomTitles.Titles.length)]);
 		this.setLayout(new GridLayout(1, 2));
 		this.setPreferredSize(new Dimension(700, 400));
 		//this.setExtendedState(JFrame.MAXIMIZED_BOTH); 

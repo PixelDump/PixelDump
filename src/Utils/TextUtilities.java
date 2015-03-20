@@ -5,9 +5,20 @@ import java.io.File;
 	import java.io.UnsupportedEncodingException;
 	import java.util.Scanner;
 
-
+/**Functionality for text editing
+ * 
+ * @author Jacob
+ *
+ */
 public class TextUtilities {
 	
+	/**Creates a new text file
+	 * 
+	 * @param name - Name of the file
+	 * @param text - Contents of the file
+	 * @throws FileNotFoundException
+	 * @throws UnsupportedEncodingException
+	 */
 		void Create(String name, String text) throws FileNotFoundException, UnsupportedEncodingException{
 			
 			PrintWriter writer = new PrintWriter(name + ".txt", "UTF-8");
@@ -16,8 +27,14 @@ public class TextUtilities {
 			
 		}
 			
+		/**Reads a file's contents
+		 * 
+		 * @param fileName - Name of the file to read
+		 * @return
+		 * @throws FileNotFoundException
+		 */
 		@SuppressWarnings("resource")
-		String Read(String read) throws FileNotFoundException{
-			return (new Scanner(new File(read))).useDelimiter("\\A").next();
+		String Read(String fileName) throws FileNotFoundException{
+			return (new Scanner(new File(fileName))).useDelimiter("\\A").next();
 		}
 }
