@@ -11,9 +11,19 @@ import Engine.GameObject;
 import Engine.Main;
 import SystemScripts.EditorUtilities;
 
+/**Creates a JLabel with specific attributes
+ * 
+ * @author Jacob
+ *
+ */
 public class SelectableText extends JLabel{
 	
 
+	/**Creates a JLabel with specific attributes (uniquely created for displaying GameObjects)
+	 * 
+	 * @param name - Name of JLabel (Same as GameObject)
+	 * @param text - Text of JLabel (Name of GameObject with indentation)
+	 */
 	SelectableText(String name, String text) {
 
 		this.setText(text);

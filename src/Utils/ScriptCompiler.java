@@ -24,11 +24,18 @@ import Engine.GameObject;
 import Engine.Main;
 import SystemScripts.EditorUtilities;
 
+/**Compiles player written scripts during runtime
+ * 
+ * @author Barry
+ *
+ */
 public class ScriptCompiler {
 
 	public static ArrayList<Class<?>> PlayerScripts = new ArrayList<Class<?>>();
 	public static String projectPath;
 
+	/**Loads a player script with passed in name
+	 */
 	public static void loadScript(String name) {
 		System.setProperty("java.home",
 				getJDKPath());
@@ -99,6 +106,8 @@ public class ScriptCompiler {
 
 	}
 
+	/**Returns a PScript with passed in name
+	 */
 	public static PScript getPlayerScript(String name) {
 
 		for (Class<?> S : PlayerScripts) {
@@ -125,6 +134,8 @@ public class ScriptCompiler {
 
 	}
 
+	/**Returns a class with passed in name
+	 */
 	public static Class<?> getPlayerClass(String name) {
 
 		for (Class<?> S : PlayerScripts) {
@@ -145,6 +156,9 @@ public class ScriptCompiler {
 
 	}
 
+	/**Creates a file explorer dialog to select location of PScripts
+	 * 
+	 */
 	public static void pickProject() {
 		try {
 	        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -171,6 +185,9 @@ public class ScriptCompiler {
 
 	}
 
+	/**Reloads all PScripts
+	 * 
+	 */
 	public static void recompile(){
 		for(Class<?> c : PlayerScripts){
 			loadScript(c.getName().substring( c.getName().indexOf('.')+1));
@@ -181,6 +198,8 @@ public class ScriptCompiler {
 	
 	}
 	
+	/**Returns an array of Files from specified directory
+	 */
 	public static File[] getScriptsInProject(File dir) {
 
 		return dir.listFiles(new FilenameFilter() {
@@ -196,8 +215,11 @@ public class ScriptCompiler {
 		byte[] encoded = Files.readAllBytes(Paths.get(path));
 		return new String(encoded, encoding);
 	}
-
 	
+	/**Reads an existing file to determine current JDK version
+	 * 
+	 * @return
+	 */
 	public static String getJDKPath(){
 		File java = new File("..\\JAVAPATH.txt");
 		try {

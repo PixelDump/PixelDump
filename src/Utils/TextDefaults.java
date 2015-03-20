@@ -13,12 +13,21 @@ import javax.swing.text.PlainDocument;
 
 import Engine.Main;
 
+/**Creates a JFormattedTextField to facilitate types of data entry
+ * 
+ * @author Jacob
+ *
+ */
 public class TextDefaults extends JFormattedTextField{
 
 	
 	public Boolean isFocused= false;
 	public Boolean enter = false;
 	
+	/**Creates a JFormattedTextField to facilitate types of data entry
+	 * 
+	 * @param type - Type of object
+	 */
 	public TextDefaults(String type){
 		
 		PlainDocument doc = new PlainDocument();
@@ -77,11 +86,14 @@ public class TextDefaults extends JFormattedTextField{
 	   
 	}
 	
-	
+	/**Returns whether or not the text is focused
+	 */
 	public Boolean isFocused(){
 		return isFocused;
 	}
 	
+	/**Returns a JLabel containing string text
+	 */
 	public static JLabel MakeText(String text) {
 		
 		JLabel p = new JLabel();

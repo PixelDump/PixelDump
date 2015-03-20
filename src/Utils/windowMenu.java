@@ -12,6 +12,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
+/**Creates a Menu for the window
+ * 
+ * @author Jacob
+ *
+ */
 public class windowMenu extends JMenuBar{
 
 	JMenu File = new JMenu();
@@ -30,6 +35,10 @@ public class windowMenu extends JMenuBar{
 	JMenuItem NewGameObject = new JMenuItem("New Game Object",
             KeyEvent.VK_T);
 	
+	
+	/**
+	 * Creates a JMenu and its corresponding menu items 
+	 */
 	public windowMenu(){
 		
 		this.add(Box.createRigidArea(new Dimension(0,10)));
@@ -72,6 +81,9 @@ public class windowMenu extends JMenuBar{
 		this.add(GameObjectMenu);
 	}
 	
+	/**
+	 * Functionality for Menu Buttons
+	 */
 	ActionListener listener = new ActionListener(){
 
 		@Override
