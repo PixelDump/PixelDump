@@ -28,14 +28,15 @@ public class CheckDelete extends ScriptBase{
 			GameObject.Destroy(g);
 			
 			Main.window.Hierarchy.setSelected(null);
-			Main.window.UpdateHierarchy();
+			Main.window.Hierarchy.Update();
+			//Main.window.UpdateHierarchy();
 			
 		}
 		
 		if(Input.getKeyDown(Keyboard.KEY_Q)){
 			System.out.println("Here");
-			Main.window.UpdateHierarchy();
-			
+			Main.window.Hierarchy.Update();
+			//Main.window.UpdateHierarchy();
 		}
 		
 	}

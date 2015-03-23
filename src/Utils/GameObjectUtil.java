@@ -10,6 +10,11 @@ import Engine.GameObject;
 import Engine.testScript;
 import Renderer.Renderer;
 
+/**Utilities for GameObject
+ * 
+ * @author Barry
+ *
+ */
 public class GameObjectUtil {
 	// make Test GameObjects Inside of here for now
 
@@ -39,6 +44,11 @@ public class GameObjectUtil {
 
 	}
 
+	/**Creates GameObjects
+	 * 
+	 * @author Barry
+	 *
+	 */
 	public static class GameObjectCreator {
 
 		public static void loadScene(File scene) {
@@ -73,6 +83,8 @@ public class GameObjectUtil {
 			return null;
 		}
 
+		/**Returns a new instance of a class by its package and name
+		 */
 		public static Object getObjectByName(String pack, String name) {
 			try {
 				return (Class.forName(pack + "." + name).getConstructor()
@@ -87,6 +99,8 @@ public class GameObjectUtil {
 			return null;
 		}
 
+		/**Returns the type of a field (as a String) specified by passed in package, name and field index
+		 */
 		public static String getFieldType(String pack, String name, int index) {
 			try {
 				return Class.forName(pack + "." + name).getFields()[index]
@@ -103,6 +117,8 @@ public class GameObjectUtil {
 		ObjectOutputStream oos = null;
 		FileOutputStream fout = null;
 
+		/**Writes the passed in GameObject to ObjectOutputStream "oos" (with FileOutputStream "fout")
+		 */
 		public void serializeGameObject(GameObject go) {
 
 			try {

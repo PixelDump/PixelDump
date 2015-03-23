@@ -11,6 +11,11 @@ import Engine.GameObject;
 import Engine.Main;
 import SystemScripts.EditorUtilities;
 
+/**A JPanel specifically for displaying the Hierarchy
+ * 
+ * @author Jacob
+ *
+ */
 public class HierarchyPanel extends JPanel{
 
 	ArrayList<GameObject> base ;
@@ -18,7 +23,9 @@ public class HierarchyPanel extends JPanel{
 
 	
 	
-	
+	/**Instantiates and initializes the HierarchyPanel
+	 * 
+	 */
 	public HierarchyPanel(){
 		Update();
 
@@ -26,8 +33,7 @@ public class HierarchyPanel extends JPanel{
 	
 	
 	
-	
-	void Update(){
+	public void Update(){
 		
 		System.out.println("Updating");
 
@@ -37,7 +43,6 @@ public class HierarchyPanel extends JPanel{
 		}
 		
 
-		
 		
 		this.removeAll();
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -89,19 +94,21 @@ public class HierarchyPanel extends JPanel{
 	 * 
 	 */
 	void Childinator() {
-		
-		for (int x = 0; x < base.size() - 1; x++) {
-
-			if (ParentCount(base.get(x)) != 0) {
-				
-				// save to holder, remove, place holder in right place
-				System.out.println(base.get(x).name());
-				GameObject holder = base.get(x);
-				base.remove(base.get(x));
-				base.add(base.indexOf(base.get(x).getParent()) + 1, holder);
-			}
+		ArrayList<GameObject> temp = new ArrayList<GameObject>();
+		for (int shit = 0; shit < GameObject.getAllGameObjects().size(); shit++) {
+			temp.add(GameObject.getAllGameObjects().get(shit));
 		}
 		
+		for (int x = 0; x < temp.size() - 1; x++) {
+
+			if (ParentCount(temp.get(x)) != 0) {
+				
+				// save to holder, remove, place holder in right place
+				GameObject holder = temp.get(x);
+				temp.remove(temp.get(x));
+				temp.add(temp.indexOf(temp.get(x).getParent()) + 1, holder);
+			}
+		}
 	}
 	
 	
