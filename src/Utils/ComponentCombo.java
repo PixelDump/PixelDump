@@ -6,11 +6,18 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
+/**Creates a JComboBox with a list of all possible components.
+ * 
+ * @author Jacob
+ *
+ */
 public class ComponentCombo extends JComboBox{
 
 	
 	
-	//This may need to be changed to find scripts from file locations?
+	/**Creates a JComboBox with a list of all possible components
+	 * 
+	 */
 	public ComponentCombo(){
 		
 		for(int x = 0; x<ScriptCompiler.PlayerScripts.size(); x++){
@@ -21,6 +28,9 @@ public class ComponentCombo extends JComboBox{
 		
 	}
 	
+	/**Returns and object based on passed in String
+	 * 
+	 */
 	private Object makeObj(final String item)  {
 	     return new Object() { public String toString() { return item; } };
 	   }
