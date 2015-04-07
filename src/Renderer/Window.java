@@ -31,7 +31,7 @@ public class Window extends PixDumpWindow {
 	public JPanel InspeIarchy = new JPanel();
 	public ArrayList<GameObject> base;
 	
-	JPanel Inspector;
+	public InspectorPanel Inspector;
 	public HierarchyPanel Hierarchy;
 	JScrollPane InspectorScroll;
 	JScrollPane HierarchyScroll;
@@ -54,6 +54,7 @@ public class Window extends PixDumpWindow {
 		}
 		
 		Hierarchy = new HierarchyPanel();
+		Inspector = new InspectorPanel(null);
 		
 		
 		this.setTitle(RandomTitles.Titles[(int)(Math.random()*RandomTitles.Titles.length)]);
@@ -63,9 +64,9 @@ public class Window extends PixDumpWindow {
 		this.setResizable(true);
 
 		
-		Inspector = new JPanel();
-		Inspector.setLayout(new BoxLayout(Inspector, BoxLayout.Y_AXIS));
+
 		InspectorScroll = new JScrollPane(Inspector,InspectorScroll.VERTICAL_SCROLLBAR_AS_NEEDED,InspectorScroll.HORIZONTAL_SCROLLBAR_NEVER);
+		HierarchyScroll = new JScrollPane(Hierarchy,HierarchyScroll.VERTICAL_SCROLLBAR_AS_NEEDED,HierarchyScroll.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		play.setText("Play");
 		play.setForeground(new Color(100,100,100));
@@ -83,14 +84,14 @@ public class Window extends PixDumpWindow {
 			}});
 		
 		InspeIarchy = new JPanel();
-		InspeIarchy.setLayout(new GridLayout(1, 4));
+		InspeIarchy.setLayout(new GridLayout(1, 2));
 		
 		CanvasPanel.add(play);
 		CanvasPanel.add(c);
 		CanvasPanel.setLayout(new BoxLayout(CanvasPanel, BoxLayout.Y_AXIS));
 		
 		InspeIarchy.add(InspectorScroll);
-		UpdateHierarchy();
+		InspeIarchy.add(HierarchyScroll);
 
 		this.add(CanvasPanel);
 		this.add(InspeIarchy);
@@ -108,14 +109,6 @@ public class Window extends PixDumpWindow {
 	 */
 	public void UpdateHierarchy() {
 		
-		InspeIarchy.removeAll();
-		
-		if(InspectorScroll!=null)
-		InspeIarchy.add(InspectorScroll);
-		InspeIarchy.add( new JScrollPane(Hierarchy));
-		
-		this.revalidate();
-		this.repaint();
 		
 	}
 
@@ -125,14 +118,11 @@ public class Window extends PixDumpWindow {
 	 * @param g - GameObject to inspect
 	 */
 	public void UpdateInspector(GameObject g) {
-		Inspector.removeAll();
+
+		if(Inspector!=null)		
+		Inspector.Update(g);
 		
-		if(g!=null)
-		Inspector.add(new InspectorPanel(g));
-		
-		//updates gui
 		Inspector.revalidate();
-		Inspector.repaint();
 		
 	}
 

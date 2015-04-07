@@ -32,44 +32,61 @@ public class InspectorPanel extends JPanel{
 	JPanel p = new JPanel();
 	JButton b = new JButton();
 	ComponentCombo c = new ComponentCombo();
+	ArrayList<Component> components;
 	
 	/**Creates a new InspectorPanel.
 	 * 
 	 * @param go - GameObject to display attributes of.
 	 */
 	public InspectorPanel(GameObject go){	
-		this.removeAll();
-	
+
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBorder(new EmptyBorder(0, 0, 0, 0));
-		this.add(TextDefaults.MakeText("Inspector:"));
-		this.add(TextDefaults.MakeText(go.name()));
 		
-		ArrayList<Component> components = go.GetAllComponents();
-		for(int x = 0; x<components.size(); x++){
+		Update(go);
+		
+	}
+	
+	public void Update(GameObject go){
+		if(go!=null){
 			
-			this.add(new ComponentGui(components.get(x)));
+			this.removeAll();
+		
+			this.add(TextDefaults.MakeText("Inspector:"));
+			this.add(TextDefaults.MakeText(go.name()));
+			
+			components = go.GetAllComponents();
+			
+			
+			for(int x = 0; x<components.size(); x++){
+				this.add(new ComponentGui(components.get(x)));
+				}
+			
+			b.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					go.AddScript(ScriptCompiler.getPlayerScript(String.valueOf(c.getSelectedItem())));
+					Main.window.UpdateInspector(EditorUtilities.SelectedObject);
+				}});
+			
+			b.setForeground(new Color(150,150,150));
+			b.setText("Add Component");
+			b.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
+			
+			c.setMaximumSize(new Dimension(100,20));
+			c.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
+			
+			this.add(c);
+			this.add(b);
 			
 		}
 		
-		b.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				go.AddScript(ScriptCompiler.getPlayerScript(String.valueOf(c.getSelectedItem())));
-				Main.window.UpdateInspector(EditorUtilities.SelectedObject);
-			}});
-		
-		b.setForeground(new Color(150,150,150));
-		b.setText("Add Component");
-		b.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
-		
-		c.setMaximumSize(new Dimension(100,20));
-		c.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
-		
-		this.add(c);
-		this.add(b);
-		
+		else{
+			this.removeAll();
+			this.repaint();
+		}
 	}
+		
 
 }
