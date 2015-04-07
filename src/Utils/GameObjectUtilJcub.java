@@ -19,7 +19,6 @@ public class GameObjectUtilJcub  {
 	public static  void Start(){
 		
 		a1 = new GameObject("Parent 1");
-		a1.AddScript(new ExampleCode());
 		
 		GameObject b1 = new GameObject("Child 1");
 		GameObject c1 = new GameObject("SubChild 1");

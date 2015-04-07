@@ -91,7 +91,7 @@ public class ComponentGui extends JPanel{
 				   case "Renderer":
 					   return null;
 				   default:
-					   return ScriptCompiler.getPlayerClass(name).getFields();//Class.forName("_Scripts."+name).getFields();
+					   return ScriptCompiler.getPlayerClass(name).getFields();
 				   }
 			}
 				   catch (IllegalArgumentException | SecurityException

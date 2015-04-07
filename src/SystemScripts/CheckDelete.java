@@ -18,7 +18,7 @@ public class CheckDelete extends ScriptBase{
 		super("CheckDelete");
 	}
 
-	//only first works, updating from here bugs out
+	//only first keydown works, updating from here bugs out
 
 	public void Update(){
 		 
@@ -28,16 +28,15 @@ public class CheckDelete extends ScriptBase{
 			GameObject.Destroy(g);
 			
 			Main.window.Hierarchy.setSelected(null);
+			Main.window.Inspector.Update(null);
+			
+			
 			Main.window.Hierarchy.Update();
-			//Main.window.UpdateHierarchy();
+			Main.window.Hierarchy.revalidate();
+			Main.window.Hierarchy.repaint();
 			
 		}
-		
-		if(Input.getKeyDown(Keyboard.KEY_Q)){
-			System.out.println("Here");
-			Main.window.Hierarchy.Update();
-			//Main.window.UpdateHierarchy();
-		}
+
 		
 	}
 }

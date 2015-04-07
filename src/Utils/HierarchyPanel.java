@@ -34,8 +34,6 @@ public class HierarchyPanel extends JPanel{
 	
 	
 	public void Update(){
-		
-		System.out.println("Updating");
 
 		base = new ArrayList<GameObject>();
 		for (int shit = 0; shit < GameObject.getAllGameObjects().size(); shit++) {
