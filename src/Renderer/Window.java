@@ -2,6 +2,7 @@ package Renderer;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -38,6 +39,8 @@ public class Window extends PixDumpWindow {
 	JPanel CanvasPanel = new JPanel();
 	windowMenu w = new windowMenu();
 	JToggleButton play = new JToggleButton();
+	
+	public Component store;
 
 	/**Constructs a new Window (containing the entire project)
 	 * 
@@ -104,13 +107,6 @@ public class Window extends PixDumpWindow {
 	}
 
 
-	/**Displays all GameObjects (ordered algorithmically by parenthood) with selection functionality.
-	 * 
-	 */
-	public void UpdateHierarchy() {
-		
-		
-	}
 
 
 	/**Reads all Components of a passed in GameObject and displays them.
