@@ -1,5 +1,6 @@
 package Utils;
 
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
@@ -73,6 +74,10 @@ public class HierarchyPanel extends JPanel{
 		}
 		
 		
+		this.revalidate();
+		this.repaint();
+		
+		
 	}
 	
 	/**Returns the degree of childhood of a GameObject.
@@ -92,7 +97,9 @@ public class HierarchyPanel extends JPanel{
 	 * 
 	 */
 	void Childinator() {
+		
 		ArrayList<GameObject> temp = new ArrayList<GameObject>();
+		
 		for (int shit = 0; shit < GameObject.getAllGameObjects().size(); shit++) {
 			temp.add(GameObject.getAllGameObjects().get(shit));
 		}
@@ -138,6 +145,23 @@ public class HierarchyPanel extends JPanel{
 			}
 		}
 
+	}
+	
+	
+	
+	public void setCursor(String type){
+		Cursor c;
+		
+		switch(type){
+		case "Move":
+			c = new Cursor(Cursor.N_RESIZE_CURSOR);
+			break;
+		default:
+			c = new Cursor(Cursor.DEFAULT_CURSOR);
+			break;
+		}
+		
+		this.setCursor(c);	
 	}
 
 	

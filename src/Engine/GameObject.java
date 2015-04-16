@@ -33,7 +33,17 @@ public class GameObject extends GenericObject {
 		return Components;
 	}
 
-
+	/**
+	 * Removes a passed in child from the GameObject's Children ArrayList. 
+	 * @param child - The child to remove
+	 */
+	public void RemoveChild(GameObject child){
+		if(Children.contains(child))
+			Children.remove(child);
+		
+	}
+	
+	
 	/**
 	 * Sets a GameObject's children to an array of GameObjects.
 	 * 
@@ -42,7 +52,7 @@ public class GameObject extends GenericObject {
 	 */
 	public void SetChildren(ArrayList<GameObject> children) {
 		this.Children = children;
-		Main.window.UpdateHierarchy();
+		Main.window.Hierarchy.Update();
 	}
 
 	/**
@@ -56,7 +66,7 @@ public class GameObject extends GenericObject {
 		this.Children.add(child);
 		child.SetParent(this);
 		try {
-			Main.window.UpdateHierarchy();
+			Main.window.Hierarchy.Update();
 		} catch (Exception e) {
 		}
 	}
@@ -326,7 +336,7 @@ public class GameObject extends GenericObject {
 		Components.add(transform);
 		name = "GameObject";
 		SceneObjects.add(this);
-		Main.window.UpdateHierarchy();
+		Main.window.Hierarchy.Update();
 	}
 	
 	/**Constructs a new GameObject with the passed in name
@@ -339,7 +349,7 @@ public class GameObject extends GenericObject {
 		this.name = name;
 		SceneObjects.add(this);
 		try{
-		Main.window.UpdateHierarchy();
+			Main.window.Hierarchy.Update();
 		}
 		catch(Exception e){}
 	}
@@ -365,7 +375,7 @@ public class GameObject extends GenericObject {
 
 		this.name = name;
 		SceneObjects.add(this);
-		Main.window.UpdateHierarchy();
+		Main.window.Hierarchy.Update();
 
 	}
 
@@ -385,7 +395,7 @@ public class GameObject extends GenericObject {
 		this.name = name;
 		SceneObjects.add(this);
 
-		Main.window.UpdateHierarchy();
+		Main.window.Hierarchy.Update();
 	}
 
 }
