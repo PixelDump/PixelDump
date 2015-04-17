@@ -26,6 +26,36 @@ public class GameObject extends GenericObject {
 	private GameObject Parent;
 	private static ArrayList<GameObject> SceneObjects = new ArrayList<GameObject>();
 
+	
+	
+	/**Returns children (and secondary children) of gameObject
+	 */
+	public ArrayList<GameObject> AllChildren(){
+		ArrayList<GameObject> go = new ArrayList<GameObject>();
+		
+		for(GameObject child: Children){
+			go.add(child);
+			go.addAll(child.AllChildren());
+		}
+		
+		return go;
+	}
+	
+	/**Returns the degree of childhood of a GameObject.
+	 * 
+	 * @param c - GameObject to analyze
+	 */
+	public int ParentCount() {
+		int parentCount = 0;
+		GameObject c = this;
+		while (c.getParent() != null) {
+			parentCount++;
+			c = c.getParent();
+		}
+		return parentCount;
+	}
+	
+	
 	/**
 	 * Returns the GameObject's Components
 	 */

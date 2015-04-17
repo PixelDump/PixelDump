@@ -61,19 +61,28 @@ public class SelectableText extends JLabel {
 				//if they drag on another thing
 				if (GameObject.Find(c.getName()) != null) {
 
+					
+					//and if they aren't the same thing
 					if (GameObject.Find(internalName) != GameObject.Find(c.getName())) {
-
-						if (GameObject.Find(internalName).getParent() != null)
-							GameObject.Find(internalName).getParent()
-									.RemoveChild(GameObject.Find(internalName));
 						
-						GameObject.Find(internalName).SetParent(
-								GameObject.Find(c.getName()));
-						GameObject.Find(c.getName()).AddChild(
-								GameObject.Find(internalName));
+						
+						//and if it isn't its own child
+						//then change it
+						if(!GameObject.Find(internalName).AllChildren().contains(GameObject.Find(c.getName()))){
 
-						Main.window.Hierarchy.Update();
+							
+							if (GameObject.Find(internalName).getParent() != null)
+								GameObject.Find(internalName).getParent()
+										.RemoveChild(GameObject.Find(internalName));
+						
+							GameObject.Find(internalName).SetParent(
+									GameObject.Find(c.getName()));
+							GameObject.Find(c.getName()).AddChild(
+									GameObject.Find(internalName));
 
+							Main.window.Hierarchy.Update();
+
+						}
 					}
 
 				}
