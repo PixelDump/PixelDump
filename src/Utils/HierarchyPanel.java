@@ -59,8 +59,8 @@ public class HierarchyPanel extends JPanel{
 			String s = "     ";
 
 			//Adds Indentation to children
-			if (ParentCount(x) != 0) {
-				for (int z = 0; z < ParentCount(x); z++) {
+			if (x.ParentCount() != 0) {
+				for (int z = 0; z < x.ParentCount(); z++) {
 					s += "     ";
 				}
 			}
@@ -80,18 +80,7 @@ public class HierarchyPanel extends JPanel{
 		
 	}
 	
-	/**Returns the degree of childhood of a GameObject.
-	 * 
-	 * @param c - GameObject to analyze
-	 */
-	int ParentCount(GameObject c) {
-		int parentCount = 0;
-		while (c.getParent() != null) {
-			parentCount++;
-			c = c.getParent();
-		}
-		return parentCount;
-	}
+	
 	
 	/**Organizes all GameObjects by parenthood
 	 * 
@@ -106,7 +95,7 @@ public class HierarchyPanel extends JPanel{
 		
 		for (int x = 0; x < temp.size() - 1; x++) {
 
-			if (ParentCount(temp.get(x)) != 0) {
+			if (temp.get(x).ParentCount() != 0) {
 				
 				// save to holder, remove, place holder in right place
 				GameObject holder = temp.get(x);
